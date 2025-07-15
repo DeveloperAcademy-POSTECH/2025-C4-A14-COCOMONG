@@ -1,0 +1,14 @@
+//
+//  Constants.swift
+//  Beat100
+//
+//  Created by 이현주 on 7/15/25.
+//
+
+import Foundation
+import SwiftUI
+
+// iOS, Watch OS 모두 사용
+struct Constants {
+    
+}

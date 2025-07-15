@@ -6,20 +6,92 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CF09C9EF2E266A7700E11198 /* WatchBeat100 Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CF09C9E52E266A7600E11198 /* WatchBeat100 Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF09C9ED2E266A7700E11198 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF09C8D02E26666000E11198 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF09C9E42E266A7600E11198;
+			remoteInfo = "WatchBeat100 Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CF09C9F32E266A7700E11198 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				CF09C9EF2E266A7700E11198 /* WatchBeat100 Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		CF09C8D82E26666000E11198 /* Beat100.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beat100.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF09C9E52E266A7600E11198 /* WatchBeat100 Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchBeat100 Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CF09CA342E266F7F00E11198 /* Exceptions for "Beat100" folder in "WatchBeat100 Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Util/Constants.swift,
+			);
+			target = CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */;
+		};
+		CF09CB4D2E269C8400E11198 /* Exceptions for "Beat100" folder in "Beat100" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CF09C8D72E26666000E11198 /* Beat100 */;
+		};
+		CF09CB4F2E269CF600E11198 /* Exceptions for "WatchBeat100 Watch App" folder in "WatchBeat100 Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"WatchBeat100-Watch-App-Info.plist",
+			);
+			target = CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CF09C8DA2E26666000E11198 /* Beat100 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CF09CB4D2E269C8400E11198 /* Exceptions for "Beat100" folder in "Beat100" target */,
+				CF09CA342E266F7F00E11198 /* Exceptions for "Beat100" folder in "WatchBeat100 Watch App" target */,
+			);
 			path = Beat100;
+			sourceTree = "<group>";
+		};
+		CF09C9E62E266A7600E11198 /* WatchBeat100 Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CF09CB4F2E269CF600E11198 /* Exceptions for "WatchBeat100 Watch App" folder in "WatchBeat100 Watch App" target */,
+			);
+			path = "WatchBeat100 Watch App";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CF09C8D52E26666000E11198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF09C9E22E266A7600E11198 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				CF09C8DA2E26666000E11198 /* Beat100 */,
+				CF09C9E62E266A7600E11198 /* WatchBeat100 Watch App */,
 				CF09C8D92E26666000E11198 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				CF09C8D82E26666000E11198 /* Beat100.app */,
+				CF09C9E52E266A7600E11198 /* WatchBeat100 Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,10 +129,12 @@
 				CF09C8D42E26666000E11198 /* Sources */,
 				CF09C8D52E26666000E11198 /* Frameworks */,
 				CF09C8D62E26666000E11198 /* Resources */,
+				CF09C9F32E266A7700E11198 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CF09C9EE2E266A7700E11198 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				CF09C8DA2E26666000E11198 /* Beat100 */,
@@ -68,6 +144,28 @@
 			);
 			productName = Beat100;
 			productReference = CF09C8D82E26666000E11198 /* Beat100.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF09C9F02E266A7700E11198 /* Build configuration list for PBXNativeTarget "WatchBeat100 Watch App" */;
+			buildPhases = (
+				CF09C9E12E266A7600E11198 /* Sources */,
+				CF09C9E22E266A7600E11198 /* Frameworks */,
+				CF09C9E32E266A7600E11198 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CF09C9E62E266A7600E11198 /* WatchBeat100 Watch App */,
+			);
+			name = "WatchBeat100 Watch App";
+			packageProductDependencies = (
+			);
+			productName = "WatchBeat100 Watch App";
+			productReference = CF09C9E52E266A7600E11198 /* WatchBeat100 Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -81,6 +179,9 @@
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					CF09C8D72E26666000E11198 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					CF09C9E42E266A7600E11198 = {
 						CreatedOnToolsVersion = 16.4;
 					};
 				};
@@ -100,12 +201,20 @@
 			projectRoot = "";
 			targets = (
 				CF09C8D72E26666000E11198 /* Beat100 */,
+				CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CF09C8D62E26666000E11198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF09C9E32E266A7600E11198 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +231,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CF09C9E12E266A7600E11198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF09C9EE2E266A7700E11198 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */;
+			targetProxy = CF09C9ED2E266A7700E11198 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CF09C8E62E26666100E11198 /* Debug */ = {
@@ -256,6 +380,7 @@
 				DEVELOPMENT_TEAM = UKY6HK6U6Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Beat100/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -284,6 +409,7 @@
 				DEVELOPMENT_TEAM = UKY6HK6U6Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Beat100/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +425,66 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CF09C9F12E266A7700E11198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UKY6HK6U6Y;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = WatchBeat100;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cocomong.Beat100;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocomong.Beat100.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Debug;
+		};
+		CF09C9F22E266A7700E11198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UKY6HK6U6Y;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = WatchBeat100;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cocomong.Beat100;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocomong.Beat100.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
 			};
 			name = Release;
 		};
@@ -319,6 +505,15 @@
 			buildConfigurations = (
 				CF09C8E92E26666100E11198 /* Debug */,
 				CF09C8EA2E26666100E11198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF09C9F02E266A7700E11198 /* Build configuration list for PBXNativeTarget "WatchBeat100 Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF09C9F12E266A7700E11198 /* Debug */,
+				CF09C9F22E266A7700E11198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
