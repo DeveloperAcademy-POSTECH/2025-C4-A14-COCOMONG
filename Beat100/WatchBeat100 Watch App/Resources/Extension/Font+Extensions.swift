@@ -19,15 +19,15 @@ extension Font {
         var value: String {
             switch self {
             case .light:
-                return "NanumSquareNeo-aLt"
+                return "NanumSquareNeoTTF-aLt"
             case .regular:
-                return "NanumSquareNeo-bRg"
+                return "NanumSquareNeoTTF-bRg"
             case .bold:
-                return "NanumSquareNeo-cBd"
+                return "NanumSquareNeoTTF-cBd"
             case .extrabold:
-                return "NanumSquareNeo-dEb"
+                return "NanumSquareNeoTTF-dEb"
             case .heavy:
-                return "NanumSquareNeo-eHv"
+                return "NanumSquareNeoTTF-eHv"
             }
         }
     }
