@@ -2,7 +2,7 @@
 
 ![배너 이미지 또는 로고](링크)
 
-> 간단한 한 줄 소개 – 프로젝트의 핵심 가치 또는 기능
+> 간단한 한 줄 소개 – 프로젝트의 핵심 가치 또는 기능!
 
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)]()
 [![Xcode](https://img.shields.io/badge/Xcode-15.0-blue.svg)]()
