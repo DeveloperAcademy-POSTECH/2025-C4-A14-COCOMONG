@@ -43,6 +43,7 @@
 		CF09CA342E266F7F00E11198 /* Exceptions for "Beat100" folder in "WatchBeat100 Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Resources/Presentation/Countdown/CountdownView.swift,
 				Resources/Util/Constants.swift,
 			);
 			target = CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */;
