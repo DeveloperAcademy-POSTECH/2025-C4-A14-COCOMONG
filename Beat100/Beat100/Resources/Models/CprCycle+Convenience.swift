@@ -16,11 +16,11 @@ extension CprCycle {
         self.depthPoints = depthPoints
     }
     
-    var bpmSeries: [BpmPoint] {
+    public var bpmSeries: [BpmPoint] {
         (bpmPoints as? Set<BpmPoint>)?.sorted(by: { $0.time < $1.time }) ?? []
     }
     
-    var depthSeries: [DepthPoint] {
+    public var depthSeries: [DepthPoint] {
         (depthPoints as? Set<DepthPoint>)?.sorted(by: { $0.compressionNumber < $1.compressionNumber }) ?? []
     }
 }
