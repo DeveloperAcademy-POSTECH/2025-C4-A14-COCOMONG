@@ -14,10 +14,38 @@ struct PersistenceController {
     static let preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-        }
+        
+        let cycle = CprCycle(
+            context: viewContext,
+            accuracy: CycleAccuracy(
+                context: viewContext,
+                correctNumber: 1,
+                totalNumber: 1
+            ),
+            bpmPoints: [BpmPoint(
+                context: viewContext,
+                time: 0,
+                bpm: 110
+            )],
+            depthPoints: [DepthPoint(
+                context: viewContext,
+                compressionNumber: 1,
+                depth: 4
+            )]
+        )
+        
+        let newCprReport = CprReport(
+            context: viewContext,
+            createdAt: Date(),
+            totalAccuracy: TotalAccuracy(
+                context: viewContext,
+                correctNumber: 1,
+                totalNumber: 1
+            ),
+            numberOfCycles: 1,
+            cycles: [cycle]
+        )
+        
         do {
             try viewContext.save()
         } catch {
