@@ -1,0 +1,33 @@
+name: Send GitHub Issue to Jira
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  send-to-jira:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send issue to Jira webhook
+        run: |
+          # GitHub의 배열 데이터 (labels, assignees)를 JSON 문자열로 변환
+          LABELS=$(jq -c '[.issue.labels[].name]' "$GITHUB_EVENT_PATH")
+          ASSIGNEES=$(jq -c '[.issue.assignees[].login]' "$GITHUB_EVENT_PATH")
+          
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "X-Automation-Webhook-Token: ${{ secrets.JIRA_WEBHOOK_TOKEN }}" \
+            --data @- <<EOF
+            {
+              "title": "${{ github.event.issue.title }}",
+              "body": "${{ github.event.issue.body }}",
+              "url": "${{ github.event.issue.html_url }}",
+              "repository": "${{ github.repository }}",
+              "issue_number": ${{ github.event.issue.number }},
+              "labels": $LABELS,
+              "assignees": $ASSIGNEES
+            }
+            EOF
+             \
+            https://api-private.atlassian.com/automation/webhooks/jira/a/5740d323-2814-4177-b7bf-8ed1d6b19f95/0198289d-e735-74a5-a6d7-056a17b58da3
