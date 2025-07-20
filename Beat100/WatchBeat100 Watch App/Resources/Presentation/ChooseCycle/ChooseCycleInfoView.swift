@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ChooseCycleInfoView: View {
-//    @Binding var showingInfo: Bool
     var body: some View {
         ZStack{
             Color.black
@@ -19,7 +18,6 @@ struct ChooseCycleInfoView: View {
                     HStack{
                         Text("CPR 사이클에 관해")
                             .font(.system(size: 14, weight: .bold))
-                        
                         Spacer()
                     }
                     .padding(.bottom, 13)
