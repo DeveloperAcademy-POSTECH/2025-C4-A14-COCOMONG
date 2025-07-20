@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ChooseCycleView: View {
-    @State private var selectedNumber: Int = 0
-    @State private var showingInfo: Bool = false
+    @StateObject var viewModel = ChooseCycleViewModel()
     let numbers = Array(1...5)
     
     var body: some View {
@@ -17,7 +16,7 @@ struct ChooseCycleView: View {
             VStack{
                 Text("사이클")
                     .font(.nanumSquareNeo(type: .heavy, size: 16))
-                Picker("숫자 선택", selection: $selectedNumber) {
+                Picker("숫자 선택", selection: $viewModel.selectedNumber) {
                     ForEach(numbers, id: \.self) { number in
                         Text("\(number)")
                             .font(.nanumSquareNeo(type: .heavy, size: 28))
@@ -72,13 +71,13 @@ struct ChooseCycleView: View {
                 .padding(.top, 8)
                 .padding(.bottom, 13)
             }
-            .sheet(isPresented: $showingInfo) {
+            .sheet(isPresented: $viewModel.showingInfo) {
                 ChooseCycleInfoView()
             }
             .toolbar{
                 ToolbarItem(placement: .topBarLeading) {
                     Button{
-                        showingInfo = true
+                        viewModel.showingInfo = true
                     } label: {
                         Image(systemName: "info")
                     }

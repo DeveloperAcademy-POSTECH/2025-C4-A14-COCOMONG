@@ -8,18 +8,11 @@
 import SwiftUI
 
 struct CountdownView: View {
-    let startTime: Date
-    @Binding var isCountdownDone: Bool
-    @State var now: Date = Date()
-    
-    var countdown: Int {
-        max(0, Int(ceil(startTime.timeIntervalSince(now))))
-    }
+    @StateObject var viewModel: CountdownViewModel
     
     var body: some View {
         ZStack{
-            Color.black
-                    .ignoresSafeArea()
+            Color.black.ignoresSafeArea()
             
             Circle()
                 .fill(Color.pink)
@@ -33,22 +26,16 @@ struct CountdownView: View {
             #endif
                 }())
             
-            Text("\(countdown)")
+            Text("\(viewModel.countdown)")
                 .font(.nanumSquareNeo(type: .heavy, size: 50))
                 .foregroundColor(.white)
-                .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { time in
-                    now = time
-                    if countdown <= 0 {
-                        isCountdownDone = true
-                    }
+                .onAppear {
+                    viewModel.startTimer()
                 }
         }
     }
 }
 
 #Preview {
-    CountdownView(
-        startTime: Date().addingTimeInterval(5),
-        isCountdownDone: .constant(false)
-    )
+    CountdownView(viewModel: CountdownViewModel())
 }

@@ -44,6 +44,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Presentation/Countdown/CountdownView.swift,
+				Resources/Presentation/Countdown/CountdownViewModel.swift,
 				Resources/Util/Constants.swift,
 			);
 			target = CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */;
