@@ -12,6 +12,16 @@ struct ChooseCycleView: View {
     let numbers = Array(1...5)
     
     var body: some View {
+#if os(iOS)
+        ZStack{
+            Color.black
+                .ignoresSafeArea(edges: .all)
+            Text("Apple Watch에서\nCPR 사이클을 선택하세요")
+                .font(.system(size:20, weight: .regular))
+                .foregroundStyle(Color.white)
+                .multilineTextAlignment(.center)
+        }
+#elseif os(watchOS)
         NavigationStack{
             VStack{
                 Text("사이클")
@@ -83,6 +93,7 @@ struct ChooseCycleView: View {
                 }
             }
         }
+#endif
     }
 }
 
