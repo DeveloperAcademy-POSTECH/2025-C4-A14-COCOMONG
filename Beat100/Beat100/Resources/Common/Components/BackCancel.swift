@@ -8,11 +8,60 @@
 import SwiftUI
 
 struct BackCancel: View {
+    @Environment(\.dismiss) var dismiss
+    @Binding var isPresented: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            BackButton(action: {
+                dismiss()
+            })
+            Spacer()
+            CancelButton(action: {
+                isPresented = false
+            })
+        }
+        .padding(.leading, 4)
+        .padding(.trailing, 16)
+        .padding(.bottom, 12)
+        .frame(maxWidth: .infinity, alignment: .center)
+    }
+}
+
+struct BackButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 6) {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundColor(.beatMint)
+                
+                Text("뒤로")
+                    .font(.system(size: 17))
+                    .foregroundColor(.beatMint)
+            }
+            .padding(.leading, 8)
+            .padding(.vertical, 11)
+        }
+    }
+}
+
+struct CancelButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text("취소")
+                .font(.system(size: 17))
+                .foregroundColor(.beatMint)
+                .padding(.leading, 8)
+                .padding(.vertical, 11)
+        }
     }
 }
 
 #Preview {
-    BackCancel()
+    BackCancel(isPresented: .constant(true))
 }

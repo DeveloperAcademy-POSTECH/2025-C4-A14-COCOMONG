@@ -7,20 +7,28 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
+struct GuideHomeView: View {
     @State var isPresented: Bool = false
     
     var body: some View {
-        Button(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/) {
-            isPresented.toggle()
+        VStack {
+            Button("Apple Watch에서 CPR 측정하기") {
+                isPresented.toggle()
+            }
+            Text("CPR 전체 가이드라인")
         }
         .sheet(isPresented: $isPresented) {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            VStack {
+                BackCancel(isPresented: $isPresented)
+                Spacer()
+                LargeButton(text: "계속") {
+                }
+            }
         }
     }
     
 }
 
 #Preview {
-    SwiftUIView()
+    GuideHomeView()
 }
