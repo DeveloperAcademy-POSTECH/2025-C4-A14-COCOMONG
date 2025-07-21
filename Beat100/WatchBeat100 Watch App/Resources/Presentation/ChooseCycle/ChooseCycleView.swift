@@ -24,7 +24,6 @@ struct ChooseCycleView: View {
                     }
                 }
                 .defaultWheelPickerItemHeight(40)
-                
                 .frame(width: 85, height: 85)
                 .background(LinearGradient(
                     gradient: Gradient(stops: [
@@ -64,12 +63,12 @@ struct ChooseCycleView: View {
                             .font(.system(size: 16, weight: .medium))
                             .foregroundStyle(.black)
                     }
-                    .frame(width: 164, height: 51)
+                    
                     .background(.beatBlue)
                     .clipShape(RoundedRectangle(cornerRadius: 100))
                 }
                 .padding(.top, 8)
-                .padding(.bottom, 13)
+                .padding(.bottom, 12.5)
             }
             .sheet(isPresented: $viewModel.showingInfo) {
                 ChooseCycleInfoView()
