@@ -21,7 +21,7 @@ struct GuideHomeView: View {
             VStack {
                 BackCancel(isPresented: $isPresented)
                 Spacer()
-                LargeButton(text: "계속") {
+                LargeButton("계속") {
                 }
             }
         }
