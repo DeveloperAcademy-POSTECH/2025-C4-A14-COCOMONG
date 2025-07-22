@@ -10,6 +10,8 @@ import WatchConnectivity
 
 class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
     static let shared = WatchConnectivityManager()
+    var session: WCSession?
+    
     @Published var isReady = false
 
     private override init() {
@@ -39,4 +41,15 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
             print("Watch send error: \(error.localizedDescription)")
         }
     }
+    
+    func sendMessage(_ message: [String: Any]) {
+            let session = WCSession.default
+            if session.isReachable {
+                session.sendMessage(message, replyHandler: nil, errorHandler: { error in
+                    print("sendMessage error: \(error.localizedDescription)")
+                })
+            } else {
+                print("WCSession is not reachable.")
+            }
+        }
 }
