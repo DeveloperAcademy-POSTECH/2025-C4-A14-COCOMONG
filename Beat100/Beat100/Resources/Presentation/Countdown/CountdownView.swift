@@ -8,47 +8,42 @@
 import SwiftUI
 
 struct CountdownView: View {
-    let startTime: Date
-    @Binding var isCountdownDone: Bool
-    @State var now: Date = Date()
-    
-    var countdown: Int {
-        max(0, Int(ceil(startTime.timeIntervalSince(now))))
-    }
+    @StateObject var viewModel: CountdownViewModel
     
     var body: some View {
-        ZStack{
-            Color.black
-                    .ignoresSafeArea()
-            
-            Circle()
-                .fill(Color.pink)
-                .padding(.horizontal, {
-            #if os(iOS)
-                    82
-            #elseif os(watchOS)
-                    20
-            #else
-                    20
-            #endif
-                }())
-            
-            Text("\(countdown)")
-                .font(.nanumSquareNeo(type: .heavy, size: 50))
-                .foregroundColor(.white)
-                .onReceive(Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()) { time in
-                    now = time
-                    if countdown <= 0 {
-                        isCountdownDone = true
+        VStack{
+            ZStack{
+                Color.black.ignoresSafeArea()
+                
+                //TODO: Circle은 그린이 Countdown circle 애니메이션 만들면 수정 할 예정 + Color.pink는 iOS Color Chip 추가 시 .beatPink로 수정
+                Circle()
+                    .fill(Color.pink)
+                    .frame(width: 126, height: 126)
+                    .padding(.horizontal, {
+#if os(iOS)
+                        82
+#elseif os(watchOS)
+                        20
+#else
+                        20
+#endif
+                    }())
+                
+                Text("\(viewModel.countdown)")
+                    .font(.nanumSquareNeo(type: .heavy, size: 50))
+                    .foregroundColor(.white)
+                    .onAppear {
+                        viewModel.startTimer()
                     }
-                }
+            }
+            Text("CPR 측정")
+                .font(.system(size: 12, weight: .medium))
+                
         }
+        .frame(width: 167, height: 156)
     }
 }
 
 #Preview {
-    CountdownView(
-        startTime: Date().addingTimeInterval(5),
-        isCountdownDone: .constant(false)
-    )
+    CountdownView(viewModel: CountdownViewModel())
 }
