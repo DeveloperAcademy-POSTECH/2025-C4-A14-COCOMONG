@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct RateAndDepthGuideView: View {
-    @EnvironmentObject var navigationManager: NavigationManager
     @Binding var isPresented: Bool
+    @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
         VStack {
@@ -75,4 +75,5 @@ private struct Content: View {
 
 #Preview {
     RateAndDepthGuideView(isPresented: .constant(true))
+        .environment(NavigationManager())
 }

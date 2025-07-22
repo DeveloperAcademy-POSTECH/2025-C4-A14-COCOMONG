@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppMechanismGuideView: View {
     @Binding var isPresented: Bool
-    @EnvironmentObject var navigationManager: NavigationManager
+    @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
         VStack {
@@ -69,5 +69,5 @@ private struct Disclaimer: View {
 
 #Preview {
     AppMechanismGuideView(isPresented: .constant(true))
-        .environmentObject(NavigationManager())
+        .environment(NavigationManager())
 }

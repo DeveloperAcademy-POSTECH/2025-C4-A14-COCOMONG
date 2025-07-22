@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GuideTapHomeView: View {
-    @StateObject private var navigationManager = NavigationManager()
+    @State private var navigationManager = NavigationManager()
     @State var isPresented: Bool = false
     
     var body: some View {
@@ -21,24 +21,23 @@ struct GuideTapHomeView: View {
         .sheet(isPresented: $isPresented) {
             NavigationStack(path: $navigationManager.path) {
                 AppMechanismGuideView(isPresented: $isPresented)
-                    .environmentObject(navigationManager)
+                    .environment(navigationManager)
                     .navigationDestination(for: MeasurementGuide.self) { value in
                         switch value {
                         case .appMechanism:
                             AppMechanismGuideView(isPresented: $isPresented)
-                                .environmentObject(navigationManager)
+                                .environment(navigationManager)
                         case .watchWearing:
                             WatchWearingGuideView(isPresented: $isPresented)
-                                .environmentObject(navigationManager)
+                                .environment(navigationManager)
                         case .compressionPosition:
                             CompressionPositionGuideView(isPresented: $isPresented)
-                                .environmentObject(navigationManager)
+                                .environment(navigationManager)
                         case .rateAndDepth:
                             RateAndDepthGuideView(isPresented: $isPresented)
-                                .environmentObject(navigationManager)
+                                .environment(navigationManager)
                         case .measurementStart:
                             MeasurementStartView(isPresented: $isPresented)
-                                .environmentObject(navigationManager)
                         }
                     }
             }
