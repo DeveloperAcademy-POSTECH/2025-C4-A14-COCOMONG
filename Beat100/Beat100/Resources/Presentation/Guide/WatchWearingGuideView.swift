@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WatchWearingGuideView: View {
     @Binding var isPresented: Bool
+    @EnvironmentObject var navigationManager: NavigationManager
     
     var body: some View {
         VStack {
@@ -16,7 +17,7 @@ struct WatchWearingGuideView: View {
             Content()
             Spacer()
             LargeButton("다음") {
-                //TODO: 네비게이션 로직 구현
+                navigationManager.navigate(to: .compressionPosition)
             }
         }
     }

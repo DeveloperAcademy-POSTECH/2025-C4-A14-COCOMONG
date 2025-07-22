@@ -7,12 +7,8 @@
 
 import SwiftUI
 
-@Observable class NavigationManager {
-    var path = NavigationPath()
-    
-    func navigate(to destination: String) {
-        path.append(destination)
-    }
+final class NavigationManager: ObservableObject {
+    @Published var path = NavigationPath()
     
     func popToRoot() {
         path.removeLast(path.count)

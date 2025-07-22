@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CompressionPositionGuideView: View {
+    @EnvironmentObject var navigationManager: NavigationManager
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -16,7 +17,7 @@ struct CompressionPositionGuideView: View {
             Content()
             Spacer()
             LargeButton("다음") {
-                //TODO: 네비게이션 로직 구현
+                navigationManager.navigate(to: .rateAndDepth)
             }
         }
     }

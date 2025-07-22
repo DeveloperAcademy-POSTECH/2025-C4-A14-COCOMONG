@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppMechanismGuideView: View {
     @Binding var isPresented: Bool
+    @EnvironmentObject var navigationManager: NavigationManager
     
     var body: some View {
         VStack {
@@ -17,7 +18,7 @@ struct AppMechanismGuideView: View {
             Spacer()
             Disclaimer()
             LargeButton("다음") {
-                //TODO: 네비게이션 로직 구현
+                navigationManager.navigate(to: .watchWearing)
             }
         }
     }
@@ -68,4 +69,5 @@ private struct Disclaimer: View {
 
 #Preview {
     AppMechanismGuideView(isPresented: .constant(true))
+        .environmentObject(NavigationManager())
 }
