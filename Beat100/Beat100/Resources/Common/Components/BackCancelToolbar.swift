@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BackCancel: View {
+struct BackCancelToolbar: View {
     @Environment(\.dismiss) var dismiss
     @Binding var isPresented: Bool
     
@@ -28,7 +28,24 @@ struct BackCancel: View {
     }
 }
 
-struct BackButton: View {
+struct CancelToolbar: View {
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            CancelButton(action: {
+                isPresented = false
+            })
+        }
+        .padding(.leading, 4)
+        .padding(.trailing, 16)
+        .padding(.bottom, 12)
+        .frame(maxWidth: .infinity, alignment: .center)
+    }
+}
+
+private struct BackButton: View {
     let action: () -> Void
     
     var body: some View {
@@ -48,7 +65,7 @@ struct BackButton: View {
     }
 }
 
-struct CancelButton: View {
+private struct CancelButton: View {
     let action: () -> Void
     
     var body: some View {
@@ -63,5 +80,6 @@ struct CancelButton: View {
 }
 
 #Preview {
-    BackCancel(isPresented: .constant(true))
+    BackCancelToolbar(isPresented: .constant(true))
+    CancelToolbar(isPresented: .constant(true))
 }

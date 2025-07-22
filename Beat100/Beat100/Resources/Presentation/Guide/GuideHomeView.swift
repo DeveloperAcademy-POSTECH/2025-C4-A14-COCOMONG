@@ -19,10 +19,7 @@ struct GuideHomeView: View {
         }
         .sheet(isPresented: $isPresented) {
             VStack {
-                BackCancel(isPresented: $isPresented)
-                Spacer()
-                LargeButton("계속") {
-                }
+                AppMechanismGuideView(isPresented: $isPresented)
             }
         }
     }
