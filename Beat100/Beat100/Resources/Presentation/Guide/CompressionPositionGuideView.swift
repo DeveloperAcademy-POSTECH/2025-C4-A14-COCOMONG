@@ -7,15 +7,14 @@
 
 import SwiftUI
 
-struct AppMechanismGuideView: View {
+struct CompressionPositionGuideView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
         VStack {
-            CancelToolbar(isPresented: $isPresented)
+            BackCancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            Disclaimer()
             LargeButton("다음") {
                 //TODO: 네비게이션 로직 구현
             }
@@ -24,12 +23,12 @@ struct AppMechanismGuideView: View {
 }
 
 private struct Content: View {
-    let titleText = "BEAT100 앱 작동 방식"
+    let titleText = "가슴 압박 위치"
     let bodyText = """
-        BEAT100은 Apple Watch의 모션 센서를 
-        활용하여 CPR 중 손목의 움직임을 감지합니다. 
-        압박 리듬, 속도, 깊이를 실시간으로 측정하여 
-        올바른 압박을 유지할 수 있도록 돕습니다.
+        가슴 압박은 가슴뼈(흉골)의 아래쪽 1/2 지점,
+        즉 양쪽 유두를 이은 선 중앙에 손바닥을 놓고
+        실시합니다. 손바닥 뒤꿈치를 이용해 팔꿈치를
+        곧게 편 상태로 수직으로 눌러주세요.
         """
     
     var body: some View {
@@ -53,19 +52,6 @@ private struct Content: View {
     }
 }
 
-private struct Disclaimer: View {
-    var body: some View {
-        Text("""
-        * BEAT100 앱은 교육 목적의 시뮬레이션 도구입니다.
-        실제 위급 상황에서는 사용할 수 없습니다.
-        """)
-        .font(.system(size: 12))
-        .multilineTextAlignment(.center)
-        .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
-        .padding(.bottom, 24)
-    }
-}
-
 #Preview {
-    AppMechanismGuideView(isPresented: .constant(true))
+    CompressionPositionGuideView(isPresented: .constant(true))
 }
