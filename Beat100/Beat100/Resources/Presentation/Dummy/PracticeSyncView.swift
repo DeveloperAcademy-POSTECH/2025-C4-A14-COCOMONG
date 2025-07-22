@@ -16,7 +16,7 @@ struct PracticeSyncView: View {
     @State private var countdownDone = false
     @State private var isGreen = false
     @State private var blinkTimer: Timer?
-    @State private var cancellables = Set<AnyCancellable>()
+    @StateObject private var viewModel = CountdownViewModel()
     
     var body: some View {
         ZStack {
@@ -30,7 +30,7 @@ struct PracticeSyncView: View {
                     .foregroundStyle(.white)
             case .countdown:
                 if let start = startTime {
-                    CountdownView(startTime: start, isCountdownDone: $countdownDone)
+                    CountdownView(viewModel: CountdownViewModel())
                 }
             case .measurement:
                 Text("측정 중 (20초간 깜빡임)")
