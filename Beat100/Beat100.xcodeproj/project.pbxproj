@@ -40,10 +40,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		3220EBE62E2E8ABE00BD6DA8 /* Exceptions for "WatchBeat100 Watch App" folder in "Beat100" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Presentation/ChooseCycle/ChooseCycleView.swift,
+				Resources/Presentation/ChooseCycle/ChooseCycleViewModel.swift,
+			);
+			target = CF09C8D72E26666000E11198 /* Beat100 */;
+		};
 		CF09CA342E266F7F00E11198 /* Exceptions for "Beat100" folder in "WatchBeat100 Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Presentation/Countdown/CountdownAnimationView.swift,
+				Resources/Presentation/Countdown/CountdownView.swift,
+				Resources/Presentation/Countdown/CountdownViewModel.swift,
+				Resources/Presentation/Measuring/MeasuringView.swift,
 				Resources/Util/Constants.swift,
 			);
 			target = CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */;
@@ -69,6 +80,9 @@
 		};
 		CF09C9E62E266A7600E11198 /* WatchBeat100 Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3220EBE62E2E8ABE00BD6DA8 /* Exceptions for "WatchBeat100 Watch App" folder in "Beat100" target */,
+			);
 			path = "WatchBeat100 Watch App";
 			sourceTree = "<group>";
 		};

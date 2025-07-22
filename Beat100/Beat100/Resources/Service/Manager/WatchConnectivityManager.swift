@@ -11,9 +11,11 @@ import WatchConnectivity
 class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
     static let shared = WatchConnectivityManager()
     static let startBlinkingNotification = Notification.Name("StartBlinking")
+    static let didReceiveZLogData = Notification.Name("didReceiveZLogData")
 
     private override init() {
         super.init()
+        print("WatchConnectivityManager init")
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
@@ -33,8 +35,16 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
 
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("iOS received message: \(message)")
+        print("📩 Message received: \(message)")
         if let ts = message["startTime"] as? TimeInterval {
             NotificationCenter.default.post(name: Self.startBlinkingNotification, object: Date(timeIntervalSince1970: ts))
+        }
+        if let jsonString = message["zLogData"] as? String {
+            NotificationCenter.default.post(
+                name: Notification.Name("didReceiveZLogData"),
+                object: nil,
+                userInfo: ["json": jsonString]
+            )
         }
     }
 }
