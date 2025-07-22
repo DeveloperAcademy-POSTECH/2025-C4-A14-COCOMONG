@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppMechanismGuideView: View {
+struct WatchWearingGuideView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -24,17 +24,9 @@ struct AppMechanismGuideView: View {
 }
 
 private struct Content: View {
-    let titleText = "BEAT100 앱 작동 방식"
-    let bodyText = """
-            BEAT100은 Apple Watch의 모션 센서를 
-            활용하여 CPR 중 손목의 움직임을 감지합니다. 
-            압박 리듬, 속도, 깊이를 실시간으로 측정하여 
-            올바른 압박을 유지할 수 있도록 돕습니다.
-            """
-    
     var body: some View {
         VStack(spacing: 22) {
-            Text(titleText)
+            Text("BEAT100 앱 작동 방식")
                 .font(.nanumSquareNeo(type: .heavy, size: 28))
                 .foregroundColor(.black)
             
@@ -44,7 +36,12 @@ private struct Content: View {
                 .frame(height: 197)
                 .cornerRadius(10)
             
-            Text(bodyText)
+            Text("""
+            BEAT100은 Apple Watch의 모션 센서를 
+            활용하여 CPR 중 손목의 움직임을 감지합니다. 
+            압박 리듬, 속도, 깊이를 실시간으로 측정하여 
+            올바른 압박을 유지할 수 있도록 돕습니다.
+            """)
             .font(.system(size: 16))
             .multilineTextAlignment(.center)
             .foregroundColor(.black)
@@ -67,5 +64,5 @@ private struct Disclaimer: View {
 }
 
 #Preview {
-    AppMechanismGuideView(isPresented: .constant(true))
+    WatchWearingGuideView(isPresented: .constant(true))
 }
