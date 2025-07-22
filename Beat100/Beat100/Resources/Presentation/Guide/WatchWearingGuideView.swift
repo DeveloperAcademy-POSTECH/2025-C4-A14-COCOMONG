@@ -12,10 +12,9 @@ struct WatchWearingGuideView: View {
     
     var body: some View {
         VStack {
-            CancelToolbar(isPresented: $isPresented)
+            BackCancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            Disclaimer()
             LargeButton("다음") {
                 //TODO: 네비게이션 로직 구현
             }
@@ -24,9 +23,11 @@ struct WatchWearingGuideView: View {
 }
 
 private struct Content: View {
+    let titleText = "Apple Watch 착용 가이드"
+    
     var body: some View {
         VStack(spacing: 22) {
-            Text("BEAT100 앱 작동 방식")
+            Text(titleText)
                 .font(.nanumSquareNeo(type: .heavy, size: 28))
                 .foregroundColor(.black)
             
@@ -36,30 +37,24 @@ private struct Content: View {
                 .frame(height: 197)
                 .cornerRadius(10)
             
-            Text("""
-            BEAT100은 Apple Watch의 모션 센서를 
-            활용하여 CPR 중 손목의 움직임을 감지합니다. 
-            압박 리듬, 속도, 깊이를 실시간으로 측정하여 
-            올바른 압박을 유지할 수 있도록 돕습니다.
-            """)
+            VStack(alignment: .leading, spacing: 16) {
+                HStack(alignment: .top, spacing: 3) {
+                    Text("1.")
+                        .frame(width: 24)
+                    Text("Apple Watch를 편한 손목의 손목뼈(요골) \n위쪽에 단단히 착용해주세요.")
+                }
+                
+                HStack(alignment: .top, spacing: 3) {
+                    Text("2.")
+                        .frame(width: 24)
+                    Text("손목 센서와 피부가 밀착되어야 올바른 압박 \n속도·깊이·리듬을 정확하게 감지할 수 있습니다.")
+                }
+            }
             .font(.system(size: 16))
-            .multilineTextAlignment(.center)
             .foregroundColor(.black)
+            .frame(maxWidth: 348, alignment: .topLeading)
         }
         .frame(width: 361, alignment: .top)
-    }
-}
-
-private struct Disclaimer: View {
-    var body: some View {
-        Text("""
-        * BEAT100 앱은 교육 목적의 시뮬레이션 도구입니다.
-        실제 위급 상황에서는 사용할 수 없습니다.
-        """)
-        .font(.system(size: 12))
-        .multilineTextAlignment(.center)
-        .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
-        .padding(.bottom, 24)
     }
 }
 
