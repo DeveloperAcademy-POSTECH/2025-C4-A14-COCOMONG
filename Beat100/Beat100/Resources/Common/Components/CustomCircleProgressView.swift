@@ -8,29 +8,30 @@
 import SwiftUI
 
 struct CustomCircleProgressView: View {
-    let progress: Double
-    let percent: Int
+    let progress: Int
     
     var body: some View {
         ZStack {
             CustomGradientCircle(progress: 1.0)
                 .opacity(0.2)
             
-            CustomGradientCircle(progress: progress)
+            CustomGradientCircle(progress: Double(progress) / 100)
             
             VStack(spacing: 4) {
-                Text("\(percent)%")
-                    .font(.nanumSquareNeo(type: .heavy, size: 12))
-                
-                Text("보통")
-                    .font(.nanumSquareNeo(type: .bold, size: 12))
+                Group {
+                    Text("\(progress)%")
+                        .font(.nanumSquareNeo(type: .heavy, size: 12))
+                    
+                    Text("보통")
+                        .font(.nanumSquareNeo(type: .bold, size: 12))
+                }
+                .foregroundStyle(Color.black)
             }
-            .foregroundStyle(Color.black)
         }
         .frame(width: 70)
     }
 }
 
 #Preview {
-    CustomCircleProgressView(progress: 1, percent: 78)
+    CustomCircleProgressView(progress: 1)
 }
