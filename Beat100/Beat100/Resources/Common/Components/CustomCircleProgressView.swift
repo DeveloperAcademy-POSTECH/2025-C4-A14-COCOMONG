@@ -28,10 +28,10 @@ struct CustomCircleProgressView: View {
                 .foregroundStyle(Color.black)
             }
         }
-        .frame(width: 70)
+        .frame(width: 73)
     }
 }
 
 #Preview {
-    CustomCircleProgressView(progress: 1)
+    CustomCircleProgressView(progress: 10)
 }
