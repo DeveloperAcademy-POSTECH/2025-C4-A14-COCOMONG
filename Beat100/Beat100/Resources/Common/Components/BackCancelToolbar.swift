@@ -45,6 +45,23 @@ struct CancelToolbar: View {
     }
 }
 
+struct BackToolbar: View {
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        HStack {
+            BackButton(action: {
+                dismiss()
+            })
+            Spacer()
+        }
+        .padding(.leading, 4)
+        .padding(.trailing, 16)
+        .padding(.bottom, 12)
+        .frame(maxWidth: .infinity, alignment: .center)
+    }
+}
+
 private struct BackButton: View {
     let action: () -> Void
     
@@ -82,4 +99,5 @@ private struct CancelButton: View {
 #Preview {
     BackCancelToolbar(isPresented: .constant(true))
     CancelToolbar(isPresented: .constant(true))
+    BackToolbar()
 }
