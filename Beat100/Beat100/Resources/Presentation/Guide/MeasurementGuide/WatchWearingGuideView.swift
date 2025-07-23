@@ -26,7 +26,7 @@ struct WatchWearingGuideView: View {
 }
 
 private struct Content: View {
-    let titleText = "Apple Watch 착용 가이드"
+    let titleText = Constants.WatchWearingGuideText.title
     
     var body: some View {
         VStack(spacing: 22) {
@@ -44,13 +44,13 @@ private struct Content: View {
                 HStack(alignment: .top, spacing: 3) {
                     Text("1.")
                         .frame(width: 24)
-                    Text("Apple Watch를 편한 손목의 손목뼈(요골) \n위쪽에 단단히 착용해주세요.")
+                    Text(Constants.WatchWearingGuideText.guideStep1)
                 }
                 
                 HStack(alignment: .top, spacing: 3) {
                     Text("2.")
                         .frame(width: 24)
-                    Text("손목 센서와 피부가 밀착되어야 올바른 압박 \n속도·깊이·리듬을 정확하게 감지할 수 있습니다.")
+                    Text(Constants.WatchWearingGuideText.guideStep2)
                 }
             }
             .font(.system(size: 16))
