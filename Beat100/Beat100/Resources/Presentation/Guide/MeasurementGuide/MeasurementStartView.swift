@@ -31,7 +31,7 @@ struct MeasurementStartView: View {
 }
 
 private struct Content: View {
-    let titleText = Constants.MeasurementStartText.titleText
+    let titleText = Constants.MeasurementStartText.title
     
     var body: some View {
         VStack(alignment: .center, spacing: 32) {

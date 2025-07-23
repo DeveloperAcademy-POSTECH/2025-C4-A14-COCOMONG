@@ -44,13 +44,13 @@ private struct Content: View {
                 HStack(alignment: .top, spacing: 3) {
                     Text("1.")
                         .frame(width: 24)
-                    Text(Constants.WatchWearingGuideText.guideStep1)
+                    Text(Constants.WatchWearingGuideText.step1)
                 }
                 
                 HStack(alignment: .top, spacing: 3) {
                     Text("2.")
                         .frame(width: 24)
-                    Text(Constants.WatchWearingGuideText.guideStep2)
+                    Text(Constants.WatchWearingGuideText.step2)
                 }
             }
             .font(.system(size: 16))
