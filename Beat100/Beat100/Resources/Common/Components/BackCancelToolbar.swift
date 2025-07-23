@@ -53,11 +53,11 @@ private struct BackButton: View {
             HStack(spacing: 6) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 17, weight: .semibold))
-                    .foregroundColor(.beatMint)
+                    .foregroundColor(.beatTeal)
                 
                 Text("뒤로")
                     .font(.system(size: 17))
-                    .foregroundColor(.beatMint)
+                    .foregroundColor(.beatTeal)
             }
             .padding(.leading, 8)
             .padding(.vertical, 11)
@@ -72,7 +72,7 @@ private struct CancelButton: View {
         Button(action: action) {
             Text("취소")
                 .font(.system(size: 17))
-                .foregroundColor(.beatMint)
+                .foregroundColor(.beatTeal)
                 .padding(.leading, 8)
                 .padding(.vertical, 11)
         }
