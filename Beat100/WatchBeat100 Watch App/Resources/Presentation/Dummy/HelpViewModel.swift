@@ -19,7 +19,7 @@ class HelpViewModel: ObservableObject {
         isCountdownDone = false
         
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { [weak self] _ in
             print("timer end check")
             self?.isCountdownDone = true
         }
