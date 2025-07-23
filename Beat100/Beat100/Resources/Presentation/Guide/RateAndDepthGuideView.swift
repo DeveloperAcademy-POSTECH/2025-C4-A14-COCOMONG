@@ -20,6 +20,7 @@ struct RateAndDepthGuideView: View {
                 navigationManager.navigate(to: .measurementStart)
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

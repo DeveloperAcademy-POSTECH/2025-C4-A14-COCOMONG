@@ -20,6 +20,7 @@ struct WatchWearingGuideView: View {
                 navigationManager.navigate(to: .compressionPosition)
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

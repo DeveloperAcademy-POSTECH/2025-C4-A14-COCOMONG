@@ -18,6 +18,7 @@ struct MeasurementStartView: View {
             LargeButton("CPR 측정 시작하기") {
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -28,7 +29,7 @@ private struct Content: View {
         VStack(alignment: .center, spacing: 32) {
             //TODO: 실제 애니메이션으로 교체하기
             Rectangle()
-                .frame(width: 435, height: 237)
+                .frame(width: 393, height: 237)
             
             Text(titleText)
                 .font(.nanumSquareNeo(type: .heavy, size: 28))
