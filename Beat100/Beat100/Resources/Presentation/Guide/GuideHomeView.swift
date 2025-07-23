@@ -42,6 +42,7 @@ struct GuideHomeView: View {
                                 .environment(navigationManager)
                         case .measurementStart:
                             MeasurementStartView(isPresented: $isPresented)
+                                .environment(navigationManager)
                         }
                     }
             }
