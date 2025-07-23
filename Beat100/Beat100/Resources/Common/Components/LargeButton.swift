@@ -29,6 +29,29 @@ struct LargeButton: View {
     }
 }
 
+struct CompleteLargeButton: View {
+    let text: String
+    let action: () -> Void
+    
+    init(_ text: String, action: @escaping () -> Void) {
+        self.text = text
+        self.action = action
+    }
+    
+    var body: some View {
+        Button(action: action) {
+            Text(text)
+                .font(.system(size: 17, weight: .semibold))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        }
+        .frame(width: 361, height: 56, alignment: .top)
+        .background(.beatTeal)
+        .cornerRadius(14)
+    }
+}
+
 #Preview {
     LargeButton("다음", action: {})
+    CompleteLargeButton("다음", action: {})
 }

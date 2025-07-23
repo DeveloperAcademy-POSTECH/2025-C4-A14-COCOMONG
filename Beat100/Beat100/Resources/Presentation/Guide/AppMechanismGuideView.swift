@@ -17,7 +17,7 @@ struct AppMechanismGuideView: View {
             Content()
             Spacer()
             Disclaimer()
-            LargeButton("다음") {
+            LargeButton("계속") {
                 navigationManager.navigate(to: .watchWearing)
             }
         }

@@ -12,10 +12,10 @@ struct MeasurementStartView: View {
     
     var body: some View {
         VStack {
-            BackCancelToolbar(isPresented: $isPresented)
+            BackToolbar()
             Content()
             Spacer()
-            LargeButton("CPR 측정 시작하기") {
+            CompleteLargeButton("CPR 측정 시작하기") {
             }
         }
         .padding(.top, 8)
