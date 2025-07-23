@@ -17,6 +17,10 @@ struct measureView: View {
     @State private var zLogData: [AccelerationData] = []
     @State private var acceleration: CMAcceleration = .init(x: 0, y: 0, z: 0)
     @State private var isShaking: Bool = false
+    @State private var currentRound: Int = 0
+    @StateObject private var vm = HelpViewModel()
+    let numbers = Array(1...5)
+    @State private var allLogs: [[String]] = Array(repeating: [], count: 5)
     
     let manager = WatchConnectivityManager.shared
     
@@ -26,65 +30,60 @@ struct measureView: View {
     }
     
     var body: some View {
-#if os(iOS)
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        Button(isShaking ? "멈추기" : "측정 시작") {
-            if isShaking {
-                motionManager.stopAccelerometerUpdates()
-            } else{
-                print("측정 시작")
-                startDetectingShakes()
-                
-            }
-            isShaking.toggle()
-        }
-        ScrollView {
-            VStack(alignment: .leading) {
-                ForEach(logs.reversed(), id: \.self) { log in
-                    Text(log)
-                        .font(.system(size: 12))
-                        .foregroundStyle(.gray)
+        Text("가속도 측정기")
+        VStack{
+            
+            Picker("숫자 선택", selection: $vm.selectedIndex) {
+                ForEach(numbers, id: \.self) { number in
+                    Text("\(number)")
+                        .font(.nanumSquareNeo(type: .heavy, size: 28))
+                        .tag(number)
                 }
             }
-        }
-        .frame(width:300, height: 600)
-        .background(Color.blue)
-#elseif os(watchOS)
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        HStack{
-            Button(isShaking ? "멈추기" : "측정 시작") {
-                if isShaking {
-                    motionManager.stopAccelerometerUpdates()
-                    print(logs)
-                } else{
-                    print("측정 시작")
-                    startDetectingShakes()
-                    
-                }
-                isShaking.toggle()
-            }
-            Button("전송"){
-                let encoder = JSONEncoder()
-                    if let data = try? encoder.encode(zLogData),
-                       let jsonString = String(data: data, encoding: .utf8) {
-                        manager.sendMessage(["zLogData": jsonString])
-                    } else {
-                        print("❌ Failed to encode zLogData")
+            HStack{
+                Button(isShaking ? "멈추기" : "측정 시작") {
+                    if isShaking {
+                        motionManager.stopAccelerometerUpdates()
+                    } else{
+                        print("측정 시작")
+                        startDetectingShakes()
+                        
                     }
-            }
-        }
-        ScrollView {
-            VStack(alignment: .leading) {
-                ForEach(logs.reversed(), id: \.self) { log in
-                    Text(log)
-                        .font(.system(size: 12))
-                        .foregroundStyle(.gray)
+                    isShaking.toggle()
+                }
+                Button("전송"){
+                    currentRound = 1
+                    zLogData = []
+                    logs = []
+                    startDetectingShakes()
+                    vm.startTimer()
+                }
+                .onReceive(vm.$isCountdownDone) { value in
+                    if value == true {
+                        allLogs[currentRound-1] = logs
+//                        sending()
+                        motionManager.stopAccelerometerUpdates()
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    vm.isCountdownDone = false
+                        }
+                        
+                        if currentRound < vm.selectedIndex {
+                            currentRound += 1
+                            zLogData = []
+                            logs = []
+                            startDetectingShakes()
+                            vm.startTimer()
+                        }
+                        else{
+                            for i in 0..<vm.selectedIndex{
+                                sending(round: i)
+                            }
+                        }
+                    }
                 }
             }
         }
-        .frame(width:100, height: 100)
-        .background(Color.blue)
-#endif
     }
     
     private func startDetectingShakes() {
@@ -108,6 +107,16 @@ struct measureView: View {
             
             compressionTimestamps.append(now)
             lastTriggerTime = now
+        }
+    }
+    
+    func sending(round: Int) {
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(allLogs[round]),
+           let jsonString = String(data: data, encoding: .utf8) {
+            manager.sendMessage(["allLogs": jsonString])
+        } else {
+            print("❌ Failed to encode zLogData")
         }
     }
 }

@@ -17,23 +17,40 @@ struct SourceCheckView: View {
     @State private var zLogData: [AccelerationData] = []
 
     var body: some View {
-        Text("hi")
+        Text("가속도 측정값 정리")
         ScrollView {
             VStack(alignment: .leading) {
                 ForEach(zLogData) { data in
                     Text("Z: \(data.user_acc_z), t: \(data.timestamp)")
                         .padding(.bottom, 4)
-                        .textSelection(.enabled)
                 }
             }
             .padding()
         }
         .onAppear {
-            NotificationCenter.default.addObserver(forName: Notification.Name("didReceiveZLogData"), object: nil, queue: .main) { notification in
-                if let json = notification.userInfo?["json"] as? String,
+            print("🟢 SourceCheckView onAppear called")
+
+            NotificationCenter.default.addObserver(forName: Notification.Name("didReceiveAllLogs"), object: nil, queue: .main) { notification in
+                print("📬 Notification received!")
+
+                if let json = notification.userInfo?["allLogs"] as? String,
                    let data = json.data(using: .utf8),
-                   let decoded = try? JSONDecoder().decode([AccelerationData].self, from: data) {
-                    self.zLogData = decoded
+                   let stringArray = try? JSONDecoder().decode([String].self, from: data) {
+                    print("✅ Decoded [String] with \(stringArray.count) items")
+
+                    let parsed = stringArray.enumerated().compactMap { index, value -> AccelerationData? in
+                        let raw = value.replacingOccurrences(of: "Z값: ", with: "")
+                        if let z = Double(raw) {
+                            return AccelerationData(user_acc_z: z, timestamp: TimeInterval(index))
+                        } else {
+                            return nil
+                        }
+                    }
+
+                    self.zLogData = parsed
+                    print("✅ zLogData updated with \(parsed.count) items")
+                } else {
+                    print("❌ [String] 디코딩 실패")
                 }
             }
         }

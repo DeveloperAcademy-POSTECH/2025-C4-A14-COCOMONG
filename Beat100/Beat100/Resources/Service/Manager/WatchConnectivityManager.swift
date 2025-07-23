@@ -39,11 +39,11 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
         if let ts = message["startTime"] as? TimeInterval {
             NotificationCenter.default.post(name: Self.startBlinkingNotification, object: Date(timeIntervalSince1970: ts))
         }
-        if let jsonString = message["zLogData"] as? String {
+        if let jsonString = message["allLogs"] as? String {
             NotificationCenter.default.post(
-                name: Notification.Name("didReceiveZLogData"),
+                name: Notification.Name("didReceiveAllLogs"),
                 object: nil,
-                userInfo: ["json": jsonString]
+                userInfo: ["allLogs": jsonString]
             )
         }
     }
