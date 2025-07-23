@@ -12,20 +12,27 @@ import SwiftUI
 struct Constants {
     struct AppMechanismGuideText {
         static let title = "BEAT100 앱 작동 방식"
-        
         static let body = """
         BEAT100은 Apple Watch의 모션 센서를 
         활용하여 CPR 중 손목의 움직임을 감지합니다. 
         압박 리듬, 속도, 깊이를 실시간으로 측정하여 
         올바른 압박을 유지할 수 있도록 돕습니다.
         """
-        
         static let disclaimer = """
         * BEAT100 앱은 교육 목적의 시뮬레이션 도구입니다.
         실제 위급 상황에서는 사용할 수 없습니다.
         """
     }
-
+    
+    struct CompressionPositionGuideText {
+        static let title = "가슴 압박 위치"
+        static let body = """
+            가슴 압박은 가슴뼈(흉골)의 아래쪽 1/2 지점,
+            즉 양쪽 유두를 이은 선 중앙에 손바닥을 놓고
+            실시합니다. 손바닥 뒤꿈치를 이용해 팔꿈치를
+            곧게 편 상태로 수직으로 눌러주세요.
+            """
+    }
     
     struct CPRGuideText {
         static let navTitle = "CPR 전체 가이드라인"
