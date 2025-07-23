@@ -41,6 +41,7 @@ struct CustomNavigationBar<Title: View>: View {
             
             title
                 .font(.system(size: 16, weight: .bold))
+                .lineSpacing(6)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
                 .accessibilityAddTraits(.isHeader)
@@ -74,7 +75,7 @@ extension UINavigationController: @retroactive UIGestureRecognizerDelegate {
     Color.white
       VStack {
           CustomNavigationBar(
-            title: { Text("CPR 전체 가이드라인") }
+            title: { Text("2025년 7월 17일 (목)\n오후 4:58") }
           )
           Spacer()
       }
