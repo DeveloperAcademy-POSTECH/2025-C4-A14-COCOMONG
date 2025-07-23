@@ -21,6 +21,7 @@ struct AppMechanismGuideView: View {
                 navigationManager.navigate(to: .watchWearing)
             }
         }
+        .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
     }
 }

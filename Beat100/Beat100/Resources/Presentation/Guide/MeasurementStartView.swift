@@ -18,6 +18,7 @@ struct MeasurementStartView: View {
             LargeButton("CPR 측정 시작하기") {
             }
         }
+        .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
     }
 }

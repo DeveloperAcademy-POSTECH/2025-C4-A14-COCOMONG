@@ -18,6 +18,8 @@ struct GuideTapHomeView: View {
             }
             Text("CPR 전체 가이드라인")
         }
+        .frame(width: 393, height: 852)
+        .background(.gray200)
         .sheet(isPresented: $isPresented) {
             NavigationStack(path: $navigationManager.path) {
                 AppMechanismGuideView(isPresented: $isPresented)
@@ -41,6 +43,8 @@ struct GuideTapHomeView: View {
                         }
                     }
             }
+            .presentationDetents([.fraction(0.99)])
+            .presentationCornerRadius(10)
         }
         
     }

@@ -20,6 +20,7 @@ struct CompressionPositionGuideView: View {
                 navigationManager.navigate(to: .rateAndDepth)
             }
         }
+        .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
     }
 }
