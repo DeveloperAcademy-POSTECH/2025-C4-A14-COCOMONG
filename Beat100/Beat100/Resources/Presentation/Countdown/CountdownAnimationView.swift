@@ -31,25 +31,38 @@ struct CountdownAnimationView: View {
                     //Background Circle
                     Circle()
                         .stroke(
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.blue,Color.green,Color.pink]),
-                                startPoint: .topTrailing,
-                                endPoint: .bottomLeading),
+//                            LinearGradient(
+//                                gradient: Gradient(stops: [
+//                                        .init(color: Color.beatPink, location: 0.0),
+//                                        .init(color: Color.beatPink, location: 0.2),
+//                                        .init(color: Color.beatGradientPink, location: 0.3),
+//                                        .init(color: Color.beatBlue, location: 0.7)
+//                                        ]),
+//                                startPoint: .topLeading,
+//                                endPoint: .bottomTrailing
+//                            ),
                             lineWidth: 20)
                         .opacity(0.2)
-                        .frame(width: 230, height: 230)
+                        .rotationEffect(.degrees(-90))
+                        .frame(width: 220, height: 220)
                     
                     //Foreground Circle
                     Circle()
                         .trim(from: 0, to: fillAmount)
                         .stroke(
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.pink,Color.green,Color.blue]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing),
+//                            LinearGradient(
+//                                gradient: Gradient(stops: [
+//                                        .init(color: Color.beatPink, location: 0.0),
+//                                        .init(color: Color.beatPink, location: 0.2),
+//                                        .init(color: Color.beatGradientPink, location: 0.3),
+//                                        .init(color: Color.beatBlue, location: 0.7)
+//                                        ]),
+//                                startPoint: .topLeading,
+//                                endPoint: .bottomTrailing
+//                            ),
                             style: StrokeStyle (lineWidth: 20, lineCap: .round, lineJoin: .round)
                         )
-                        .frame(width: 230, height: 230)
+                        .frame(width: 220, height: 220)
                         .rotationEffect(.degrees(-90))
                         .animation(.easeInOut(duration: 1.0), value: fillAmount)
                     
