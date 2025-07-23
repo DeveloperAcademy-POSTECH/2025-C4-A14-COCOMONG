@@ -27,13 +27,8 @@ struct AppMechanismGuideView: View {
 }
 
 private struct Content: View {
-    let titleText = "BEAT100 앱 작동 방식"
-    let bodyText = """
-        BEAT100은 Apple Watch의 모션 센서를 
-        활용하여 CPR 중 손목의 움직임을 감지합니다. 
-        압박 리듬, 속도, 깊이를 실시간으로 측정하여 
-        올바른 압박을 유지할 수 있도록 돕습니다.
-        """
+    let titleText = Constants.AppMechanismGuideText.title
+    let bodyText = Constants.AppMechanismGuideText.body
     
     var body: some View {
         VStack(spacing: 22) {
@@ -58,10 +53,7 @@ private struct Content: View {
 
 private struct Disclaimer: View {
     var body: some View {
-        Text("""
-        * BEAT100 앱은 교육 목적의 시뮬레이션 도구입니다.
-        실제 위급 상황에서는 사용할 수 없습니다.
-        """)
+        Text(Constants.AppMechanismGuideText.disclaimer)
         .font(.system(size: 12))
         .multilineTextAlignment(.center)
         .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))

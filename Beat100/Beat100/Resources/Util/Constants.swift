@@ -10,6 +10,23 @@ import SwiftUI
 
 // iOS, Watch OS 모두 사용
 struct Constants {
+    struct AppMechanismGuideText {
+        static let title = "BEAT100 앱 작동 방식"
+        
+        static let body = """
+        BEAT100은 Apple Watch의 모션 센서를 
+        활용하여 CPR 중 손목의 움직임을 감지합니다. 
+        압박 리듬, 속도, 깊이를 실시간으로 측정하여 
+        올바른 압박을 유지할 수 있도록 돕습니다.
+        """
+        
+        static let disclaimer = """
+        * BEAT100 앱은 교육 목적의 시뮬레이션 도구입니다.
+        실제 위급 상황에서는 사용할 수 없습니다.
+        """
+    }
+
+    
     struct CPRGuideText {
         static let navTitle = "CPR 전체 가이드라인"
 
