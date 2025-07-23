@@ -54,6 +54,43 @@ struct Constants {
         }()
         static let step3 = "iPhone은 애니 근처 잘 보이는 곳에 두십시오."
     }
+    
+    struct RateAndDepthGuideText {
+            static let nextButton = "다음"
+            static let title = "압박 속도와 깊이"
+            
+            static let step1: AttributedString = {
+                var text = AttributedString("가슴 압박 속도는 분당 100-120회(bpm)을\n권장합니다.")
+                
+                if let range = text.range(of: "분당 100-120회(bpm)") {
+                    text[range].font = .system(.body, weight: .bold)
+                }
+                return text
+            }()
+            
+            static let step2: AttributedString = {
+                var text = AttributedString("BEAT100은 110bpm에 맞춰 Apple Watch 진동으로 압박 리듬을 제공합니다.")
+                
+                if let range110 = text.range(of: "110bpm") {
+                    text[range110].font = .system(.body, weight: .bold)
+                }
+                if let rangeWatch = text.range(of: "Apple Watch 진동") {
+                    text[rangeWatch].font = .system(.body, weight: .bold)
+                }
+                return text
+            }()
+            
+            static let step3: AttributedString = {
+                var text = AttributedString("깊이는 약 5~6cm를 유지하며 진동에 맞는 \n일정한 속도로 압박해주세요.")
+                
+                if let range = text.range(of: "5~6cm") {
+                    text[range].font = .system(.body, weight: .bold)
+                }
+                return text
+            }()
+            
+            static let step4 = "매 압박과 이완은 1:1이 되도록 해주세요. \n이완 시 가슴이 완전히 올라오도록 이완합니다."
+        }
 
     
     struct CPRGuideText {
