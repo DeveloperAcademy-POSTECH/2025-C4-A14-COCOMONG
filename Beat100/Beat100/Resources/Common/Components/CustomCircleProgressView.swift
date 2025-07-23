@@ -18,15 +18,13 @@ struct CustomCircleProgressView: View {
             CustomGradientCircle(progress: Double(progress) / 100)
             
             VStack(spacing: 4) {
-                Group {
-                    Text("\(progress)%")
-                        .font(.nanumSquareNeo(type: .heavy, size: 12))
-                    
-                    Text("보통")
-                        .font(.nanumSquareNeo(type: .bold, size: 12))
-                }
-                .foregroundStyle(Color.black)
+                Text("\(progress)%")
+                    .font(.nanumSquareNeo(type: .heavy, size: 12))
+                
+                Text("보통")
+                    .font(.nanumSquareNeo(type: .bold, size: 12))
             }
+            .foregroundStyle(Color.black)
         }
         .frame(width: 73)
     }

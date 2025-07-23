@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ReportSummaryCardView: View {
-    let Date: String
+    let measureDate: String
     let total: Int
     let count: Int
     let percent: Int
@@ -29,7 +29,7 @@ struct ReportSummaryCardView: View {
     private var CardContentView: some View {
         VStack(alignment: .leading) {
             // 날짜
-            Text(Date)
+            Text(measureDate)
                 .foregroundStyle(Color.gray700)
                 .font(.system(size: 16, weight: .regular))
             
@@ -64,5 +64,5 @@ struct ReportSummaryCardView: View {
 }
 
 #Preview {
-    ReportSummaryCardView(Date: "2025년 7월 17일 (목) 오후 4:58", total: 120, count: 110, percent: 92)
+    ReportSummaryCardView(measureDate: "2025년 7월 17일 (목) 오후 4:58", total: 120, count: 110, percent: 92)
 }
