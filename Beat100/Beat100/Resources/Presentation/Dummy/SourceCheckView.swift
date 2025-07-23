@@ -23,6 +23,7 @@ struct SourceCheckView: View {
                 ForEach(zLogData) { data in
                     Text("Z: \(data.user_acc_z), t: \(data.timestamp)")
                         .padding(.bottom, 4)
+                        .textSelection(.enabled)
                 }
             }
             .padding()

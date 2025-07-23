@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreMotion
+import UIKit
 
 struct measureView: View {
     private let motionManager = CMMotionManager()
@@ -54,6 +55,7 @@ struct measureView: View {
             Button(isShaking ? "멈추기" : "측정 시작") {
                 if isShaking {
                     motionManager.stopAccelerometerUpdates()
+                    print(logs)
                 } else{
                     print("측정 시작")
                     startDetectingShakes()
@@ -106,8 +108,6 @@ struct measureView: View {
             
             compressionTimestamps.append(now)
             lastTriggerTime = now
-            
-            print(acceleration.z)
         }
     }
 }

@@ -43,7 +43,6 @@
 		3220EBE62E2E8ABE00BD6DA8 /* Exceptions for "WatchBeat100 Watch App" folder in "Beat100" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/Presentation/ChooseCycle/ChooseCycleView.swift,
 				Resources/Presentation/ChooseCycle/ChooseCycleViewModel.swift,
 			);
 			target = CF09C8D72E26666000E11198 /* Beat100 */;

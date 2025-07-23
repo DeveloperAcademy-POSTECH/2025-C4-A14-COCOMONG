@@ -15,7 +15,7 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
 
     private override init() {
         super.init()
-        print("WatchConnectivityManager init")
+        print("WatchConnectivityManager initialized Complete")
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
