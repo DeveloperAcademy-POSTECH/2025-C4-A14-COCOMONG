@@ -59,10 +59,12 @@ private struct Content: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             LargeCard(
+                imageResource: .appleWatch,
                 titleText: "Apple Watch에서 CPR 측정을 \n시작해보세요.",
                 contentText: "Apple Watch로 손목의 움직임을 감지해 가슴 압박 깊이와 속도를 측정합니다. 이후 CPR 리포트를 제공합니다.",
                 buttonText: "시작하기",
-                action: action
+                action: action,
+                cardHeight: 186
             )
         }
         .frame(width: 361, alignment: .topLeading)
