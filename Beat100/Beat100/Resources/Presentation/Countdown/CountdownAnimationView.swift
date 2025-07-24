@@ -10,16 +10,8 @@ import SwiftUI
 struct CountdownAnimationView: View {
     @State private var count: Int = 4
     @State private var timer: Timer?
-    
-    var fillAmount: CGFloat {
-        switch count {
-        case 4: return 1.0
-        case 3: return 0.66
-        case 2: return 0.33
-        case 1: return 0.0
-        default: return 0.0
-        }
-    }
+    @State private var showCircle: Bool = false
+    @State private var fillAmount: CGFloat = 0.0
     
     var body: some View {
         
@@ -29,42 +21,19 @@ struct CountdownAnimationView: View {
             VStack{
                 ZStack{
                     //Background Circle
-                    Circle()
-                        .stroke(
-//                            LinearGradient(
-//                                gradient: Gradient(stops: [
-//                                        .init(color: Color.beatPink, location: 0.0),
-//                                        .init(color: Color.beatPink, location: 0.2),
-//                                        .init(color: Color.beatGradientPink, location: 0.3),
-//                                        .init(color: Color.beatBlue, location: 0.7)
-//                                        ]),
-//                                startPoint: .topLeading,
-//                                endPoint: .bottomTrailing
-//                            ),
-                            lineWidth: 20)
-                        .opacity(0.2)
-                        .rotationEffect(.degrees(-90))
+                    CustomGradientCircle(progress: 100, width: 20)
+                        .opacity(showCircle ? 0.2 : 0.0)
                         .frame(width: 220, height: 220)
+                        .animation(.easeInOut(duration: 2.0), value: showCircle)
+                        .opacity(showCircle ? 1.0 : 0.0)
                     
                     //Foreground Circle
-                    Circle()
-                        .trim(from: 0, to: fillAmount)
-                        .stroke(
-//                            LinearGradient(
-//                                gradient: Gradient(stops: [
-//                                        .init(color: Color.beatPink, location: 0.0),
-//                                        .init(color: Color.beatPink, location: 0.2),
-//                                        .init(color: Color.beatGradientPink, location: 0.3),
-//                                        .init(color: Color.beatBlue, location: 0.7)
-//                                        ]),
-//                                startPoint: .topLeading,
-//                                endPoint: .bottomTrailing
-//                            ),
-                            style: StrokeStyle (lineWidth: 20, lineCap: .round, lineJoin: .round)
-                        )
+                    CustomGradientCircle(progress: fillAmount, width: 20)
                         .frame(width: 220, height: 220)
-                        .rotationEffect(.degrees(-90))
+                        .opacity(showCircle ? 1.0 : 0.0)
                         .animation(.easeInOut(duration: 1.0), value: fillAmount)
+                        .animation(.easeInOut(duration: 1.0), value: showCircle)
+                        .rotationEffect(.degrees(count == 4 ? 0 : 0))
                     
                     if count == 4 {
                         Text("준비")
@@ -87,7 +56,6 @@ struct CountdownAnimationView: View {
             }
         }
     
-
     var countText: String {
         switch count {
         case 4: return "준비"
@@ -96,26 +64,43 @@ struct CountdownAnimationView: View {
         }
     }
     
-    
     func startCountdown() {
         count = 4
+        fillAmount = 0.0
+        showCircle = false
+
+        // 준비 시: 0 → 1.0 채우기
+        withAnimation(.easeInOut(duration: 1.0)) {
+            fillAmount = 1.0
+            showCircle = true
+        }
+
         var step = 0
 
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { t in
-            if step <= 4 {
-                count = 4 - step
-                step += 1
-            } else {
-                t.invalidate()
-                // 다음 화면 전환 or 측정 진입
+        // 1초 뒤부터 카운트다운
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { t in
+                if step <= 3 {
+                    count = 3 - step
+                    step += 1
+
+                    // 진행 링 줄이기
+                    withAnimation(.easeInOut(duration: 0.8)) {
+                        switch count {
+                        case 3: fillAmount = 0.66
+                        case 2: fillAmount = 0.33
+                        case 1: fillAmount = 0.0
+                        default: break
+                        }
+                    }
+                } else {
+                    t.invalidate()
+                    // 측정 중
+                }
             }
         }
     }
 }
-
-
-
-
 
 #Preview {
     CountdownAnimationView()
