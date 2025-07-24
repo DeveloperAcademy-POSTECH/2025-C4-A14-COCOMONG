@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct WatchStartView: View {
-    let onNext: () -> Void
     
     var body: some View {
-        NavigationStack{
+//        NavigationStack{
             VStack(spacing: 12){
                 Text("정확한 CPR 측정을 위해 iPhone과 안정적으로 연동되었는지, Apple Watch를 CPR 수행 시 편안한 쪽의 손목에 꼭 맞게 차고 있는지 확인하십시오. 현재 왼쪽 손목으로 설정되어 있습니다.")
                     .font(.system(size: 12, weight: .regular))
@@ -20,7 +19,7 @@ struct WatchStartView: View {
                     .minimumScaleFactor(0.8)
                 
                 Button(action: {
-                    // TODO: asdf
+                    //TODO: 모달뷰로 변경 예정
                 }) {
                     Text("확인")
                         .font(.system(size: 14, weight: .regular))
@@ -37,10 +36,10 @@ struct WatchStartView: View {
             .padding(.horizontal, 18)
             .toolbar{}
             
-        }
+//        }
     }
 }
 
 #Preview {
-    WatchStartView(onNext: {})
+    WatchStartView()
 }

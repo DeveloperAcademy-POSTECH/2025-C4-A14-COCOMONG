@@ -43,6 +43,7 @@
 		3220EBE62E2E8ABE00BD6DA8 /* Exceptions for "WatchBeat100 Watch App" folder in "Beat100" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Resources/Common/Enum/NavigationDestination.swift,
 				Resources/Presentation/ChooseCycle/ChooseCycleViewModel.swift,
 			);
 			target = CF09C8D72E26666000E11198 /* Beat100 */;
@@ -451,7 +452,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
+				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";
@@ -482,7 +483,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
+				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";

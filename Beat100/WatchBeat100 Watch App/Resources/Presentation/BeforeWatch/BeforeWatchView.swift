@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct BeforeWatchView: View {
-    let onNext: () -> Void
-    
     var body: some View {
         VStack{
             ZStack{
@@ -30,6 +28,6 @@ struct BeforeWatchView: View {
 }
 
 #Preview {
-    BeforeWatchView(onNext: {})
+    BeforeWatchView()
 }
 

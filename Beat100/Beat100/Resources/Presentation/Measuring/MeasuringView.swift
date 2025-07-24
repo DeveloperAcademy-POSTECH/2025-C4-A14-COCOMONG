@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct MeasuringView: View {
-    let onNext: () -> Void
-    
     var body: some View {
         NavigationStack{
             VStack{
@@ -51,7 +49,7 @@ struct MeasuringView: View {
 #if os(watchOS)
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {
-                        //TODO: 측정 취소
+                        //TODO: 모달 작업 후 작업 예정
                     }) {
                         Text("취소")
                             .padding(.horizontal,4)
@@ -68,5 +66,5 @@ struct MeasuringView: View {
 }
 
 #Preview {
-    MeasuringView(onNext: {})
+    MeasuringView()
 }

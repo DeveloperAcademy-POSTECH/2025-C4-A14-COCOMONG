@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CountdownView: View {
-    let onNext: () -> Void
     @StateObject var viewModel: CountdownViewModel
     
     var body: some View {
@@ -36,6 +35,9 @@ struct CountdownView: View {
                     .onAppear {
                         viewModel.startTimer()
                     }
+                    .onAppear {
+                        //TODO: measuring으로 이동 예정
+                    }
             }
             Text("CPR 측정")
                 .font(.system(size: 12, weight: .medium))
@@ -46,5 +48,5 @@ struct CountdownView: View {
 }
 
 #Preview {
-    CountdownView(onNext: {}, viewModel: CountdownViewModel())
+    CountdownView(viewModel: CountdownViewModel())
 }

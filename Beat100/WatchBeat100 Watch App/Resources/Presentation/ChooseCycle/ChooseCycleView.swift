@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct ChooseCycleView: View {
-    @StateObject var viewModel = ChooseCycleViewModel()
+    @ObservedObject var viewModel = ChooseCycleViewModel()
     let numbers = Array(1...5)
-    let onNext: () -> Void
     
     var body: some View {
         NavigationStack{
@@ -58,7 +57,7 @@ struct ChooseCycleView: View {
                 
                 VStack{
                     Button(action: {
-                        //TODO: ReadyMainView로 이동
+                       //TODO: fullscreen
                     }) {
                         Text("시작")
                             .font(.system(size: 16, weight: .medium))
@@ -88,5 +87,5 @@ struct ChooseCycleView: View {
 }
 
 #Preview {
-    ChooseCycleView(onNext: {})
+    ChooseCycleView()
 }
