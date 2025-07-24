@@ -14,10 +14,7 @@ struct GuideHomeView: View {
     var body: some View {
         VStack(spacing: 30) {
             TopBar(subtitle: "Apple Watch로 CPR 측정 시작하기")
-            
-            Content() {
-                isPresented.toggle()
-            }
+            Content(isPresented: $isPresented)
         }
         .padding(.top, 108)
         .frame(width: 393, height: 852, alignment: .top)
@@ -54,7 +51,7 @@ struct GuideHomeView: View {
 }
 
 private struct Content: View {
-    var action: () -> Void
+    @Binding var isPresented: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
@@ -63,7 +60,7 @@ private struct Content: View {
                 titleText: Constants.GuideCard.Measurement.title,
                 contentText: Constants.GuideCard.Measurement.content,
                 buttonText: Constants.GuideCard.Measurement.button,
-                action: action,
+                action: { isPresented = true },
                 cardHeight: 186
             )
         }
