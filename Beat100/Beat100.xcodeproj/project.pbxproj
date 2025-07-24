@@ -43,8 +43,10 @@
 		3220EBE62E2E8ABE00BD6DA8 /* Exceptions for "WatchBeat100 Watch App" folder in "Beat100" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/Common/Enum/NavigationDestination.swift,
+				Resources/Common/Enum/MeasuringStep.swift,
 				Resources/Presentation/ChooseCycle/ChooseCycleViewModel.swift,
+				Resources/Presentation/Finish/FinishView.swift,
+				Resources/Presentation/MeasuringFlow/MeasuringFlowView.swift,
 			);
 			target = CF09C8D72E26666000E11198 /* Beat100 */;
 		};
@@ -54,6 +56,7 @@
 				Resources/Common/Components/CustomGradientCircle.swift,
 				Resources/Presentation/Countdown/CountdownAnimationView.swift,
 				Resources/Presentation/Countdown/CountdownViewModel.swift,
+				Resources/Presentation/Measuring/MeasuringCompleteView.swift,
 				Resources/Presentation/Measuring/MeasuringView.swift,
 				Resources/Util/Constants.swift,
 			);

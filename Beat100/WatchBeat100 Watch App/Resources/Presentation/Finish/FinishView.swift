@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FinishView: View {
     @ObservedObject var viewModel: ChooseCycleViewModel
+    var onComplete: () -> Void
     
     var body: some View {
         NavigationStack{
@@ -48,5 +49,5 @@ struct FinishView: View {
 }
 
 #Preview {
-    FinishView(viewModel: ChooseCycleViewModel())
+    FinishView(viewModel: ChooseCycleViewModel(), onComplete: {})
 }

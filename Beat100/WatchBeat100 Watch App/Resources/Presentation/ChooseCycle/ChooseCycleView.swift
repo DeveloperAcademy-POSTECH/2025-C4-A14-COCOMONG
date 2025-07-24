@@ -56,7 +56,7 @@ struct ChooseCycleView: View {
                 
                 VStack{
                     Button(action: {
-                       //TODO: fullscreen
+                        viewModel.showingMeasuringModal.toggle()
                     }) {
                         Text("시작")
                             .font(.system(size: 16, weight: .medium))
@@ -75,6 +75,9 @@ struct ChooseCycleView: View {
             .fullScreenCover(isPresented: $viewModel.showingWatchStart){
                 WatchStartView()
                     .interactiveDismissDisabled(true)
+            }
+            .fullScreenCover(isPresented: $viewModel.showingMeasuringModal){
+                MeasuringFlowView()
             }
             .toolbar{
                 ToolbarItem(placement: .topBarLeading) {

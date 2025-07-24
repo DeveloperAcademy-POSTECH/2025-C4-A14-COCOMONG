@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct MeasuringView: View {
+    var onComplete: () -> Void
+    
     var body: some View {
-        NavigationStack{
+        ZStack{
+            Color.black
+                .ignoresSafeArea(.all)
             VStack{
                 Image("MeasuringLogo")
                     .resizable()
@@ -47,18 +51,9 @@ struct MeasuringView: View {
             }
             .toolbar{
 #if os(watchOS)
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
-                        //TODO: 모달 작업 후 작업 예정
-                    }) {
-                        Text("취소")
-                            .padding(.horizontal,4)
-                            .font(.system(size: 15, weight: .semibold))
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("취소") {}
                     }
-                    //TODO: 컬러칩 적용되면 gray900으로 변경
-                    .background(Color.gray)
-                    .cornerRadius(100)
-                }
 #endif
             }
         }
@@ -66,5 +61,5 @@ struct MeasuringView: View {
 }
 
 #Preview {
-    MeasuringView()
+    MeasuringView(onComplete: {})
 }
