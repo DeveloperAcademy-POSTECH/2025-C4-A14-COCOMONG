@@ -63,6 +63,15 @@ private struct Content: View {
                 action: { isPresented = true },
                 cardHeight: 186
             )
+            
+            LargeCard(
+                imageResource: .cprHeart,
+                titleText: Constants.GuideCard.CPR.title,
+                contentText: Constants.GuideCard.CPR.content,
+                buttonText: Constants.GuideCard.CPR.button,
+                action: {},
+                cardHeight: 168
+            )
         }
         .frame(width: 361, alignment: .topLeading)
     }
