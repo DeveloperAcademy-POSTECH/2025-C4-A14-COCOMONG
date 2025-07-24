@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CompressionPositionGuideView: View {
+struct WatchWearingGuideView: View {
     @Binding var isPresented: Bool
     @Environment(NavigationManager.self) var navigationManager
     
@@ -17,7 +17,7 @@ struct CompressionPositionGuideView: View {
             Content()
             Spacer()
             LargeButton("다음") {
-                navigationManager.navigate(to: .rateAndDepth)
+                navigationManager.navigate(to: .compressionPosition)
             }
         }
         .padding(.top, 8)
@@ -26,13 +26,7 @@ struct CompressionPositionGuideView: View {
 }
 
 private struct Content: View {
-    let titleText = "가슴 압박 위치"
-    let bodyText = """
-        가슴 압박은 가슴뼈(흉골)의 아래쪽 1/2 지점,
-        즉 양쪽 유두를 이은 선 중앙에 손바닥을 놓고
-        실시합니다. 손바닥 뒤꿈치를 이용해 팔꿈치를
-        곧게 편 상태로 수직으로 눌러주세요.
-        """
+    let titleText = Constants.WatchWearingGuideText.title
     
     var body: some View {
         VStack(spacing: 22) {
@@ -46,16 +40,28 @@ private struct Content: View {
                 .frame(height: 197)
                 .cornerRadius(10)
             
-            Text(bodyText)
+            VStack(alignment: .leading, spacing: 16) {
+                HStack(alignment: .top, spacing: 3) {
+                    Text("1.")
+                        .frame(width: 24)
+                    Text(Constants.WatchWearingGuideText.step1)
+                }
+                
+                HStack(alignment: .top, spacing: 3) {
+                    Text("2.")
+                        .frame(width: 24)
+                    Text(Constants.WatchWearingGuideText.step2)
+                }
+            }
             .font(.system(size: 16))
-            .multilineTextAlignment(.center)
             .foregroundColor(.black)
+            .frame(maxWidth: 348, alignment: .topLeading)
         }
         .frame(width: 361, alignment: .top)
     }
 }
 
 #Preview {
-    CompressionPositionGuideView(isPresented: .constant(true))
+    WatchWearingGuideView(isPresented: .constant(true))
         .environment(NavigationManager())
 }
