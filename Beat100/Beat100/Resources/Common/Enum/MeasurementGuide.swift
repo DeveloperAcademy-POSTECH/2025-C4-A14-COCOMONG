@@ -8,9 +8,4 @@
 import Foundation
 
 enum MeasurementGuide {
-    case appMechanism
-    case watchWearing
-    case compressionPosition
-    case rateAndDepth
-    case measurementStart
 }

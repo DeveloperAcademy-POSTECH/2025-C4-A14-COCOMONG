@@ -66,5 +66,4 @@ private struct Content: View {
 
 #Preview {
     MeasurementStartView(isPresented: .constant(true))
-        .environment(NavigationManager())
 }
