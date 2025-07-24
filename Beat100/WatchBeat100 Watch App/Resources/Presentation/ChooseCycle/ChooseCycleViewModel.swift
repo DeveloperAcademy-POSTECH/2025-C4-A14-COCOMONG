@@ -10,4 +10,5 @@ import Foundation
 class ChooseCycleViewModel: ObservableObject {
     @Published var selectedNumber: Int = 0
     @Published var showingInfo: Bool = false
+    @Published var showingWatchStart: Bool = true
 }

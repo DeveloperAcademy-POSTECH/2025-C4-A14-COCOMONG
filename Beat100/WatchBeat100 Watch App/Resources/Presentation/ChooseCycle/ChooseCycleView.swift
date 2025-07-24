@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChooseCycleView: View {
     @ObservedObject var viewModel = ChooseCycleViewModel()
-    let numbers = Array(1...5)
     
     var body: some View {
         NavigationStack{
@@ -17,7 +16,7 @@ struct ChooseCycleView: View {
                 Text("사이클")
                     .font(.nanumSquareNeo(type: .heavy, size: 16))
                 Picker("숫자 선택", selection: $viewModel.selectedNumber) {
-                    ForEach(numbers, id: \.self) { number in
+                    ForEach(1...5, id: \.self) { number in
                         Text("\(number)")
                             .font(.nanumSquareNeo(type: .heavy, size: 28))
                             .tag(number)
@@ -72,6 +71,10 @@ struct ChooseCycleView: View {
             }
             .sheet(isPresented: $viewModel.showingInfo) {
                 ChooseCycleInfoView()
+            }
+            .fullScreenCover(isPresented: $viewModel.showingWatchStart){
+                WatchStartView()
+                    .interactiveDismissDisabled(true)
             }
             .toolbar{
                 ToolbarItem(placement: .topBarLeading) {

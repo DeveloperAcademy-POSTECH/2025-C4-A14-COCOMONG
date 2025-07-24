@@ -11,7 +11,7 @@ import SwiftUI
 struct WatchBeat100_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            measureView()
+            ChooseCycleView()
         }
     }
 }
