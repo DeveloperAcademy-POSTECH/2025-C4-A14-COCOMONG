@@ -9,15 +9,14 @@ import SwiftUI
 
 struct CompressionPositionGuideView: View {
     @Binding var isPresented: Bool
-    @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
         VStack {
             BackCancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            Button("다음") {
-                navigationManager.navigate(to: .rateAndDepth)
+            NavigationLink("다음") {
+                RateAndDepthGuideView(isPresented: $isPresented)
             }
             .largeButtonStyle()
         }
@@ -53,5 +52,4 @@ private struct Content: View {
 
 #Preview {
     CompressionPositionGuideView(isPresented: .constant(true))
-        .environment(NavigationManager())
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GuideHomeView: View {
-    @State private var navigationManager = NavigationManager()
     @State var isPresented: Bool = false
     
     var body: some View {
@@ -20,28 +19,8 @@ struct GuideHomeView: View {
         .padding(.top, 108)
         .background(.gray200)
         .sheet(isPresented: $isPresented) {
-            NavigationStack(path: $navigationManager.path) {
+            NavigationStack {
                 AppMechanismGuideView(isPresented: $isPresented)
-                    .environment(navigationManager)
-                    .navigationDestination(for: MeasurementGuide.self) { value in
-                        switch value {
-                        case .appMechanism:
-                            AppMechanismGuideView(isPresented: $isPresented)
-                                .environment(navigationManager)
-                        case .watchWearing:
-                            WatchWearingGuideView(isPresented: $isPresented)
-                                .environment(navigationManager)
-                        case .compressionPosition:
-                            CompressionPositionGuideView(isPresented: $isPresented)
-                                .environment(navigationManager)
-                        case .rateAndDepth:
-                            RateAndDepthGuideView(isPresented: $isPresented)
-                                .environment(navigationManager)
-                        case .measurementStart:
-                            MeasurementStartView(isPresented: $isPresented)
-                                .environment(navigationManager)
-                        }
-                    }
             }
             .presentationDetents([.fraction(0.99)])
             .presentationCornerRadius(10)
