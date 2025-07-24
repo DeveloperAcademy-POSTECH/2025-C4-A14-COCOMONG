@@ -51,7 +51,8 @@
 		CF09CA342E266F7F00E11198 /* Exceptions for "Beat100" folder in "WatchBeat100 Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/Presentation/Countdown/CountdownView.swift,
+				Resources/Common/Components/CustomGradientCircle.swift,
+				Resources/Presentation/Countdown/CountdownAnimationView.swift,
 				Resources/Presentation/Countdown/CountdownViewModel.swift,
 				Resources/Presentation/Measuring/MeasuringView.swift,
 				Resources/Util/Constants.swift,
@@ -381,7 +382,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UKY6HK6U6Y;
+				DEVELOPMENT_TEAM = UCHC727784;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beat100/Info.plist;
@@ -416,7 +417,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UKY6HK6U6Y;
+				DEVELOPMENT_TEAM = UCHC727784;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beat100/Info.plist;

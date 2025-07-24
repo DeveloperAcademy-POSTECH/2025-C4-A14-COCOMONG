@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomGradientCircle: View {
     let progress: Double
+    let width: CGFloat
     
     var body: some View {
         Circle()
@@ -24,7 +25,7 @@ struct CustomGradientCircle: View {
                     endPoint: .bottomTrailing
                 ),
                 style: StrokeStyle(
-                    lineWidth: 10,
+                    lineWidth: width,
                     lineCap: .round
                 )
             )
@@ -33,5 +34,5 @@ struct CustomGradientCircle: View {
 }
 
 #Preview {
-    CustomGradientCircle(progress: 0.2)
+    CustomGradientCircle(progress: 0.2, width: 10)
 }
