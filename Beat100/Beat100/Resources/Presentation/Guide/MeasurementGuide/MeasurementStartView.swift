@@ -16,7 +16,7 @@ struct MeasurementStartView: View {
             BackToolbar()
             Content()
             Spacer()
-            CompleteLargeButton(Constants.MeasurementStartText.startButtonText) {
+            Button(Constants.MeasurementStartText.startButtonText) {
                 isPresented = false
                 
                 //NOTE: sheet가 내려갈 때 보이지 않게 하기 위해 0.5초 뒤에 실행
@@ -24,6 +24,7 @@ struct MeasurementStartView: View {
                     navigationManager.popToRoot()
                 }
             }
+            .completeLargeButtonStyle()
         }
         .padding(.top, 8)
         .navigationBarBackButtonHidden(true)

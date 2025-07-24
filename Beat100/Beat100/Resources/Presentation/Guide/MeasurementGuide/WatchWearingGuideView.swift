@@ -16,9 +16,10 @@ struct WatchWearingGuideView: View {
             BackCancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            LargeButton("다음") {
+            Button("다음") {
                 navigationManager.navigate(to: .compressionPosition)
             }
+            .largeButtonStyle()
         }
         .padding(.top, 8)
         .navigationBarBackButtonHidden(true)

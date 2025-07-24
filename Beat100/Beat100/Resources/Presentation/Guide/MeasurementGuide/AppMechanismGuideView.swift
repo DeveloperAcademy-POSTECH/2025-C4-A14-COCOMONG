@@ -17,9 +17,10 @@ struct AppMechanismGuideView: View {
             Content()
             Spacer()
             Disclaimer()
-            LargeButton("계속") {
+            Button("계속") {
                 navigationManager.navigate(to: .watchWearing)
             }
+            .largeButtonStyle()
         }
         .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
