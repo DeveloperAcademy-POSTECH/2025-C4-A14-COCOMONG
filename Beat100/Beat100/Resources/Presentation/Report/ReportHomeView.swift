@@ -9,7 +9,12 @@ import SwiftUI
 
 struct ReportHomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            TopBar(subtitle: "리포트 확인하기")
+                .padding(.top, 44)
+            
+            Spacer()
+        }
     }
 }
 
