@@ -15,9 +15,9 @@ struct GuideHomeView: View {
         VStack(spacing: 30) {
             TopBar(subtitle: "Apple Watch로 CPR 측정 시작하기")
             Content(isPresented: $isPresented)
+            Spacer()
         }
         .padding(.top, 108)
-        .frame(width: 393, height: 852, alignment: .top)
         .background(.gray200)
         .sheet(isPresented: $isPresented) {
             NavigationStack(path: $navigationManager.path) {
