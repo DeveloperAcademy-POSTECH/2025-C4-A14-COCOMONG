@@ -63,6 +63,14 @@ struct CountdownAnimationView: View {
                 }
 #endif
             }
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("") {
+                    }
+                    .tint(Color.black)
+                    .disabled(true)
+                }
+            }
         }
         .onAppear {
             viewModel.onComplete = {
@@ -70,7 +78,6 @@ struct CountdownAnimationView: View {
             }
             viewModel.startCountdown()
         }
-        .toolbar {}
     }
     
 }

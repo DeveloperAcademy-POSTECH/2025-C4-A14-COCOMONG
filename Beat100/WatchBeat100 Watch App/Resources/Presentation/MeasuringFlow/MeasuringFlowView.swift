@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MeasuringFlowView: View {
+    var selectedNumber: Int
     @Environment(\.dismiss) private var dismiss
     @State private var step: MeasuringStep = .countdown
     
@@ -19,7 +20,7 @@ struct MeasuringFlowView: View {
                     step = .measuring
                 }
             case .measuring:
-                MeasuringView {
+                MeasuringView(selectedNumber: .constant(selectedNumber)) {
                     step = .measuringComplete
                 }
             case .measuringComplete:
@@ -27,15 +28,15 @@ struct MeasuringFlowView: View {
                     step = .finish
                 }
             case .finish:
-                FinishView(viewModel: ChooseCycleViewModel()) {
-                    dismiss() // 전체 모달 닫기
+                FinishView(selectedNumber: .constant(selectedNumber)) {
+                    dismiss()
                 }
             }
         }
-        .ignoresSafeArea() // fullscreenCover라면 안전영역 무시
+        .ignoresSafeArea()
     }
 }
 
 #Preview {
-    MeasuringFlowView()
+    MeasuringFlowView(selectedNumber: 1)
 }

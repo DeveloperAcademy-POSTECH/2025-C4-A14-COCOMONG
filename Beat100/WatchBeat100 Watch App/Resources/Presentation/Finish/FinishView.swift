@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FinishView: View {
-    @ObservedObject var viewModel: ChooseCycleViewModel
+    @Binding var selectedNumber: Int
     var onComplete: () -> Void
     
     var body: some View {
@@ -20,7 +20,7 @@ struct FinishView: View {
                     Text("측정 완료")
                         .font(.system(size: 14, weight: .bold))
                     
-                    Text("\(viewModel.selectedNumber)사이클")
+                    Text("\(selectedNumber)사이클")
                         .font(.system(size: 10, weight: .bold))
                         .padding(.bottom, 10)
                     
@@ -53,5 +53,5 @@ struct FinishView: View {
 }
 
 #Preview {
-    FinishView(viewModel: ChooseCycleViewModel(), onComplete: {})
+    FinishView(selectedNumber: .constant(1), onComplete: {})
 }

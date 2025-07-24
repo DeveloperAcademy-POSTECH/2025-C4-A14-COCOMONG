@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ChooseCycleView: View {
-    @ObservedObject var viewModel = ChooseCycleViewModel()
+    @State var selectedNumber: Int = 1
+    @ObservedObject var viewModel: ChooseCycleViewModel
     
     var body: some View {
         NavigationStack{
             VStack{
                 Text("사이클")
                     .font(.nanumSquareNeo(type: .heavy, size: 16))
-                Picker("숫자 선택", selection: $viewModel.selectedNumber) {
+                Picker("숫자 선택", selection: $selectedNumber) {
                     ForEach(1...5, id: \.self) { number in
                         Text("\(number)")
                             .font(.nanumSquareNeo(type: .heavy, size: 28))
@@ -77,7 +78,7 @@ struct ChooseCycleView: View {
                     .interactiveDismissDisabled(true)
             }
             .fullScreenCover(isPresented: $viewModel.showingMeasuringModal){
-                MeasuringFlowView()
+                MeasuringFlowView(selectedNumber: selectedNumber)
             }
             .toolbar{
                 ToolbarItem(placement: .topBarLeading) {
@@ -93,5 +94,5 @@ struct ChooseCycleView: View {
 }
 
 #Preview {
-    ChooseCycleView()
+    ChooseCycleView(viewModel: ChooseCycleViewModel())
 }
