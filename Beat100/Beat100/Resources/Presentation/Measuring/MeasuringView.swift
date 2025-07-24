@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MeasuringView: View {
+    let onNext: () -> Void
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -66,5 +68,5 @@ struct MeasuringView: View {
 }
 
 #Preview {
-    MeasuringView()
+    MeasuringView(onNext: {})
 }

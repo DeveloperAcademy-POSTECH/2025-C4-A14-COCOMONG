@@ -10,6 +10,7 @@ import SwiftUI
 struct ChooseCycleView: View {
     @StateObject var viewModel = ChooseCycleViewModel()
     let numbers = Array(1...5)
+    let onNext: () -> Void
     
     var body: some View {
         NavigationStack{
@@ -87,5 +88,5 @@ struct ChooseCycleView: View {
 }
 
 #Preview {
-    ChooseCycleView()
+    ChooseCycleView(onNext: {})
 }

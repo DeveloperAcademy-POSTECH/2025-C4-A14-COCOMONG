@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CountdownView: View {
+    let onNext: () -> Void
     @StateObject var viewModel: CountdownViewModel
     
     var body: some View {
@@ -45,5 +46,5 @@ struct CountdownView: View {
 }
 
 #Preview {
-    CountdownView(viewModel: CountdownViewModel())
+    CountdownView(onNext: {}, viewModel: CountdownViewModel())
 }
