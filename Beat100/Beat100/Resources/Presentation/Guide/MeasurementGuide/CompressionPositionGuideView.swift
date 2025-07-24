@@ -7,18 +7,17 @@
 
 import SwiftUI
 
-struct AppMechanismGuideView: View {
+struct CompressionPositionGuideView: View {
     @Binding var isPresented: Bool
     @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
         VStack {
-            CancelToolbar(isPresented: $isPresented)
+            BackCancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            Disclaimer()
-            LargeButton("계속") {
-                navigationManager.navigate(to: .watchWearing)
+            LargeButton("다음") {
+                navigationManager.navigate(to: .rateAndDepth)
             }
         }
         .padding(.top, 8)
@@ -27,13 +26,8 @@ struct AppMechanismGuideView: View {
 }
 
 private struct Content: View {
-    let titleText = "BEAT100 앱 작동 방식"
-    let bodyText = """
-        BEAT100은 Apple Watch의 모션 센서를 
-        활용하여 CPR 중 손목의 움직임을 감지합니다. 
-        압박 리듬, 속도, 깊이를 실시간으로 측정하여 
-        올바른 압박을 유지할 수 있도록 돕습니다.
-        """
+    let titleText = Constants.CompressionPositionGuideText.title
+    let bodyText = Constants.CompressionPositionGuideText.body
     
     var body: some View {
         VStack(spacing: 22) {
@@ -56,20 +50,7 @@ private struct Content: View {
     }
 }
 
-private struct Disclaimer: View {
-    var body: some View {
-        Text("""
-        * BEAT100 앱은 교육 목적의 시뮬레이션 도구입니다.
-        실제 위급 상황에서는 사용할 수 없습니다.
-        """)
-        .font(.system(size: 12))
-        .multilineTextAlignment(.center)
-        .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
-        .padding(.bottom, 24)
-    }
-}
-
 #Preview {
-    AppMechanismGuideView(isPresented: .constant(true))
+    CompressionPositionGuideView(isPresented: .constant(true))
         .environment(NavigationManager())
 }

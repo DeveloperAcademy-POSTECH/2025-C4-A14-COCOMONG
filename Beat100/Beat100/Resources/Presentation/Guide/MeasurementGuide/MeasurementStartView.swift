@@ -16,7 +16,7 @@ struct MeasurementStartView: View {
             BackToolbar()
             Content()
             Spacer()
-            CompleteLargeButton("CPR 측정 시작하기") {
+            CompleteLargeButton(Constants.MeasurementStartText.startButtonText) {
                 isPresented = false
                 
                 //NOTE: sheet가 내려갈 때 보이지 않게 하기 위해 0.5초 뒤에 실행
@@ -31,7 +31,7 @@ struct MeasurementStartView: View {
 }
 
 private struct Content: View {
-    let titleText = "처음으로 CPR 측정하기"
+    let titleText = Constants.MeasurementStartText.title
     
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
@@ -47,20 +47,19 @@ private struct Content: View {
                 HStack(alignment: .top, spacing: 3) {
                     Text("1.")
                         .frame(width: 24)
-                    Text("“CPR 측정 시작하기\"").bold()
-                    + Text("를 누르면 Apple Watch앱과 연동을 시작합니다.")
+                    Text(Constants.MeasurementStartText.step1)
                 }
                 
                 HStack(alignment: .top, spacing: 3) {
                     Text("2.")
                         .frame(width: 24)
-                    Text("Apple Watch 앱에서 **“확인” 버튼**을 누르면, iPhone과 Watch가 자동으로 연동돼 압박 리듬 가이드를 함께 제공합니다.")
+                    Text(Constants.MeasurementStartText.step2)
                 }
                 
                 HStack(alignment: .top, spacing: 3) {
                     Text("3.")
                         .frame(width: 24)
-                    Text("iPhone은 애니 근처 잘 보이는 곳에 두십시오.")
+                    Text(Constants.MeasurementStartText.step3)
                 }
             }
             .font(.system(size: 16))

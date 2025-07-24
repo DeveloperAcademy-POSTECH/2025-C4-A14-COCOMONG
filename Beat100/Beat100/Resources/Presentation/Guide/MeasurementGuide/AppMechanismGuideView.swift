@@ -7,17 +7,18 @@
 
 import SwiftUI
 
-struct WatchWearingGuideView: View {
+struct AppMechanismGuideView: View {
     @Binding var isPresented: Bool
     @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
         VStack {
-            BackCancelToolbar(isPresented: $isPresented)
+            CancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            LargeButton("다음") {
-                navigationManager.navigate(to: .compressionPosition)
+            Disclaimer()
+            LargeButton("계속") {
+                navigationManager.navigate(to: .watchWearing)
             }
         }
         .padding(.top, 8)
@@ -26,7 +27,8 @@ struct WatchWearingGuideView: View {
 }
 
 private struct Content: View {
-    let titleText = "Apple Watch 착용 가이드"
+    let titleText = Constants.AppMechanismGuideText.title
+    let bodyText = Constants.AppMechanismGuideText.body
     
     var body: some View {
         VStack(spacing: 22) {
@@ -40,28 +42,26 @@ private struct Content: View {
                 .frame(height: 197)
                 .cornerRadius(10)
             
-            VStack(alignment: .leading, spacing: 16) {
-                HStack(alignment: .top, spacing: 3) {
-                    Text("1.")
-                        .frame(width: 24)
-                    Text("Apple Watch를 편한 손목의 손목뼈(요골) \n위쪽에 단단히 착용해주세요.")
-                }
-                
-                HStack(alignment: .top, spacing: 3) {
-                    Text("2.")
-                        .frame(width: 24)
-                    Text("손목 센서와 피부가 밀착되어야 올바른 압박 \n속도·깊이·리듬을 정확하게 감지할 수 있습니다.")
-                }
-            }
+            Text(bodyText)
             .font(.system(size: 16))
+            .multilineTextAlignment(.center)
             .foregroundColor(.black)
-            .frame(maxWidth: 348, alignment: .topLeading)
         }
         .frame(width: 361, alignment: .top)
     }
 }
 
+private struct Disclaimer: View {
+    var body: some View {
+        Text(Constants.AppMechanismGuideText.disclaimer)
+        .font(.system(size: 12))
+        .multilineTextAlignment(.center)
+        .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
+        .padding(.bottom, 24)
+    }
+}
+
 #Preview {
-    WatchWearingGuideView(isPresented: .constant(true))
+    AppMechanismGuideView(isPresented: .constant(true))
         .environment(NavigationManager())
 }
