@@ -1,8 +1,8 @@
 //
-//  c3.swift
+//  LargeButton.swift
 //  Beat100
 //
-//  Created by 이현주 on 7/15/25.
+//  Created by oliver on 7/24/25.
 //
 
 import SwiftUI
@@ -10,12 +10,12 @@ import SwiftUI
 struct LargeButton: View {
     let text: String
     let action: () -> Void
-    
+
     init(_ text: String, action: @escaping () -> Void) {
         self.text = text
         self.action = action
     }
-    
+
     var body: some View {
         Button(action: action) {
             Text(text)
@@ -23,21 +23,22 @@ struct LargeButton: View {
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
-        .frame(width: 361, height: 56, alignment: .top)
+        .frame(height: 56)
         .background(.beatMint)
         .cornerRadius(14)
+        .padding(.horizontal, 16)
     }
 }
 
 struct CompleteLargeButton: View {
     let text: String
     let action: () -> Void
-    
+
     init(_ text: String, action: @escaping () -> Void) {
         self.text = text
         self.action = action
     }
-    
+
     var body: some View {
         Button(action: action) {
             Text(text)
@@ -45,9 +46,10 @@ struct CompleteLargeButton: View {
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
-        .frame(width: 361, height: 56, alignment: .top)
+        .frame(height: 56)
         .background(.beatTeal)
         .cornerRadius(14)
+        .padding(.horizontal, 16)
     }
 }
 
@@ -55,3 +57,4 @@ struct CompleteLargeButton: View {
     LargeButton("다음", action: {})
     CompleteLargeButton("다음", action: {})
 }
+
