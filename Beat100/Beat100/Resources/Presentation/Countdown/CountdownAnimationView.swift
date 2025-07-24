@@ -12,7 +12,7 @@ struct CountdownAnimationView: View {
     var onComplete: () -> Void
     
     var body: some View {
-        VStack{
+        NavigationStack{
             ZStack {
                 Color.black.ignoresSafeArea(edges: .all)
                 
@@ -46,7 +46,6 @@ struct CountdownAnimationView: View {
                         CustomGradientCircle(progress: 100, width: 12)
                             .opacity(viewModel.showCircle ? 0.2 : 0.0)
                             .frame(width: 126, height: 126)
-                            .animation(.easeInOut(duration: 2.0), value: viewModel.showCircle)
                             .opacity(viewModel.showCircle ? 1.0 : 0.0)
                         
                         //Foreground Circle

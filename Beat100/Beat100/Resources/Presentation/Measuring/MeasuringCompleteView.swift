@@ -70,10 +70,11 @@ struct MeasuringCompleteView: View {
             .padding(.top, 20)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("") {
+                    Button("navi") {
+                        onComplete()
                     }
                     .tint(Color.black)
-                    .disabled(true)
+//                    .disabled(true)
                 }
             }
             

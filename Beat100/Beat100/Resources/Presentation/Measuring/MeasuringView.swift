@@ -52,7 +52,10 @@ struct MeasuringView: View {
             .toolbar{
 #if os(watchOS)
                     ToolbarItem(placement: .cancellationAction) {
-                        Button("취소") {}
+                        Button("취소") {
+                            //TODO: Navigation 실험용
+                            onComplete()
+                        }
                     }
 #endif
             }
