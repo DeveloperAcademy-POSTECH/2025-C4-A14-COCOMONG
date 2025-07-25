@@ -8,63 +8,64 @@
 import SwiftUI
 
 struct MeasuringView: View {
+    @Binding var selectedNumber: Int
+    var onComplete: () -> Void
+    
     var body: some View {
         NavigationStack{
-            VStack{
-                Image("MeasuringLogo")
-                    .resizable()
-                    .frame(width: {
+            ZStack{
+                Color.black
+                    .ignoresSafeArea(.all)
+                VStack{
+                    Image("MeasuringLogo")
+                        .resizable()
+                        .frame(width: {
 #if os(iOS)
-                        160
+                            160
 #elseif os(watchOS)
-                        109
+                            109
 #else
-                        160
+                            160
 #endif
-                    }(), height: {
+                        }(), height: {
 #if os(iOS)
-                        136
+                            136
 #elseif os(watchOS)
-                        93
+                            93
 #else
-                        136
+                            136
 #endif
-                    }())
-                    .padding(.horizontal, 30)
-                    .padding(.vertical, 18)
-                
-                Text("측정중...")
-                    .padding(.top, 5)
-                    .font(.system(size: {
+                        }())
+                        .padding(.horizontal, 30)
+                        .padding(.vertical, 18)
+                    
+                    Text("측정중...")
+                        .padding(.top, 5)
+                        .font(.system(size: {
 #if os(iOS)
-                        17.67
+                            17.67
 #elseif os(watchOS)
-                        14
+                            14
 #else
-                        14
+                            14
 #endif
-                    }(), weight: .heavy))
-            }
-            .toolbar{
-#if os(watchOS)
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
-                        //TODO: 측정 취소
-                    }) {
-                        Text("취소")
-                            .padding(.horizontal,4)
-                            .font(.system(size: 15, weight: .semibold))
-                    }
-                    //TODO: 컬러칩 적용되면 gray900으로 변경
-                    .background(Color.gray)
-                    .cornerRadius(100)
+                        }(), weight: .heavy))
                 }
+                .toolbar{
+#if os(watchOS)
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("취소") {
+                            //TODO: Navigation 실험용
+                            onComplete()
+                        }
+                    }
 #endif
+                }
             }
         }
     }
 }
 
 #Preview {
-    MeasuringView()
+    MeasuringView(selectedNumber: .constant(1), onComplete: {})
 }
