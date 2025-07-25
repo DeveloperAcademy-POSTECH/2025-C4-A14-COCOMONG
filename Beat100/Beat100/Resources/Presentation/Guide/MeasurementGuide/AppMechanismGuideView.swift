@@ -15,15 +15,20 @@ struct AppMechanismGuideView: View {
             CancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            Disclaimer()
-            NavigationLink {
-                WatchWearingGuideView(isPresented: $isPresented)
-            } label: {
-                Text("계속")
-                    .largeButtonStyle()
+            
+            VStack(spacing: 24) {
+                Disclaimer()
+                
+                NavigationLink {
+                    WatchWearingGuideView(isPresented: $isPresented)
+                } label: {
+                    Text("계속")
+                        .largeButtonStyle()
+                }
             }
         }
         .padding(.top, 8)
+        .padding(.bottom, 40)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -49,7 +54,7 @@ private struct Content: View {
             .multilineTextAlignment(.center)
             .foregroundColor(.black)
         }
-        .frame(width: 361, alignment: .top)
+        .padding(.horizontal, 16)
     }
 }
 
@@ -59,7 +64,6 @@ private struct Disclaimer: View {
         .font(.system(size: 12))
         .multilineTextAlignment(.center)
         .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
-        .padding(.bottom, 24)
     }
 }
 
