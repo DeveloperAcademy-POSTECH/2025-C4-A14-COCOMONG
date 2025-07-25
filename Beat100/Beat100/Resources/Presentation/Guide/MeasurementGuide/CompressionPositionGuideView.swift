@@ -23,6 +23,7 @@ struct CompressionPositionGuideView: View {
             }
         }
         .padding(.top, 8)
+        .padding(.bottom, 40)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -48,7 +49,7 @@ private struct Content: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.black)
         }
-        .frame(width: 361, alignment: .top)
+        .padding(.horizontal, 16)
     }
 }
 
