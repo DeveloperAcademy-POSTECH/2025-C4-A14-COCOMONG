@@ -28,15 +28,15 @@ struct SourceCheckView: View {
             .padding()
         }
         .onAppear {
-            print("🟢 SourceCheckView onAppear called")
+            print("SourceCheckView onAppear called")
 
             NotificationCenter.default.addObserver(forName: Notification.Name("didReceiveAllLogs"), object: nil, queue: .main) { notification in
-                print("📬 Notification received!")
+                print("Notification received!")
 
                 if let json = notification.userInfo?["allLogs"] as? String,
                    let data = json.data(using: .utf8),
                    let stringArray = try? JSONDecoder().decode([String].self, from: data) {
-                    print("✅ Decoded [String] with \(stringArray.count) items")
+                    print("Decoded [String] with \(stringArray.count) items")
 
                     let parsed = stringArray.enumerated().compactMap { index, value -> AccelerationData? in
                         let raw = value.replacingOccurrences(of: "Z값: ", with: "")
@@ -48,9 +48,9 @@ struct SourceCheckView: View {
                     }
 
                     self.zLogData = parsed
-                    print("✅ zLogData updated with \(parsed.count) items")
+                    print("zLogData updated with \(parsed.count) items")
                 } else {
-                    print("❌ [String] 디코딩 실패")
+                    print("[String] 디코딩 실패")
                 }
             }
         }
