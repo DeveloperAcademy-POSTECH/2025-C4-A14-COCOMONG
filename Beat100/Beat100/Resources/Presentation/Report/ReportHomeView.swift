@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ReportHomeView: View {
     var body: some View {
-        VStack {
-            TopBar(subtitle: "리포트 확인하기")
-                .padding(.top, 44)
-            
-            Spacer()
+        NavigationStack {
+            VStack {
+                ExplainPressureCardView()
+            }
+            .navigationTitle("리포트")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
