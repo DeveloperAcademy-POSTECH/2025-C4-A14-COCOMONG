@@ -16,4 +16,18 @@ extension CprReport {
         self.numberOfCycles = numberOfCycles
         self.cycles = NSOrderedSet(array: cycles)
     }
+    
+    @MainActor
+    static func create(
+        context: NSManagedObjectContext,
+        createdAt: Date,
+        totalAccuracy: TotalAccuracy,
+        numberOfCycles: Int16,
+        cycles: [CprCycle]
+    ) async throws -> CprReport {
+        let newReport = CprReport(context: context)
+        do {
+            
+        }
+    }
 }
