@@ -9,16 +9,16 @@ import SwiftUI
 
 struct WatchWearingGuideView: View {
     @Binding var isPresented: Bool
-    @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
         VStack {
             BackCancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            LargeButton("다음") {
-                navigationManager.navigate(to: .compressionPosition)
+            NavigationLink("다음") {
+                CompressionPositionGuideView(isPresented: $isPresented)
             }
+            .largeButtonStyle()
         }
         .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
@@ -63,5 +63,4 @@ private struct Content: View {
 
 #Preview {
     WatchWearingGuideView(isPresented: .constant(true))
-        .environment(NavigationManager())
 }
