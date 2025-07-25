@@ -14,6 +14,7 @@ struct MeasurementStartView: View {
         VStack {
             BackToolbar()
             Content()
+                .padding(.horizontal, 16)
             Spacer()
             Button(Constants.MeasurementStartText.startButtonText) {
                 isPresented = false
@@ -21,6 +22,7 @@ struct MeasurementStartView: View {
             .largeButtonStyle(.complete)
         }
         .padding(.top, 8)
+        .padding(.bottom, 40)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -59,7 +61,7 @@ private struct Content: View {
             }
             .font(.system(size: 16))
             .foregroundColor(.black)
-            .frame(maxWidth: 348, alignment: .topLeading)
+            .padding(.horizontal, 9.5)
         }
     }
 }
