@@ -18,7 +18,7 @@ struct MeasurementStartView: View {
             Button(Constants.MeasurementStartText.startButtonText) {
                 isPresented = false
             }
-            .completeLargeButtonStyle()
+            .largeButtonStyle(.complete)
         }
         .padding(.top, 8)
         .navigationBarBackButtonHidden(true)

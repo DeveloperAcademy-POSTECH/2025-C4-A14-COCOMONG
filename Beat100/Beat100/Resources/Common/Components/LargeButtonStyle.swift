@@ -7,38 +7,44 @@
 
 import SwiftUI
 
+
+
 struct LargeButtonStyle: ViewModifier {
+    let type: LargeButtonType
+    
     func body(content: Content) -> some View {
         content
             .font(.system(size: 17, weight: .semibold))
-            .foregroundColor(.black)
+            .foregroundColor(foregroundColor)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .frame(height: 56)
-            .background(.beatMint)
+            .background(backgroundColor)
             .cornerRadius(14)
             .padding(.horizontal, 16)
     }
-}
-
-struct CompleteLargeButtonStyle: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.system(size: 17, weight: .semibold))
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            .frame(height: 56)
-            .background(.beatTeal)
-            .cornerRadius(14)
-            .padding(.horizontal, 16)
+    
+    private var foregroundColor: Color {
+        switch type {
+        case .normal:
+            return .black
+        case .complete:
+            return .white
+        }
+    }
+    
+    private var backgroundColor: Color {
+        switch type {
+        case .normal:
+            return .beatMint
+        case .complete:
+            return .beatTeal
+        }
     }
 }
 
 extension View {
-    func largeButtonStyle() -> some View {
-        modifier(LargeButtonStyle())
-    }
-    func completeLargeButtonStyle() -> some View {
-        modifier(CompleteLargeButtonStyle())
+    func largeButtonStyle(_ role: LargeButtonType = .normal) -> some View {
+        modifier(LargeButtonStyle(type: role))
     }
 }
 
@@ -46,6 +52,5 @@ extension View {
     Button("다음") {}
         .largeButtonStyle()
     Button("다음") {}
-        .completeLargeButtonStyle()
+        .largeButtonStyle(.complete)
 }
-
