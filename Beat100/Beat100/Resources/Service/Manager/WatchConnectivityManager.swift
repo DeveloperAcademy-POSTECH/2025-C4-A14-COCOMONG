@@ -12,7 +12,7 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
     static let shared = WatchConnectivityManager()
     static let startBlinkingNotification = Notification.Name("StartBlinking")
     static let didReceiveZLogData = Notification.Name("didReceiveZLogData")
-
+    
     private override init() {
         super.init()
         print("WatchConnectivityManager initialized Complete")
@@ -22,23 +22,30 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
             session.activate()
         }
     }
-
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("iOS WCSession activated: \(activationState)")
     }
-
+    
     func sessionDidBecomeInactive(_ session: WCSession) {}
     
     func sessionDidDeactivate(_ session: WCSession) {
         WCSession.default.activate()
     }
-
+    
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("iOS received message: \(message)")
-        print("📩 Message received: \(message)")
         if let ts = message["startTime"] as? TimeInterval {
             NotificationCenter.default.post(name: Self.startBlinkingNotification, object: Date(timeIntervalSince1970: ts))
         }
+        
+        if let flag = message["Flag"] as? String, flag == "MeasureStart" {
+            NotificationCenter.default.post(
+                name: Notification.Name("MeasureStartNotification"),
+                object: nil
+            )
+        }
+        
         if let jsonString = message["allLogs"] as? String {
             NotificationCenter.default.post(
                 name: Notification.Name("didReceiveAllLogs"),

@@ -10,6 +10,7 @@ import SwiftUI
 struct ChooseCycleView: View {
     @State var selectedNumber: Int = 1
     @ObservedObject var viewModel: ChooseCycleViewModel
+    let manager = WatchConnectivityManager.shared
     
     var body: some View {
         NavigationStack{
@@ -58,6 +59,7 @@ struct ChooseCycleView: View {
                 VStack{
                     Button(action: {
                         viewModel.showingMeasuringModal.toggle()
+                        manager.sendMessage(["MeasureStartFlag": true])
                     }) {
                         Text("시작")
                             .font(.system(size: 16, weight: .medium))
