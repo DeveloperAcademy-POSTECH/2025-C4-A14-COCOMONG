@@ -43,8 +43,10 @@
 		3220EBE62E2E8ABE00BD6DA8 /* Exceptions for "WatchBeat100 Watch App" folder in "Beat100" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/Presentation/ChooseCycle/ChooseCycleView.swift,
+				Resources/Common/Enum/MeasuringStep.swift,
 				Resources/Presentation/ChooseCycle/ChooseCycleViewModel.swift,
+				Resources/Presentation/Finish/FinishView.swift,
+				Resources/Presentation/MeasuringFlow/MeasuringFlowView.swift,
 			);
 			target = CF09C8D72E26666000E11198 /* Beat100 */;
 		};
@@ -54,6 +56,7 @@
 				Resources/Common/Components/CustomGradientCircle.swift,
 				Resources/Presentation/Countdown/CountdownAnimationView.swift,
 				Resources/Presentation/Countdown/CountdownViewModel.swift,
+				Resources/Presentation/Measuring/MeasuringCompleteView.swift,
 				Resources/Presentation/Measuring/MeasuringView.swift,
 				Resources/Util/Constants.swift,
 			);
@@ -382,8 +385,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
-				DEVELOPMENT_TEAM = UCHC727784;
+				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beat100/Info.plist;
@@ -418,8 +420,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
-				DEVELOPMENT_TEAM = UCHC727784;
+				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beat100/Info.plist;
@@ -452,9 +453,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
+				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";
@@ -482,9 +484,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
+				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";
