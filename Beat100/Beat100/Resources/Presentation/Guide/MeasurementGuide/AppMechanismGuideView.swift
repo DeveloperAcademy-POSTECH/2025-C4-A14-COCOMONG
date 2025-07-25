@@ -16,10 +16,12 @@ struct AppMechanismGuideView: View {
             Content()
             Spacer()
             Disclaimer()
-            NavigationLink("계속") {
+            NavigationLink {
                 WatchWearingGuideView(isPresented: $isPresented)
+            } label: {
+                Text("계속")
+                    .largeButtonStyle()
             }
-            .largeButtonStyle()
         }
         .padding(.top, 8)
         .navigationBarBackButtonHidden(true)

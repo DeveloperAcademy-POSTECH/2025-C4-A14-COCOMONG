@@ -15,10 +15,12 @@ struct CompressionPositionGuideView: View {
             BackCancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            NavigationLink("다음") {
+            NavigationLink {
                 RateAndDepthGuideView(isPresented: $isPresented)
+            } label: {
+                Text("다음")
+                    .largeButtonStyle()
             }
-            .largeButtonStyle()
         }
         .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
@@ -42,9 +44,9 @@ private struct Content: View {
                 .cornerRadius(10)
             
             Text(bodyText)
-            .font(.system(size: 16))
-            .multilineTextAlignment(.center)
-            .foregroundColor(.black)
+                .font(.system(size: 16))
+                .multilineTextAlignment(.center)
+                .foregroundColor(.black)
         }
         .frame(width: 361, alignment: .top)
     }
