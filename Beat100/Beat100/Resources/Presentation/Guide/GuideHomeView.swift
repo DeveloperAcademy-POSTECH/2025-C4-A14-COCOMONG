@@ -52,7 +52,7 @@ private struct Content: View {
                 cardHeight: 168
             )
         }
-        .frame(width: 361, alignment: .topLeading)
+        .padding(.horizontal, 16)
     }
 }
 
