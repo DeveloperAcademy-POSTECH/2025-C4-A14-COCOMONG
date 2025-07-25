@@ -14,6 +14,7 @@ struct WatchWearingGuideView: View {
         VStack {
             BackCancelToolbar(isPresented: $isPresented)
             Content()
+                .padding(.horizontal, 16)
             Spacer()
             NavigationLink {
                 CompressionPositionGuideView(isPresented: $isPresented)
@@ -23,6 +24,7 @@ struct WatchWearingGuideView: View {
             }
         }
         .padding(.top, 8)
+        .padding(.bottom, 40)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -55,11 +57,10 @@ private struct Content: View {
                     Text(Constants.WatchWearingGuideText.step2)
                 }
             }
+            .padding(.horizontal, 6.5)
             .font(.system(size: 16))
             .foregroundColor(.black)
-            .frame(maxWidth: 348, alignment: .topLeading)
         }
-        .frame(width: 361, alignment: .top)
     }
 }
 
