@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MeasurementStartView: View {
-    @Environment(NavigationManager.self) var navigationManager
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -16,14 +15,10 @@ struct MeasurementStartView: View {
             BackToolbar()
             Content()
             Spacer()
-            CompleteLargeButton(Constants.MeasurementStartText.startButtonText) {
+            Button(Constants.MeasurementStartText.startButtonText) {
                 isPresented = false
-                
-                //NOTE: sheet가 내려갈 때 보이지 않게 하기 위해 0.5초 뒤에 실행
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    navigationManager.popToRoot()
-                }
             }
+            .largeButtonStyle(.complete)
         }
         .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
@@ -71,5 +66,4 @@ private struct Content: View {
 
 #Preview {
     MeasurementStartView(isPresented: .constant(true))
-        .environment(NavigationManager())
 }
