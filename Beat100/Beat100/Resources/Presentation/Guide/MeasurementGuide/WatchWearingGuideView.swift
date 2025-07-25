@@ -11,20 +11,22 @@ struct WatchWearingGuideView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             BackCancelToolbar(isPresented: $isPresented)
-            Content()
-                .padding(.horizontal, 16)
-            Spacer()
-            NavigationLink {
-                CompressionPositionGuideView(isPresented: $isPresented)
-            } label: {
-                Text("다음")
-                    .largeButtonStyle()
+                .padding(.top, 8)
+            VStack {
+                Content()
+                Spacer()
+                NavigationLink {
+                    CompressionPositionGuideView(isPresented: $isPresented)
+                } label: {
+                    Text("다음")
+                        .largeButtonStyle()
+                }
             }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 40)
         }
-        .padding(.top, 8)
-        .padding(.bottom, 40)
         .navigationBarBackButtonHidden(true)
     }
 }

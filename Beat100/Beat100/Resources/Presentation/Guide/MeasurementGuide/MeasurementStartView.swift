@@ -11,18 +11,27 @@ struct MeasurementStartView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             BackToolbar()
-            Content()
+                .padding(.top, 8)
+            
+            VStack(spacing: 32) {
+                //TODO: 실제 애니메이션으로 교체하기
+                Rectangle()
+                    .frame(height: 237)
+                
+                VStack {
+                    Content()
+                    Spacer()
+                    Button(Constants.MeasurementStartText.startButtonText) {
+                        isPresented = false
+                    }
+                    .largeButtonStyle(.complete)
+                }
                 .padding(.horizontal, 16)
-            Spacer()
-            Button(Constants.MeasurementStartText.startButtonText) {
-                isPresented = false
             }
-            .largeButtonStyle(.complete)
+            .padding(.bottom, 40)
         }
-        .padding(.top, 8)
-        .padding(.bottom, 40)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -32,10 +41,6 @@ private struct Content: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            //TODO: 실제 애니메이션으로 교체하기
-            Rectangle()
-                .frame(height: 237)
-            
             Text(titleText)
                 .font(.nanumSquareNeo(type: .heavy, size: 28))
                 .foregroundColor(.black)

@@ -11,19 +11,22 @@ struct CompressionPositionGuideView: View {
     @Binding var isPresented: Bool
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             BackCancelToolbar(isPresented: $isPresented)
-            Content()
-            Spacer()
-            NavigationLink {
-                RateAndDepthGuideView(isPresented: $isPresented)
-            } label: {
-                Text("다음")
-                    .largeButtonStyle()
+                .padding(.top, 8)
+            VStack {
+                Content()
+                Spacer()
+                NavigationLink {
+                    RateAndDepthGuideView(isPresented: $isPresented)
+                } label: {
+                    Text("다음")
+                        .largeButtonStyle()
+                }
             }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 40)
         }
-        .padding(.top, 8)
-        .padding(.bottom, 40)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -49,7 +52,6 @@ private struct Content: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.black)
         }
-        .padding(.horizontal, 16)
     }
 }
 
