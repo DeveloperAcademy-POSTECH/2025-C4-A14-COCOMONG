@@ -2,12 +2,12 @@ import SwiftUI
 import CoreMotion
 
 struct MeasuringView: View {
-    @Binding var selectedNumber: Int
-    var onComplete: () -> Void
     
     @StateObject private var viewModel = MeasuringViewModel()
     
 #if os(iOS)
+    @Binding var selectedNumber: Int
+    var onComplete: () -> Void
     
     var body: some View {
         GeometryReader { geometry in
@@ -34,6 +34,8 @@ struct MeasuringView: View {
         .disabledToolbar()
     }
 #elseif os(watchOS)
+    @Binding var selectedNumber: Int
+    var onComplete: () -> Void
     
     var body: some View {
         GeometryReader { geometry in

@@ -33,7 +33,6 @@ class MeasuringViewModel: ObservableObject {
     private var roundTimer: Timer?
     
     func startTimer() {
-        print("⏱️ Starting round timer for 17 seconds")
         print("timer start check")
         isCountdownDone = false
 
@@ -73,13 +72,27 @@ class MeasuringViewModel: ObservableObject {
             self.lastTriggerTime = now
         }
     }
+    
+    func startIOSAnimationCycles(onComplete: @escaping () -> Void) {
+        currentRound = 0
+        func runCycle() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 17) {
+                self.currentRound += 1
+                if self.currentRound < self.selectedIndex {
+                    runCycle()
+                } else {
+                    onComplete()
+                }
+            }
+        }
+        runCycle()
+    }
+    
     #if os (watchOS)
     
     func handleCountdownComplete(onComplete: @escaping () -> Void) {
-        print("🔄 Countdown complete for round \(currentRound)")
         allLogs[currentRound] = logs
         motionManager.stopAccelerometerUpdates()
-        print("🛑 Stopped accelerometer updates")
         
         if currentRound + 1 < selectedIndex {
             print("➡️ Moving to round \(currentRound + 1)")
@@ -88,44 +101,22 @@ class MeasuringViewModel: ObservableObject {
             startDetectingShakes()
             startTimer()
         } else {
-            print("📤 Sending all data after \(selectedIndex) cycles")
-            for roundIndex in 0..<selectedIndex {
-                sending(round: roundIndex)
-            }
-            print("✅ All rounds completed")
+            sending(round: 0)
             onComplete()
         }
     }
     
     func sending(round: Int) {
-        print("📦 Preparing to send allLogs[\(round)] with \(allLogs[round].count) entries")
         let encoder = JSONEncoder()
-        if let data = try? encoder.encode(allLogs[round]),
+        // Flatten all logs into a single array
+        let combinedLogs = allLogs.flatMap { $0 }
+        print(combinedLogs)
+        if let data = try? encoder.encode(combinedLogs),
            let jsonString = String(data: data, encoding: .utf8) {
             WatchConnectivityManager.shared.sendMessage(["allLogs": jsonString])
-            print("✅ Data sent successfully")
         } else {
-            print("❌ Failed to encode allLogs[\(round)]")
+            print("Failed to encode combined allLogs")
         }
     }
     #endif
-
-    func startIOSAnimationCycles(onComplete: @escaping () -> Void) {
-        currentRound = 0
-        print("▶️ iOS animation cycles starting with \(selectedIndex) cycles")
-        func runCycle() {
-            print("▶️ iOS Animation cycle \(currentRound + 1) started")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 17) {
-                self.currentRound += 1
-                print("⏹ iOS Animation cycle \(self.currentRound) completed")
-                if self.currentRound < self.selectedIndex {
-                    runCycle()
-                } else {
-                    print("✅ iOS all \(self.selectedIndex) cycles completed")
-                    onComplete()
-                }
-            }
-        }
-        runCycle()
-    }
 }

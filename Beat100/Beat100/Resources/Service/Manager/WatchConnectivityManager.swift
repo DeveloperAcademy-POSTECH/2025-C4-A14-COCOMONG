@@ -49,9 +49,9 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
         
         if let selectedNum = message["selectedNumber"] as? Int {
             NotificationCenter.default.post(
-                name: Notification.Name("selectedNumberNoti"),
+                name: Notification.Name("selectedNumberNotification"),
                 object: nil,
-                userInfo: ["value": selectedNum]
+                userInfo: ["selectedNumber": selectedNum]
                 )
         }
         
