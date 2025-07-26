@@ -18,20 +18,19 @@ struct MeasuringCompleteView: View {
                 Text("측정완료")
                     .foregroundStyle(Color.white)
                     .font(.system(size: 24, weight: .heavy))
-                HStack{
-                    Circle()
-                        .frame(width: 16, height: 16)
-                        .foregroundStyle(.beatPink)
-                        .padding(.trailing, 15)
-                    Circle()
-                        .frame(width: 16, height: 16)
-                        .foregroundStyle(.beatGradPink)
-                        .padding(.trailing, 15)
-                    Circle()
-                        .frame(width: 16, height: 16)
-                        .foregroundStyle(.beatBlue)
+                TimelineView(.animation) { timeline in
+                    let time = timeline.date.timeIntervalSinceReferenceDate
+                    HStack {
+                        ForEach(0..<3) { index in
+                            Circle()
+                                .frame(width: 16, height: 16)
+                                .foregroundStyle(index == 0 ? .beatPink : index == 1 ? .beatGradPink : .beatBlue)
+                                .offset(y: bounceOffset(for: index, time: time))
+                                .padding(.trailing, index < 2 ? 15 : 0)
+                        }
+                    }
+                    .frame(height: 130)
                 }
-                .frame(height: 130)
                 Text("리포트를 생성중입니다")
                     .foregroundStyle(Color.white)
                     .font(.system(size: 24, weight: .heavy))
@@ -49,20 +48,19 @@ struct MeasuringCompleteView: View {
                 Text("측정완료")
                     .foregroundStyle(Color.white)
                     .font(.system(size: 12, weight: .heavy))
-                HStack{
-                    Circle()
-                        .frame(width: 10, height: 10)
-                        .foregroundStyle(.beatPink)
-                        .padding(.trailing, 10)
-                    Circle()
-                        .frame(width: 10, height: 10)
-                        .foregroundStyle(.beatGradPink)
-                        .padding(.trailing, 10)
-                    Circle()
-                        .frame(width: 10, height: 10)
-                        .foregroundStyle(.beatBlue)
+                TimelineView(.animation) { timeline in
+                    let time = timeline.date.timeIntervalSinceReferenceDate
+                    HStack {
+                        ForEach(0..<3) { index in
+                            Circle()
+                                .frame(width: 10, height: 10)
+                                .foregroundStyle(index == 0 ? .beatPink : index == 1 ? .beatGradPink : .beatBlue)
+                                .offset(y: bounceOffset(for: index, time: time))
+                                .padding(.trailing, index < 2 ? 10 : 0)
+                        }
+                    }
+                    .frame(height: 78)
                 }
-                .frame(height: 78)
                 Text("리포트를 생성중입니다")
                     .foregroundStyle(Color.white)
                     .font(.system(size: 12, weight: .heavy))
@@ -80,6 +78,11 @@ struct MeasuringCompleteView: View {
             
 #endif
         }
+    }
+    
+    func bounceOffset(for index: Int, time: TimeInterval) -> CGFloat {
+        let delay = Double(index) * 0.2
+        return sin((time + delay) * 4) * 5
     }
 }
 

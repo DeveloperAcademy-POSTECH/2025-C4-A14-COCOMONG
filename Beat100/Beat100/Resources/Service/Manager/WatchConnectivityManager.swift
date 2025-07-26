@@ -39,7 +39,7 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
             NotificationCenter.default.post(name: Self.startBlinkingNotification, object: Date(timeIntervalSince1970: ts))
         }
         
-        if let flag = message["Flag"] as? String, flag == "MeasureStart" {
+        if let flag = message["MeasureStartFlag"] as? NSNumber, flag.boolValue {
             NotificationCenter.default.post(
                 name: Notification.Name("MeasureStartNotification"),
                 object: nil
