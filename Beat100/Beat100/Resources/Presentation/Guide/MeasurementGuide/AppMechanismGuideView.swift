@@ -9,19 +9,28 @@ import SwiftUI
 
 struct AppMechanismGuideView: View {
     @Binding var isPresented: Bool
-    @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             CancelToolbar(isPresented: $isPresented)
-            Content()
-            Spacer()
-            Disclaimer()
-            LargeButton("계속") {
-                navigationManager.navigate(to: .watchWearing)
+                .padding(.top, 8)
+            VStack {
+                Content()
+                Spacer()
+                VStack(spacing: 24) {
+                    Disclaimer()
+                    
+                    NavigationLink {
+                        WatchWearingGuideView(isPresented: $isPresented)
+                    } label: {
+                        Text("계속")
+                            .largeButtonStyle()
+                    }
+                }
             }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 40)
         }
-        .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -47,7 +56,6 @@ private struct Content: View {
             .multilineTextAlignment(.center)
             .foregroundColor(.black)
         }
-        .frame(width: 361, alignment: .top)
     }
 }
 
@@ -57,11 +65,9 @@ private struct Disclaimer: View {
         .font(.system(size: 12))
         .multilineTextAlignment(.center)
         .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
-        .padding(.bottom, 24)
     }
 }
 
 #Preview {
     AppMechanismGuideView(isPresented: .constant(true))
-        .environment(NavigationManager())
 }

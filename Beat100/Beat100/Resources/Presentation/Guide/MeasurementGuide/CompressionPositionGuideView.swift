@@ -9,18 +9,24 @@ import SwiftUI
 
 struct CompressionPositionGuideView: View {
     @Binding var isPresented: Bool
-    @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             BackCancelToolbar(isPresented: $isPresented)
-            Content()
-            Spacer()
-            LargeButton("다음") {
-                navigationManager.navigate(to: .rateAndDepth)
+                .padding(.top, 8)
+            VStack {
+                Content()
+                Spacer()
+                NavigationLink {
+                    RateAndDepthGuideView(isPresented: $isPresented)
+                } label: {
+                    Text("다음")
+                        .largeButtonStyle()
+                }
             }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 40)
         }
-        .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -42,15 +48,13 @@ private struct Content: View {
                 .cornerRadius(10)
             
             Text(bodyText)
-            .font(.system(size: 16))
-            .multilineTextAlignment(.center)
-            .foregroundColor(.black)
+                .font(.system(size: 16))
+                .multilineTextAlignment(.center)
+                .foregroundColor(.black)
         }
-        .frame(width: 361, alignment: .top)
     }
 }
 
 #Preview {
     CompressionPositionGuideView(isPresented: .constant(true))
-        .environment(NavigationManager())
 }

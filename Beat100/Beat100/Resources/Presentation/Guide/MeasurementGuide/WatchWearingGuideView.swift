@@ -9,18 +9,24 @@ import SwiftUI
 
 struct WatchWearingGuideView: View {
     @Binding var isPresented: Bool
-    @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             BackCancelToolbar(isPresented: $isPresented)
-            Content()
-            Spacer()
-            LargeButton("다음") {
-                navigationManager.navigate(to: .compressionPosition)
+                .padding(.top, 8)
+            VStack {
+                Content()
+                Spacer()
+                NavigationLink {
+                    CompressionPositionGuideView(isPresented: $isPresented)
+                } label: {
+                    Text("다음")
+                        .largeButtonStyle()
+                }
             }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 40)
         }
-        .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -53,15 +59,13 @@ private struct Content: View {
                     Text(Constants.WatchWearingGuideText.step2)
                 }
             }
+            .padding(.horizontal, 6.5)
             .font(.system(size: 16))
             .foregroundColor(.black)
-            .frame(maxWidth: 348, alignment: .topLeading)
         }
-        .frame(width: 361, alignment: .top)
     }
 }
 
 #Preview {
     WatchWearingGuideView(isPresented: .constant(true))
-        .environment(NavigationManager())
 }

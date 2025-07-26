@@ -8,24 +8,30 @@
 import SwiftUI
 
 struct MeasurementStartView: View {
-    @Environment(NavigationManager.self) var navigationManager
     @Binding var isPresented: Bool
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             BackToolbar()
-            Content()
-            Spacer()
-            CompleteLargeButton(Constants.MeasurementStartText.startButtonText) {
-                isPresented = false
+                .padding(.top, 8)
+            
+            VStack(spacing: 32) {
+                //TODO: 실제 애니메이션으로 교체하기
+                Rectangle()
+                    .frame(height: 237)
                 
-                //NOTE: sheet가 내려갈 때 보이지 않게 하기 위해 0.5초 뒤에 실행
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    navigationManager.popToRoot()
+                VStack {
+                    Content()
+                    Spacer()
+                    Button(Constants.MeasurementStartText.startButtonText) {
+                        isPresented = false
+                    }
+                    .largeButtonStyle(.complete)
                 }
+                .padding(.horizontal, 16)
             }
+            .padding(.bottom, 40)
         }
-        .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
     }
 }
@@ -35,10 +41,6 @@ private struct Content: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
-            //TODO: 실제 애니메이션으로 교체하기
-            Rectangle()
-                .frame(width: 393, height: 237)
-            
             Text(titleText)
                 .font(.nanumSquareNeo(type: .heavy, size: 28))
                 .foregroundColor(.black)
@@ -64,12 +66,11 @@ private struct Content: View {
             }
             .font(.system(size: 16))
             .foregroundColor(.black)
-            .frame(maxWidth: 348, alignment: .topLeading)
+            .padding(.horizontal, 9.5)
         }
     }
 }
 
 #Preview {
     MeasurementStartView(isPresented: .constant(true))
-        .environment(NavigationManager())
 }

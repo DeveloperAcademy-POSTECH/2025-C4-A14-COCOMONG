@@ -8,26 +8,16 @@
 import SwiftUI
 
 struct ChooseCycleView: View {
-    @StateObject var viewModel = ChooseCycleViewModel()
-    let numbers = Array(1...5)
+    @State var selectedNumber: Int = 1
+    @ObservedObject var viewModel: ChooseCycleViewModel
     
     var body: some View {
-#if os(iOS)
-        ZStack{
-            Color.black
-                .ignoresSafeArea(edges: .all)
-            Text("Apple Watch에서\nCPR 사이클을 선택하세요")
-                .font(.system(size:20, weight: .regular))
-                .foregroundStyle(Color.white)
-                .multilineTextAlignment(.center)
-        }
-#elseif os(watchOS)
         NavigationStack{
             VStack{
                 Text("사이클")
                     .font(.nanumSquareNeo(type: .heavy, size: 16))
-                Picker("숫자 선택", selection: $viewModel.selectedNumber) {
-                    ForEach(numbers, id: \.self) { number in
+                Picker("숫자 선택", selection: $selectedNumber) {
+                    ForEach(1...5, id: \.self) { number in
                         Text("\(number)")
                             .font(.nanumSquareNeo(type: .heavy, size: 28))
                             .tag(number)
@@ -67,7 +57,7 @@ struct ChooseCycleView: View {
                 
                 VStack{
                     Button(action: {
-                        //TODO: ReadyMainView로 이동
+                        viewModel.showingMeasuringModal.toggle()
                     }) {
                         Text("시작")
                             .font(.system(size: 16, weight: .medium))
@@ -83,6 +73,13 @@ struct ChooseCycleView: View {
             .sheet(isPresented: $viewModel.showingInfo) {
                 ChooseCycleInfoView()
             }
+            .fullScreenCover(isPresented: $viewModel.showingWatchStart){
+                WatchStartView()
+                    .interactiveDismissDisabled(true)
+            }
+            .fullScreenCover(isPresented: $viewModel.showingMeasuringModal){
+                MeasuringFlowView(selectedNumber: selectedNumber)
+            }
             .toolbar{
                 ToolbarItem(placement: .topBarLeading) {
                     Button{
@@ -93,10 +90,9 @@ struct ChooseCycleView: View {
                 }
             }
         }
-#endif
     }
 }
 
 #Preview {
-    ChooseCycleView()
+    ChooseCycleView(viewModel: ChooseCycleViewModel())
 }
