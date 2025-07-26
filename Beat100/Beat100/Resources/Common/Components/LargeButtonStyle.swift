@@ -20,7 +20,6 @@ struct LargeButtonStyle: ViewModifier {
             .frame(height: 56)
             .background(backgroundColor)
             .cornerRadius(14)
-            .padding(.horizontal, 16)
     }
     
     private var foregroundColor: Color {

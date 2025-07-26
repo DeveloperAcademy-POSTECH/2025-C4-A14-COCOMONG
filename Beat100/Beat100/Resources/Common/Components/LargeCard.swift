@@ -16,7 +16,7 @@ struct LargeCard: View {
     var cardHeight: CGFloat
     
     var body: some View {
-        HStack(alignment: .top, spacing: 16) {
+        HStack(alignment: .top, spacing: 20) {
             Image(imageResource)
             
             VStack(alignment: .leading) {
@@ -26,10 +26,10 @@ struct LargeCard: View {
                 Spacer()
                 SmallButton(buttonText , action: action)
             }
-            .frame(width: 249, alignment: .topLeading)
+            Spacer()
         }
-        .padding(16)
-        .frame(width: 361, height: cardHeight, alignment: .topLeading)
+        .padding(20)
+        .frame(height: cardHeight)
         .background(.white)
         .cornerRadius(20)
     }

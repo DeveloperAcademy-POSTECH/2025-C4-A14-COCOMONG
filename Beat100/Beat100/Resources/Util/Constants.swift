@@ -53,7 +53,7 @@ struct Constants {
     }
     
     struct MeasurementStartText {
-        static let title = "처음으로 CPR 측정하기"
+        static let title = "CPR 측정하기"
         static let startButtonText = "CPR 측정 시작하기"
         
         static let step1: AttributedString = {
