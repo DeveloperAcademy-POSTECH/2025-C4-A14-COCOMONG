@@ -21,7 +21,6 @@ struct MainTabView: View {
                 VStack(spacing: 0) {
                     ReportHomeView()
                         .tint(.black)
-                    Spacer()
                     Divider()
                 }
             }

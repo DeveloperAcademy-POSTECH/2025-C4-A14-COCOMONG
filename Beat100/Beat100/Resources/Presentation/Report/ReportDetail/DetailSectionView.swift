@@ -8,12 +8,18 @@
 import SwiftUI
 
 @ViewBuilder
-func DetailSectionView<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
+func DetailSectionView<TopTrailing: View, Content: View>(title: String, @ViewBuilder trailingTopView: () -> TopTrailing, @ViewBuilder content: () -> Content) -> some View {
     VStack(alignment: .leading, spacing: 16) {
-        Text(title)
-            .font(.nanumSquareNeo(type: .extrabold, size: 20))
-            .foregroundStyle(Color.black)
-            .padding(.leading, 10)
+        HStack {
+            Text(title)
+                .font(.nanumSquareNeo(type: .extrabold, size: 20))
+                .foregroundStyle(.black)
+            
+            Spacer()
+            
+            trailingTopView()
+        }
+        .padding(.leading, 10)
         
         content()
     }

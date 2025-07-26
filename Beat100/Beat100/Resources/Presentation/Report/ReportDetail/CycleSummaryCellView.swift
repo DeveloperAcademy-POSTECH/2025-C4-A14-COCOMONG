@@ -21,13 +21,16 @@ struct CycleSummaryCellView: View {
             
             Spacer()
             
-            Group {
-                Text("\(correctCount)/\(totalCount)")
+            HStack {
+                Text("\(correctCount)/\(totalCount)회")
                     .font(.nanumSquareNeo(type: .bold, size: 14))
+                
+                Spacer()
                 
                 Text("\(percent)%")
                     .font(.nanumSquareNeo(type: .heavy, size: 14))
             }
+            .frame(width: 116)
             .foregroundStyle(percent < 90 ? Color.beatDarkPink : .black)
         }
     }

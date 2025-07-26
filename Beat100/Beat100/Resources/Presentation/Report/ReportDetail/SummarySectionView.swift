@@ -11,7 +11,9 @@ struct SummarySectionView: View {
     let cprReport: CprReport
     
     var body: some View {
-        DetailSectionView(title: "요약") {
+        DetailSectionView(title: "요약", trailingTopView: {
+            EmptyView()
+        }) {
             SummarySectionDetailView
         }
     }

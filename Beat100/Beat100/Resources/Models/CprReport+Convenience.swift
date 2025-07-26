@@ -16,6 +16,10 @@ extension CprReport {
         createdAt ?? Date()
     }
     
+    var cycleNums: Int {
+        Int(numberOfCycles)
+    }
+    
     var cprCycleList: [CprCycle] {
         (cycles?.array as? [CprCycle]) ?? []
     }

@@ -17,11 +17,12 @@ struct ReportDetailView: View {
                 
                 SummarySectionView(cprReport: selectedReport)
                 
-                PaceSectionView()
+                PaceSectionView(cprReport: selectedReport)
                 
-                DepthSectionView()
+                DepthSectionView(cprReport: selectedReport)
             }
             .padding(.horizontal, 16)
+            .padding(.bottom, 100)
         }
         .background(Color.gray200)
     }
