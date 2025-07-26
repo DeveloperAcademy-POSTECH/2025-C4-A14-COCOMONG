@@ -13,6 +13,7 @@ struct LargeCard: View {
     var contentText: String
     var buttonText: String
     var action: () -> Void
+    var isEmphasized: Bool = false
     
     var body: some View {
         HStack(alignment: .top, spacing: 20) {
@@ -24,7 +25,14 @@ struct LargeCard: View {
                     Content(contentText: contentText)
                     Spacer()
                 }
-                SmallButton(buttonText , action: action)
+                
+                HStack(alignment: .top, spacing: 12) {
+                    SmallButton(buttonText , action: action)
+                    if isEmphasized {
+                        ExclamationIcon()
+                            .padding(.top, 2)
+                    }
+                }
             }
         }
         .padding(20)
@@ -69,7 +77,8 @@ private struct Content: View {
                 titleText: Constants.GuideCard.Measurement.title,
                 contentText: Constants.GuideCard.Measurement.content,
                 buttonText: Constants.GuideCard.Measurement.button,
-                action: {}
+                action: {},
+                isEmphasized: true
             )
             
             LargeCard(

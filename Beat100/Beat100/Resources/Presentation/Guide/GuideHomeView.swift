@@ -31,6 +31,7 @@ struct GuideHomeView: View {
 
 private struct Content: View {
     @Binding var isPresented: Bool
+    @AppStorage("guideViewed") var guideViewed: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
@@ -39,7 +40,8 @@ private struct Content: View {
                 titleText: Constants.GuideCard.Measurement.title,
                 contentText: Constants.GuideCard.Measurement.content,
                 buttonText: Constants.GuideCard.Measurement.button,
-                action: { isPresented = true }
+                action: { isPresented = true },
+                isEmphasized: !guideViewed
             )
             
             LargeCard(
