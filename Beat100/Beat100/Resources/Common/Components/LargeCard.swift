@@ -62,8 +62,9 @@ private struct Content: View {
     
     var body: some View {
         Text(contentText)
-            .font(.system(size: 15))
+            .fontWithLineHeight(font: .systemFont(ofSize: 15), lineHeight: 22)
             .foregroundColor(.black)
+            .kerning(-0.23)
     }
 }
 
