@@ -13,20 +13,19 @@ struct LargeCard: View {
     var contentText: String
     var buttonText: String
     var action: () -> Void
-    var cardHeight: CGFloat
     
     var body: some View {
         HStack(alignment: .top, spacing: 20) {
             Image(imageResource)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 20) {
                 Title(titleText: titleText)
-                Spacer()
-                Content(contentText: contentText)
-                Spacer()
+                HStack {
+                    Content(contentText: contentText)
+                    Spacer()
+                }
                 SmallButton(buttonText , action: action)
             }
-            Spacer()
         }
         .padding(20)
         .background(.white)
@@ -36,7 +35,6 @@ struct LargeCard: View {
                 .inset(by: 0.2)
                 .stroke(.gray400, lineWidth: 0.4)
         )
-        .frame(height: cardHeight)
     }
 }
 
@@ -71,8 +69,7 @@ private struct Content: View {
                 titleText: "Apple Watch에서 CPR 측정을 \n시작해보세요.",
                 contentText: "Apple Watch로 손목의 움직임을 감지해 가슴 압박 깊이와 속도를 측정합니다. 이후 CPR 리포트를 제공합니다.",
                 buttonText: "시작하기",
-                action: {},
-                cardHeight: 186
+                action: {}
             )
             
             LargeCard(
@@ -80,8 +77,7 @@ private struct Content: View {
                 titleText: "CPR 전체 가이드라인",
                 contentText: "119 신고부터 가슴 압박 방법까지, \nCPR 전체 수행 과정을 알아봅니다.",
                 buttonText: "확인하기",
-                action: {},
-                cardHeight: 156
+                action: {}
             )
         }
     }

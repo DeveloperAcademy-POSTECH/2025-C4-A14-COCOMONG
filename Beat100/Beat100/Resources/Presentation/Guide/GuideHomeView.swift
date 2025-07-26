@@ -39,8 +39,7 @@ private struct Content: View {
                 titleText: Constants.GuideCard.Measurement.title,
                 contentText: Constants.GuideCard.Measurement.content,
                 buttonText: Constants.GuideCard.Measurement.button,
-                action: { isPresented = true },
-                cardHeight: 186
+                action: { isPresented = true }
             )
             
             LargeCard(
@@ -48,8 +47,7 @@ private struct Content: View {
                 titleText: Constants.GuideCard.CPR.title,
                 contentText: Constants.GuideCard.CPR.content,
                 buttonText: Constants.GuideCard.CPR.button,
-                action: {},
-                cardHeight: 168
+                action: {}
             )
         }
         .padding(.horizontal, 16)
