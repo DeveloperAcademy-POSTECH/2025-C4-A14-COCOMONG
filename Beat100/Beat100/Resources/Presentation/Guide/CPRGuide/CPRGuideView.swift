@@ -51,43 +51,12 @@ private struct Content: View {
             }
             .padding(.top, 40)
             .padding(.bottom, 102)
+            .padding(.horizontal, 20)
         }
-        .frame(width: 353, alignment: .topLeading)
     }
 }
 
-private struct Step: View {
-    var imageResource: ImageResource
-    var title: String
-    var description: String
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Image(imageResource)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 353, height: 210)
-                .clipped()
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text(title)
-                    .font(.system(size: 15))
-                    .fontWeight(.medium)
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text(description)
-                    .font(.system(size: 15))
-                    .fontWeight(.light)
-                    .foregroundColor(.black)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .padding(10)
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .frame(maxWidth: .infinity, alignment: .topLeading)
-    }
-}
+
 
 #Preview {
     CPRGuideView()

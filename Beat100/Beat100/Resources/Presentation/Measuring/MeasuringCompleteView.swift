@@ -9,54 +9,30 @@ import SwiftUI
 
 struct MeasuringCompleteView: View {
     var onComplete: () -> Void
+    private let config = MeasuringCompleteConfig.current
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.black.ignoresSafeArea(edges: .all)
-#if os(iOS)
-            VStack{
+            VStack {
                 Text("측정완료")
                     .foregroundStyle(Color.white)
-                    .font(.system(size: 24, weight: .heavy))
+                    .font(.system(size: config.fontSize, weight: .heavy))
                 
-                BouncingDotsView(dotSize: 16)
+                BouncingDotsView(dotSize: config.dotSize)
                 
                 Text("리포트를 생성중입니다")
                     .foregroundStyle(Color.white)
-                    .font(.system(size: 24, weight: .heavy))
+                    .font(.system(size: config.fontSize, weight: .heavy))
             }
+            .padding(.top, config.topPadding)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("") {
-                    }
-                    .tint(Color.black)
-                    .disabled(true)
+                    Button("") { onComplete() }
+                        .tint(Color.black)
+                        .disabled(true)
                 }
             }
-#elseif os(watchOS)
-            VStack{
-                Text("측정완료")
-                    .foregroundStyle(Color.white)
-                    .font(.system(size: 12, weight: .heavy))
-                
-                BouncingDotsView(dotSize: 10)
-                
-                Text("리포트를 생성중입니다")
-                    .foregroundStyle(Color.white)
-                    .font(.system(size: 12, weight: .heavy))
-            }
-            .padding(.top, 20)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("test") {
-                        onComplete()
-                    }
-                    .tint(Color.black)
-//                    .disabled(true)
-                }
-            }
-            
-#endif
         }
     }
 }

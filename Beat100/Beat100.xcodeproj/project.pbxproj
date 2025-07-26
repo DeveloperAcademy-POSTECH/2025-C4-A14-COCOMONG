@@ -59,6 +59,7 @@
 				Resources/Presentation/Countdown/CountdownViewModel.swift,
 				Resources/Presentation/Measuring/MeasuringCompleteView.swift,
 				Resources/Presentation/Measuring/MeasuringView.swift,
+				Resources/Util/Config.swift,
 				Resources/Util/Constants.swift,
 			);
 			target = CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */;
@@ -204,6 +205,8 @@
 			);
 			mainGroup = CF09C8CF2E26666000E11198;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CF09C8D92E26666000E11198 /* Products */;
 			projectDirPath = "";

@@ -9,8 +9,9 @@ import Foundation
 import CoreData
 
 extension CycleAccuracy {
-    public convenience init(context: NSManagedObjectContext, correctNumber: Int16, totalNumber: Int16) {
+    public convenience init(context: NSManagedObjectContext, id: UUID = UUID(), correctNumber: Int16, totalNumber: Int16) {
         self.init(context: context)
+        self.id = id
         self.correctNumber = correctNumber
         self.totalNumber = totalNumber
         self.percentage = Double(correctNumber) / Double(totalNumber) * 100
