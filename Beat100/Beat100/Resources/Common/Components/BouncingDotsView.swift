@@ -29,6 +29,10 @@ struct BouncingDotsView: View {
     
     private func bounceOffset(for index: Int, time: TimeInterval) -> CGFloat {
         let delay = Double(index) * 0.2
-        return sin((time + delay) * 4) * 5
+        return sin((time + delay) * 5.5) * 8
     }
+}
+
+#Preview {
+    BouncingDotsView(dotSize: 16)
 }

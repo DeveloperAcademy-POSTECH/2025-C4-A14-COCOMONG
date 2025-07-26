@@ -14,26 +14,20 @@ struct measureView: View {
     @State private var compressionTimestamps: [TimeInterval] = []
     @State private var lastTriggerTime: TimeInterval = 0
     @State private var logs: [String] = []
-    @State private var zLogData: [AccelerationData] = []
     @State private var acceleration: CMAcceleration = .init(x: 0, y: 0, z: 0)
     @State private var isShaking: Bool = false
     @State private var currentRound: Int = 0
-    @StateObject private var vm = HelpViewModel()
+    @StateObject private var viewModel = HelpViewModel()
     let numbers = Array(1...5)
     @State private var allLogs: [[String]] = Array(repeating: [], count: 5)
     
     let manager = WatchConnectivityManager.shared
     
-    struct AccelerationData: Codable {
-        let timestamp: Double
-        let user_acc_z: Double
-    }
-    
     var body: some View {
         Text("가속도 측정기")
         VStack{
             
-            Picker("숫자 선택", selection: $vm.selectedIndex) {
+            Picker("숫자 선택", selection: $viewModel.selectedIndex) {
                 ForEach(numbers, id: \.self) { number in
                     Text("\(number)")
                         .font(.nanumSquareNeo(type: .heavy, size: 28))
@@ -53,30 +47,28 @@ struct measureView: View {
                 }
                 Button("전송"){
                     currentRound = 1
-                    zLogData = []
                     logs = []
                     startDetectingShakes()
-                    vm.startTimer()
+                    viewModel.startTimer()
                 }
-                .onReceive(vm.$isCountdownDone) { value in
+                .onReceive(viewModel.$isCountdownDone) { value in
                     if value == true {
                         allLogs[currentRound-1] = logs
 //                        sending()
                         motionManager.stopAccelerometerUpdates()
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    vm.isCountdownDone = false
+                                    viewModel.isCountdownDone = false
                         }
                         
-                        if currentRound < vm.selectedIndex {
+                        if currentRound < viewModel.selectedIndex {
                             currentRound += 1
-                            zLogData = []
                             logs = []
                             startDetectingShakes()
-                            vm.startTimer()
+                            viewModel.startTimer()
                         }
                         else{
-                            for i in 0..<vm.selectedIndex{
+                            for i in 0..<viewModel.selectedIndex{
                                 sending(round: i)
                             }
                         }
@@ -86,7 +78,7 @@ struct measureView: View {
         }
     }
     
-    private func startDetectingShakes() {
+    func startDetectingShakes() {
         guard motionManager.isAccelerometerAvailable else { return }
         
         motionManager.accelerometerUpdateInterval = 0.05
@@ -95,13 +87,7 @@ struct measureView: View {
             
             self.acceleration = acceleration
             let now = ProcessInfo.processInfo.systemUptime
-            zLogData.append(AccelerationData(timestamp: now, user_acc_z: acceleration.z))
             
-            let jsonSample = AccelerationData(timestamp: now, user_acc_z: acceleration.z)
-            if let jsonData = try? JSONEncoder().encode(jsonSample),
-               let jsonString = String(data: jsonData, encoding: .utf8) {
-                
-            }
             let logEntry = String(format: "Z값: %.16f", acceleration.z)
             logs.append(logEntry)
             

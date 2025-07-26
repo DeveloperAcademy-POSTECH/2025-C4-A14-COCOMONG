@@ -6,13 +6,11 @@
 //
 
 import Foundation
-import Combine
 
 class HelpViewModel: ObservableObject {
     @Published var isCountdownDone: Bool = false
     @Published var selectedIndex: Int = 1
     var timer: Timer?
-    private var cancellables: Set<AnyCancellable> = []
     
     func startTimer() {
         print("timer start check")
