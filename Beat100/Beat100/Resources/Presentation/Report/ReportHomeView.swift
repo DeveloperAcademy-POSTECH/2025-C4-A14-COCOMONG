@@ -66,7 +66,7 @@ struct ReportHomeView: View {
                        let correct = report.totalAccuracy?.correctNumber,
                        let percent = report.totalAccuracy?.percentage {
                         
-                        NavigationLink(destination: ReportDetailView(selctedReport: report)) {
+                        NavigationLink(destination: ReportDetailView(selectedReport: report)) {
                             ReportSummaryCardView(
                                 measureDate: readableKoreanFormatter.string(from: createdAt),
                                 total: Int(total),
@@ -83,4 +83,5 @@ struct ReportHomeView: View {
 
 #Preview {
     ReportHomeView()
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }

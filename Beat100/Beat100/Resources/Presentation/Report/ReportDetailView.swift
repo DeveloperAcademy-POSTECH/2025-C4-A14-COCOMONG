@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct ReportDetailView: View {
-    let selctedReport: CprReport
+    let selectedReport: CprReport
     
     var body: some View {
-        if let total = selctedReport.totalAccuracy?.totalNumber {
+        if let total = selectedReport.totalAccuracy?.totalNumber {
             Text("\(total)")
         }
     }
 }
 
-//#Preview {
-//    ReportDetailView()
-//}
+#Preview {
+    ReportDetailView(selectedReport: PersistenceController.previewReport!)
+}

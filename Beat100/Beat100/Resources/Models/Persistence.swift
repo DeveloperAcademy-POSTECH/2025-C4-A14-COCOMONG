@@ -9,7 +9,7 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-
+    
     @MainActor
     static let preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
@@ -34,17 +34,22 @@ struct PersistenceController {
             )]
         )
         
+        let totalAccuracy = TotalAccuracy(
+            context: viewContext,
+            correctNumber: 28,
+            totalNumber: 30
+        )
+        
         let newCprReport = CprReport(
             context: viewContext,
             createdAt: Date(),
-            totalAccuracy: TotalAccuracy(
-                context: viewContext,
-                correctNumber: 1,
-                totalNumber: 1
-            ),
+            totalAccuracy: totalAccuracy,
             numberOfCycles: 1,
             cycles: [cycle]
         )
+        
+        cycle.cprReport = newCprReport
+        totalAccuracy.cprReport = newCprReport
         
         do {
             try viewContext.save()
@@ -56,9 +61,9 @@ struct PersistenceController {
         }
         return result
     }()
-
+    
     let container: NSPersistentContainer
-
+    
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Beat100")
         if inMemory {
@@ -68,7 +73,7 @@ struct PersistenceController {
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
+                
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
@@ -81,5 +86,20 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+}
+
+extension PersistenceController {
+    @MainActor static var previewReport: CprReport? {
+        let context = PersistenceController.preview.container.viewContext
+        let request: NSFetchRequest<CprReport> = CprReport.fetchRequest()
+        
+        do {
+            let reports = try context.fetch(request)
+            return reports[0]
+        } catch {
+            print("Failed to fetch CprReports: \(error)")
+            return nil
+        }
     }
 }
