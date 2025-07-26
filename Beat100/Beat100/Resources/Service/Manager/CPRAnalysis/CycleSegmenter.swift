@@ -12,13 +12,13 @@ import SwiftUI
 struct CycleSegmenter {
     /// 압박/이완 데이터를 주어진 세트 단위(기본: 30개)로 나눔
     static func splitCycles(
-        compressions: [AccelerationData],
-        releases: [AccelerationData],
+        compressions: [DisplacementData],
+        releases: [DisplacementData],
         setSize: Int = 30
-    ) -> [(compressions: [AccelerationData], releases: [AccelerationData])] {
+    ) -> [(compressions: [DisplacementData], releases: [DisplacementData])] {
         let total = min(compressions.count, releases.count)
         let limit = min((total / setSize), 30) // 최대 30사이클까지
-        var cycles: [(compressions: [AccelerationData], releases: [AccelerationData])] = []
+        var cycles: [(compressions: [DisplacementData], releases: [DisplacementData])] = []
 
         for i in 0..<limit {
             let startIndex = i * setSize
@@ -34,7 +34,7 @@ struct CycleSegmenter {
 
     /// 각 사이클의 정확도를 계산하여 요약
     static func summarizeEachCycle(
-        cycles: [(compressions: [AccelerationData], releases: [AccelerationData])]
+        cycles: [(compressions: [DisplacementData], releases: [DisplacementData])]
     ) -> [(total: Int, count: Int, percentage: Double)] {
         return cycles.map {
             ReportSummary.countValidCPRSets(compressions: $0.compressions, releases: $0.releases)
