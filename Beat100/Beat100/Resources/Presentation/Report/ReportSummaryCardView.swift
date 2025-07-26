@@ -25,7 +25,6 @@ struct ReportSummaryCardView: View {
         // LazyVStack or VGrid 만들 때 수정
         .frame(height: 150)
         .frame(maxWidth: .infinity)
-        .padding(.horizontal, 16)
     }
     
     private var CardContentView: some View {

@@ -9,8 +9,9 @@ import Foundation
 import CoreData
 
 extension CprCycle {
-    public convenience init(context: NSManagedObjectContext, accuracy: CycleAccuracy, bpmPoints: NSSet, depthPoints: NSSet) {
+    public convenience init(context: NSManagedObjectContext, id: UUID = UUID(), accuracy: CycleAccuracy, bpmPoints: NSSet, depthPoints: NSSet) {
         self.init(context: context)
+        self.id = id
         self.accuracy = accuracy
         self.bpmPoints = bpmPoints
         self.depthPoints = depthPoints

@@ -16,7 +16,8 @@ struct Beat100App: App {
     
     var body: some Scene {
         WindowGroup {
-            GuideHomeView()
+            ReportHomeView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

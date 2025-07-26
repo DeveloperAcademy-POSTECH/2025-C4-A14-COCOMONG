@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24E263" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BpmPoint" representedClassName="BpmPoint" syncable="YES" codeGenerationType="class">
         <attribute name="bpm" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="time" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="cprCycle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CprCycle" inverseName="bpmPoints" inverseEntity="CprCycle"/>
     </entity>
     <entity name="CprCycle" representedClassName="CprCycle" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="accuracy" maxCount="1" deletionRule="Cascade" destinationEntity="CycleAccuracy" inverseName="cprCycle" inverseEntity="CycleAccuracy"/>
         <relationship name="bpmPoints" toMany="YES" deletionRule="Cascade" destinationEntity="BpmPoint" inverseName="cprCycle" inverseEntity="BpmPoint"/>
         <relationship name="cprReport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CprReport" inverseName="cycles" inverseEntity="CprReport"/>
@@ -13,12 +15,14 @@
     </entity>
     <entity name="CprReport" representedClassName="CprReport" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="numberOfCycles" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="cycles" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="CprCycle" inverseName="cprReport" inverseEntity="CprCycle"/>
         <relationship name="totalAccuracy" maxCount="1" deletionRule="Cascade" destinationEntity="TotalAccuracy" inverseName="cprReport" inverseEntity="TotalAccuracy"/>
     </entity>
     <entity name="CycleAccuracy" representedClassName="CycleAccuracy" syncable="YES" codeGenerationType="class">
         <attribute name="correctNumber" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="percentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="totalNumber" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="cprCycle" maxCount="1" deletionRule="Nullify" destinationEntity="CprCycle" inverseName="accuracy" inverseEntity="CprCycle"/>
@@ -26,10 +30,12 @@
     <entity name="DepthPoint" representedClassName="DepthPoint" syncable="YES" codeGenerationType="class">
         <attribute name="compressionNumber" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="depth" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="cprCycle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CprCycle" inverseName="depthPoints" inverseEntity="CprCycle"/>
     </entity>
     <entity name="TotalAccuracy" representedClassName="TotalAccuracy" syncable="YES" codeGenerationType="class">
         <attribute name="correctNumber" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="percentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="totalNumber" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="cprReport" maxCount="1" deletionRule="Nullify" destinationEntity="CprReport" inverseName="totalAccuracy" inverseEntity="CprReport"/>

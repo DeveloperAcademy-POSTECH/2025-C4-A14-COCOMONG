@@ -20,7 +20,6 @@ struct ExplainPressureCardView: View {
         }
         .frame(height: 95)
         .frame(maxWidth: .infinity)
-        .padding(.horizontal, 16)
     }
     
     private var ExplainPressureTextView: some View {
