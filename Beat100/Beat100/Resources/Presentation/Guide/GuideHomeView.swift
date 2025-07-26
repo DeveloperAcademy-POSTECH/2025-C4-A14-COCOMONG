@@ -11,12 +11,12 @@ struct GuideHomeView: View {
     @State var isPresented: Bool = false
     
     var body: some View {
-        VStack(spacing: 30) {
-            TopBar(subtitle: "Apple Watch로 CPR 측정 시작하기")
+        VStack(spacing: 20) {
+            Title()
             Content(isPresented: $isPresented)
             Spacer()
         }
-        .padding(.top, 108)
+        .padding(.top, 44)
         .background(.gray200)
         .sheet(isPresented: $isPresented) {
             NavigationStack {
@@ -25,7 +25,18 @@ struct GuideHomeView: View {
             .presentationDetents([.fraction(0.99)])
             .presentationCornerRadius(10)
         }
-        
+    }
+}
+
+private struct Title: View {
+    var body: some View {
+        HStack {
+            //TODO: 타이포 적용 후 교체
+            Text("Title Here")
+                .font(.system(size: 36, weight: .bold))
+            Spacer()
+        }
+        .padding(.horizontal, 20)
     }
 }
 
