@@ -29,9 +29,14 @@ struct LargeCard: View {
             Spacer()
         }
         .padding(20)
-        .frame(height: cardHeight)
         .background(.white)
         .cornerRadius(20)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .inset(by: 0.2)
+                .stroke(.gray400, lineWidth: 0.4)
+        )
+        .frame(height: cardHeight)
     }
 }
 
@@ -58,7 +63,7 @@ private struct Content: View {
 
 #Preview {
     ZStack {
-        Color.gray
+        Color.gray200
         
         VStack(spacing: 24) {
             LargeCard(
