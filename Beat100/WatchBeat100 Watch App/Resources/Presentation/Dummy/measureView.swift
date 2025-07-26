@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreMotion
-import UIKit
+
 
 struct measureView: View {
     private let motionManager = CMMotionManager()
@@ -53,7 +53,7 @@ struct measureView: View {
                 }
                 .onReceive(viewModel.$isCountdownDone) { value in
                     if value == true {
-                        allLogs[currentRound-1] = logs
+                        allLogs[currentRound - 1] = logs
 //                        sending()
                         motionManager.stopAccelerometerUpdates()
                         
@@ -102,7 +102,7 @@ struct measureView: View {
            let jsonString = String(data: data, encoding: .utf8) {
             manager.sendMessage(["allLogs": jsonString])
         } else {
-            print("❌ Failed to encode zLogData")
+            print("❌ Failed to encode LogData")
         }
     }
 }

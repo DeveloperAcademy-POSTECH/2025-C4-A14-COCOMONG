@@ -24,6 +24,9 @@ struct MeasuringCompleteView: View {
                 Text("리포트를 생성중입니다")
                     .foregroundStyle(Color.white)
                     .font(.system(size: config.fontSize, weight: .heavy))
+                Button("종료"){
+                    onComplete()
+                }
             }
             .padding(.top, config.topPadding)
             .disabledToolbar()

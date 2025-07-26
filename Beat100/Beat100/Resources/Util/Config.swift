@@ -30,3 +30,15 @@ struct CountdownConfig {
     static let watchCircleWidth: CGFloat = 12
     static let watchFontSize: CGFloat = 32
 }
+
+struct MeasuringConfig {
+    static let bpm: Double = 60.0 / 220.0
+    static let startRadiusFactor: CGFloat = 0.1
+    static let endRadiusFactor: CGFloat = 1.0
+    static let smallCircleFactor: CGFloat = 0.15
+    static let largeCircleFactor: CGFloat = 1.5
+    static let blurSmall: CGFloat = 20
+    static let blurLarge: CGFloat = 30
+    static let heartScaleSmall: CGFloat = 0.25
+    static let heartScaleLarge: CGFloat = 0.1
+}

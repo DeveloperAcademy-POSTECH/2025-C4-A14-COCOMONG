@@ -59,7 +59,10 @@ struct ChooseCycleView: View {
                 VStack{
                     Button(action: {
                         viewModel.showingMeasuringModal.toggle()
-                        manager.sendMessage(["MeasureStartFlag": true])
+                        manager.sendMessage([
+                            "MeasureStartFlag": true,
+                            "selectedNumber": selectedNumber
+                        ])
                     }) {
                         Text("시작")
                             .font(.system(size: 16, weight: .medium))
