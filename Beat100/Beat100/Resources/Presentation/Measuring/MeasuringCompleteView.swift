@@ -26,13 +26,7 @@ struct MeasuringCompleteView: View {
                     .font(.system(size: config.fontSize, weight: .heavy))
             }
             .padding(.top, config.topPadding)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("") { onComplete() }
-                        .tint(Color.black)
-                        .disabled(true)
-                }
-            }
+            .disabledToolbar()
         }
     }
 }

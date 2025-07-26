@@ -20,3 +20,13 @@ struct MeasuringCompleteConfig {
         #endif
     }
 }
+
+struct CountdownConfig {
+    static let iosCircleSize: CGFloat = 220
+    static let iosCircleWidth: CGFloat = 20
+    static let iosFontSize: CGFloat = 90
+    
+    static let watchCircleSize: CGFloat = 126
+    static let watchCircleWidth: CGFloat = 12
+    static let watchFontSize: CGFloat = 32
+}

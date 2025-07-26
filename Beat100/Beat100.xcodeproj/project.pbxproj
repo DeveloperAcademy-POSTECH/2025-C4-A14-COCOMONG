@@ -43,6 +43,7 @@
 		3220EBE62E2E8ABE00BD6DA8 /* Exceptions for "WatchBeat100 Watch App" folder in "Beat100" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Resources/Common/Components/DisabledToolbar.swift,
 				Resources/Common/Enum/MeasuringStep.swift,
 				Resources/Presentation/ChooseCycle/ChooseCycleViewModel.swift,
 				Resources/Presentation/Finish/FinishView.swift,
@@ -54,6 +55,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Common/Components/BouncingDotsView.swift,
+				Resources/Common/Components/CountdownCircle.swift,
 				Resources/Common/Components/CustomGradientCircle.swift,
 				Resources/Presentation/Countdown/CountdownAnimationView.swift,
 				Resources/Presentation/Countdown/CountdownViewModel.swift,
