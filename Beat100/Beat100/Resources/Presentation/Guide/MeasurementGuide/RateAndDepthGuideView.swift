@@ -9,16 +9,16 @@ import SwiftUI
 
 struct RateAndDepthGuideView: View {
     @Binding var isPresented: Bool
-    @Environment(NavigationManager.self) var navigationManager
     
     var body: some View {
         VStack {
             BackCancelToolbar(isPresented: $isPresented)
             Content()
             Spacer()
-            LargeButton("다음") {
-                navigationManager.navigate(to: .measurementStart)
+            NavigationLink("다음") {
+                MeasurementStartView(isPresented: $isPresented)
             }
+            .largeButtonStyle()
         }
         .padding(.top, 8)
         .navigationBarBackButtonHidden(true)
@@ -75,5 +75,4 @@ private struct Content: View {
 
 #Preview {
     RateAndDepthGuideView(isPresented: .constant(true))
-        .environment(NavigationManager())
 }

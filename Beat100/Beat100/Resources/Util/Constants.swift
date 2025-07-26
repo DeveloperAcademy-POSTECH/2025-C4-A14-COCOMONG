@@ -10,6 +10,23 @@ import SwiftUI
 
 // iOS, Watch OS 모두 사용
 struct Constants {
+    //MARK: - GuideHome
+    struct GuideCard {
+        struct Measurement {
+            static let title = "Apple Watch에서 CPR 측정을 \n시작해보세요."
+            static let content = "Apple Watch로 손목의 움직임을 감지해 가슴 압박 깊이와 속도를 측정합니다. 이후 CPR 리포트를 제공합니다."
+            static let button = "시작하기"
+            static let cardHeight: CGFloat = 186
+        }
+
+        struct CPR {
+            static let title = "CPR 전체 가이드라인"
+            static let content = "119 신고부터 가슴 압박 방법까지, \nCPR 전체 수행 과정을 알아봅니다."
+            static let button = "확인하기"
+            static let cardHeight: CGFloat = 156
+        }
+    }
+    
     //MARK: - MeasurementGuide
     struct AppMechanismGuideText {
         static let title = "BEAT100 앱 작동 방식"
