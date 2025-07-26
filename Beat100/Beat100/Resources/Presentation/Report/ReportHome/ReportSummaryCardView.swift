@@ -17,7 +17,7 @@ struct ReportSummaryCardView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(.gray400, style: .init(lineWidth: 0.4))
-                .foregroundStyle(Color.white)
+                .background(Color.white)
             
             
             CardContentView
