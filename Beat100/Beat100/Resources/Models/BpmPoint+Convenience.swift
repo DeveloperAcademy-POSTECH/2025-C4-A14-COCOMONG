@@ -9,8 +9,9 @@ import Foundation
 import CoreData
 
 extension BpmPoint {
-    public convenience init(context: NSManagedObjectContext, time: Double, bpm: Double) {
+    public convenience init(context: NSManagedObjectContext, id: UUID = UUID(), time: Double, bpm: Double) {
         self.init(context: context)
+        self.id = id
         self.time = time
         self.bpm = bpm
     }

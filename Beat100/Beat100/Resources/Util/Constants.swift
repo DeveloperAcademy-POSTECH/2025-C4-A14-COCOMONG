@@ -160,4 +160,23 @@ struct Constants {
             """
         }
     }
+    
+    //MARK: - CPRGuide
+    struct ReportHomeText {
+        static let navTitle = "리포트"
+        static let explainPressureTitle = "정확한 압박이란?"
+        static let explainPressureText: AttributedString = {
+            var text = AttributedString("100~120bpm 속도와 5~6cm 깊이를 모두 충족한\n압박 횟수를 나타냅니다.")
+            
+            if let range1 = text.range(of: "100~120bpm") {
+                text[range1].font = .system(size: 14, weight: .bold)
+            }
+            
+            if let range2 = text.range(of: "5~6cm") {
+                text[range2].font = .system(size: 14, weight: .bold)
+            }
+                
+            return text
+        }()
+    }
 }

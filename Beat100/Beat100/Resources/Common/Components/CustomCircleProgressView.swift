@@ -12,15 +12,16 @@ struct CustomCircleProgressView: View {
     
     var body: some View {
         ZStack {
-            CustomGradientCircle(progress: 1.0, width: 10)
+            CustomReportGradientCircle(progress: 1.0)
                 .opacity(0.2)
             
-            CustomGradientCircle(progress: Double(progress) / 100, width: 10)
+            CustomReportGradientCircle(progress: Double(progress) / 100)
             
             VStack(spacing: 4) {
                 Text("\(progress)%")
                     .font(.nanumSquareNeo(type: .heavy, size: 12))
                 
+                // TODO: - progress값 따라 enum 처리해서 상태 String 넣기
                 Text("보통")
                     .font(.nanumSquareNeo(type: .bold, size: 12))
             }

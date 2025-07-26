@@ -9,8 +9,9 @@ import Foundation
 import CoreData
 
 extension DepthPoint {
-    public convenience init(context: NSManagedObjectContext, compressionNumber: Double, depth: Double) {
+    public convenience init(context: NSManagedObjectContext, id: UUID = UUID(), compressionNumber: Double, depth: Double) {
         self.init(context: context)
+        self.id = id
         self.compressionNumber = compressionNumber
         self.depth = depth
     }

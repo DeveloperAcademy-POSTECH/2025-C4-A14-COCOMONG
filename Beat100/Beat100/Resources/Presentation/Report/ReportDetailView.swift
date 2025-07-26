@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct ReportDetailView: View {
+    let selctedReport: CprReport
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if let total = selctedReport.totalAccuracy?.totalNumber {
+            Text("\(total)")
+        }
     }
 }
 
-#Preview {
-    ReportDetailView()
-}
+//#Preview {
+//    ReportDetailView()
+//}

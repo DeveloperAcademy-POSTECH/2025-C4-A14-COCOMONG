@@ -15,15 +15,15 @@ struct ReportSummaryCardView: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(.gray400, style: .init(lineWidth: 0.4))
                 .foregroundStyle(Color.white)
+            
             
             CardContentView
         }
-        // LazyVStack or VGrid 만들 때 수정
         .frame(height: 150)
         .frame(maxWidth: .infinity)
-        .padding(.horizontal, 16)
     }
     
     private var CardContentView: some View {
@@ -37,7 +37,7 @@ struct ReportSummaryCardView: View {
             
             ReportSummaryView
         }
-        .padding(.all, 16)
+        .padding(.all, 20)
     }
     
     private var ReportSummaryView: some View {
@@ -54,11 +54,11 @@ struct ReportSummaryCardView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("정확한 압박")
                 .foregroundStyle(Color.gray900)
-                .font(.nanumSquareNeo(type: .bold, size: 16))
+                .font(.system(size: 18, weight: .bold))
             
             Text("\(count)/\(total)회")
                 .foregroundStyle(.beatTeal)
-                .font(.nanumSquareNeo(type: .extrabold, size: 30))
+                .font(.nanumSquareNeo(type: .extrabold, size: 22))
         }
     }
 }
