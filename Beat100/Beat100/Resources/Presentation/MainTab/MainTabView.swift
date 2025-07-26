@@ -20,7 +20,7 @@ struct MainTabView: View {
             Tab("리포트", systemImage: "heart.text.clipboard.fill") {
                 VStack(spacing: 0) {
                     ReportHomeView()
-                    Spacer()
+                        .tint(.black)
                     Divider()
                 }
             }

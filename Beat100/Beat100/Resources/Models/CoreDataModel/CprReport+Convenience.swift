@@ -9,6 +9,54 @@ import Foundation
 import CoreData
 
 extension CprReport {
+    
+    // MARK: - 옵셔널 벗겨내기 변수들
+    // createdAt이 없을 경우 fallback으로 현재 시간 사용
+    var safeCreatedAt: Date {
+        createdAt ?? Date()
+    }
+    
+    var cycleNums: Int {
+        Int(numberOfCycles)
+    }
+    
+    var cprCycleList: [CprCycle] {
+        (cycles?.array as? [CprCycle]) ?? []
+    }
+    
+    // TotalAccuracy 관련 안전 추출
+    var correctCount: Int {
+        Int(totalAccuracy?.correctNumber ?? 0)
+    }
+    
+    var totalCount: Int {
+        Int(totalAccuracy?.totalNumber ?? 0)
+    }
+    
+    var percent: Int {
+        Int(totalAccuracy?.percentage ?? 0)
+    }
+    
+    var hasValidAccuracy: Bool {
+        totalAccuracy != nil
+    }
+    
+    // 날짜 스트링 포맷터 예시
+    var formattedDateFull: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy년 M월 d일 (E) a h:mm"
+        return formatter.string(from: safeCreatedAt)
+    }
+    
+    var formattedDateWithoutYear: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "M월 d일 (E) a h:mm"
+        return formatter.string(from: safeCreatedAt)
+    }
+    
+    // MARK: - init 함수
     public convenience init(context: NSManagedObjectContext, id: UUID = UUID(), createdAt: Date, totalAccuracy: TotalAccuracy, numberOfCycles: Int16, cycles: [CprCycle]) {
         self.init(context: context)
         self.id = id

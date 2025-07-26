@@ -24,4 +24,20 @@ extension CprCycle {
     public var depthSeries: [DepthPoint] {
         (depthPoints as? Set<DepthPoint>)?.sorted(by: { $0.compressionNumber < $1.compressionNumber }) ?? []
     }
+    
+    public var correctCount: Int {
+        Int(accuracy?.correctNumber ?? 0)
+    }
+    
+    public var totalCount: Int {
+        Int(accuracy?.totalNumber ?? 0)
+    }
+    
+    public var percent: Int {
+        Int(accuracy?.percentage ?? 0)
+    }
+    
+    public var hasValidAccuracy: Bool {
+        accuracy != nil && totalCount > 0
+    }
 }

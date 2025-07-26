@@ -161,7 +161,7 @@ struct Constants {
         }
     }
     
-    //MARK: - CPRGuide
+    //MARK: - Report
     struct ReportHomeText {
         static let navTitle = "리포트"
         static let explainPressureTitle = "정확한 압박이란?"
@@ -174,6 +174,23 @@ struct Constants {
             
             if let range2 = text.range(of: "5~6cm") {
                 text[range2].font = .system(size: 14, weight: .bold)
+            }
+                
+            return text
+        }()
+    }
+    
+    struct ReportDetail {
+        static let paceContent: AttributedString = {
+            
+            var text = AttributedString("""
+            압박 속도는 분당 100~120회가 이상적인 권장 속도입니다.
+            그래프를 통해 CPR 속도의 일관성을 확인할 수 있습니다.
+            권장 속도에서 벗어난 경우 CPR 속도 개선이 필요합니다.
+            """)
+            
+            if let range = text.range(of: "분당 100~120회") {
+                text[range].font = .system(size: 14, weight: .bold)
             }
                 
             return text
