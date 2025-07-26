@@ -26,8 +26,9 @@ struct ReportHomeView: View {
                     
                     YearMonthReportCardListView
                 }
-                .padding(.horizontal, 16)
-                .navigationTitle("리포트")
+                .padding(.all, 16)
+                .padding(.bottom, 20)
+                .navigationTitle(Constants.ReportHomeText.navTitle)
                 .navigationBarTitleDisplayMode(.large)
                 .task { // extension 메서드로 전체 리포트 가져오기
                     do {
