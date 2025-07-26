@@ -19,7 +19,7 @@ struct ReportHomeView: View {
     }()
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
                     ExplainPressureCardView()
@@ -66,12 +66,14 @@ struct ReportHomeView: View {
                        let correct = report.totalAccuracy?.correctNumber,
                        let percent = report.totalAccuracy?.percentage {
                         
-                        ReportSummaryCardView(
-                            measureDate: readableKoreanFormatter.string(from: createdAt),
-                            total: Int(total),
-                            count: Int(correct),
-                            percent: Int(percent)
-                        )
+                        NavigationLink(destination: ReportDetailView(selctedReport: report)) {
+                            ReportSummaryCardView(
+                                measureDate: readableKoreanFormatter.string(from: createdAt),
+                                total: Int(total),
+                                count: Int(correct),
+                                percent: Int(percent)
+                            )
+                        }
                     }
                 }
             }

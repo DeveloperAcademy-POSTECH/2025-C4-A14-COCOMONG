@@ -18,11 +18,10 @@ struct ReportSummaryCardView: View {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(.gray400, style: .init(lineWidth: 0.4))
                 .foregroundStyle(Color.white)
-                
+            
             
             CardContentView
         }
-        // LazyVStack or VGrid 만들 때 수정
         .frame(height: 150)
         .frame(maxWidth: .infinity)
     }
@@ -47,7 +46,6 @@ struct ReportSummaryCardView: View {
             
             Spacer()
             
-            // TODO: - CircleProgressView 그라데이션 색상 변경
             CustomCircleProgressView(progress: percent)
         }
     }
