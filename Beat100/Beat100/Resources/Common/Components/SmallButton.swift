@@ -22,8 +22,8 @@ struct SmallButton: View {
                 .font(.system(size: 15))
                 .foregroundColor(.white)
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 4)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
         .background(.beatDarkPink)
         .cornerRadius(40)
     }
