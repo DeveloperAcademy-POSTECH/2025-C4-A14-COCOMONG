@@ -11,13 +11,12 @@ import SwiftUI
 struct Beat100App: App {
     let persistenceController = PersistenceController.shared
     init() {
-        _ = WatchConnectivityManager.shared // ✅ 강제 초기화
+        _ = WatchConnectivityManager.shared
     }
     
     var body: some Scene {
         WindowGroup {
-            MainTabView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            SourceCheckView()
         }
     }
 }

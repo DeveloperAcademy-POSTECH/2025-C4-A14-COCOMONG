@@ -1,69 +1,75 @@
-//
-//  MeasuringView.swift
-//  Beat100
-//
-//  Created by 나현흠 on 7/21/25.
-//
-
 import SwiftUI
+import CoreMotion
 
 struct MeasuringView: View {
+    
+    @StateObject private var viewModel = MeasuringViewModel()
+    
+#if os(iOS)
     @Binding var selectedNumber: Int
     var onComplete: () -> Void
     
     var body: some View {
-        NavigationStack{
-            ZStack{
-                Color.black
-                    .ignoresSafeArea(.all)
-                VStack{
-                    Image("MeasuringLogo")
-                        .resizable()
-                        .frame(width: {
-#if os(iOS)
-                            160
+        GeometryReader { geometry in
+            ZStack {
+                (viewModel.beatAnimation ? Color.pink : Color.black)
+                    .ignoresSafeArea()
+                    .animation(.easeInOut(duration: MeasuringConfig.bpm / 3), value: viewModel.beatAnimation)
+                
+                HeartBeatBackgroundView(geometry: geometry, beatAnimation: viewModel.beatAnimation)
+                
+                HeartIconView(beatAnimation: viewModel.beatAnimation)
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+        }
+        .onAppear {
+            print("selectedNumber on iOS:", selectedNumber)
+            viewModel.startAnimating(bpm: MeasuringConfig.bpm)
+            viewModel.selectedIndex = selectedNumber
+            viewModel.startIOSAnimationCycles(onComplete: onComplete)
+        }
+        .onDisappear {
+            viewModel.stopAnimating()
+        }
+        .disabledToolbar()
+    }
 #elseif os(watchOS)
-                            109
-#else
-                            160
-#endif
-                        }(), height: {
-#if os(iOS)
-                            136
-#elseif os(watchOS)
-                            93
-#else
-                            136
-#endif
-                        }())
-                        .padding(.horizontal, 30)
-                        .padding(.vertical, 18)
-                    
-                    Text("측정중...")
-                        .padding(.top, 5)
-                        .font(.system(size: {
-#if os(iOS)
-                            17.67
-#elseif os(watchOS)
-                            14
-#else
-                            14
-#endif
-                        }(), weight: .heavy))
-                }
-                .toolbar{
-#if os(watchOS)
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("취소") {
-                            //TODO: Navigation 실험용
-                            onComplete()
-                        }
-                    }
-#endif
-                }
+    @Binding var selectedNumber: Int
+    var onComplete: () -> Void
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                (viewModel.beatAnimation ? Color.pink : Color.black)
+                    .ignoresSafeArea()
+                    .animation(.easeInOut(duration: MeasuringConfig.bpm / 3), value: viewModel.beatAnimation)
+                
+                HeartBeatBackgroundView(geometry: geometry, beatAnimation: viewModel.beatAnimation)
+                
+                HeartIconView(beatAnimation: viewModel.beatAnimation)
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+        }
+        .onAppear {
+            viewModel.startAnimating(bpm: MeasuringConfig.bpm)
+            viewModel.selectedIndex = selectedNumber
+            viewModel.startDetectingShakes()
+            viewModel.startTimer()
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(selectedNumber) * 17) {
+                onComplete()
             }
         }
+        .onReceive(viewModel.$isCountdownDone) { value in
+            if value == true {
+                viewModel.handleCountdownComplete(onComplete: onComplete)
+            }
+        }
+        .onDisappear {
+            viewModel.stopAnimating()
+        }
+        .disabledToolbar()
     }
+#endif
 }
 
 #Preview {

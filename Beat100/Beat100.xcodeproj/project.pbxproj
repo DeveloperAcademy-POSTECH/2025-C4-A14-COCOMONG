@@ -43,6 +43,7 @@
 		3220EBE62E2E8ABE00BD6DA8 /* Exceptions for "WatchBeat100 Watch App" folder in "Beat100" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Resources/Common/Components/DisabledToolbar.swift,
 				Resources/Common/Enum/MeasuringStep.swift,
 				Resources/Presentation/ChooseCycle/ChooseCycleViewModel.swift,
 				Resources/Presentation/Finish/FinishView.swift,
@@ -54,10 +55,16 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Common/Components/CustomGradientCircle.swift,
+				Resources/Common/Components/Measuring/BouncingDotsView.swift,
+				Resources/Common/Components/Measuring/CountdownCircle.swift,
+				Resources/Common/Components/Measuring/HeartBeatBackgroundView.swift,
+				Resources/Common/Components/Measuring/HeartIconView.swift,
 				Resources/Presentation/Countdown/CountdownAnimationView.swift,
 				Resources/Presentation/Countdown/CountdownViewModel.swift,
 				Resources/Presentation/Measuring/MeasuringCompleteView.swift,
 				Resources/Presentation/Measuring/MeasuringView.swift,
+				Resources/Presentation/Measuring/MeasuringViewModel.swift,
+				Resources/Util/Config.swift,
 				Resources/Util/Constants.swift,
 			);
 			target = CF09C9E42E266A7600E11198 /* WatchBeat100 Watch App */;
@@ -203,6 +210,8 @@
 			);
 			mainGroup = CF09C8CF2E26666000E11198;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CF09C8D92E26666000E11198 /* Products */;
 			projectDirPath = "";
