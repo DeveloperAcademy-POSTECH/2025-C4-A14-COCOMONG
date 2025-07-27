@@ -13,25 +13,36 @@ struct LargeCard: View {
     var contentText: String
     var buttonText: String
     var action: () -> Void
-    var cardHeight: CGFloat
+    var isEmphasized: Bool = false
     
     var body: some View {
         HStack(alignment: .top, spacing: 20) {
             Image(imageResource)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 20) {
                 Title(titleText: titleText)
-                Spacer()
-                Content(contentText: contentText)
-                Spacer()
-                SmallButton(buttonText , action: action)
+                HStack {
+                    Content(contentText: contentText)
+                    Spacer()
+                }
+                
+                HStack(alignment: .top, spacing: 12) {
+                    SmallButton(buttonText , action: action)
+                    if isEmphasized {
+                        ExclamationIcon()
+                            .padding(.top, 2)
+                    }
+                }
             }
-            Spacer()
         }
         .padding(20)
-        .frame(height: cardHeight)
         .background(.white)
         .cornerRadius(20)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .inset(by: 0.2)
+                .stroke(.gray400, lineWidth: 0.4)
+        )
     }
 }
 
@@ -51,32 +62,32 @@ private struct Content: View {
     
     var body: some View {
         Text(contentText)
-            .font(.system(size: 15))
+            .fontWithLineHeight(font: .systemFont(ofSize: 15), lineHeight: 22)
             .foregroundColor(.black)
+            .kerning(-0.23)
     }
 }
 
 #Preview {
     ZStack {
-        Color.gray
+        Color.gray200
         
         VStack(spacing: 24) {
             LargeCard(
                 imageResource: .appleWatch,
-                titleText: "Apple Watch에서 CPR 측정을 \n시작해보세요.",
-                contentText: "Apple Watch로 손목의 움직임을 감지해 가슴 압박 깊이와 속도를 측정합니다. 이후 CPR 리포트를 제공합니다.",
-                buttonText: "시작하기",
+                titleText: Constants.GuideCard.Measurement.title,
+                contentText: Constants.GuideCard.Measurement.content,
+                buttonText: Constants.GuideCard.Measurement.button,
                 action: {},
-                cardHeight: 186
+                isEmphasized: true
             )
             
             LargeCard(
                 imageResource: .cprHeart,
-                titleText: "CPR 전체 가이드라인",
-                contentText: "119 신고부터 가슴 압박 방법까지, \nCPR 전체 수행 과정을 알아봅니다.",
-                buttonText: "확인하기",
-                action: {},
-                cardHeight: 156
+                titleText: Constants.GuideCard.CPR.title,
+                contentText: Constants.GuideCard.CPR.content,
+                buttonText: Constants.GuideCard.CPR.button,
+                action: {}
             )
         }
     }

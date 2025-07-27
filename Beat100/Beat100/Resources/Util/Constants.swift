@@ -13,7 +13,7 @@ struct Constants {
     //MARK: - GuideHome
     struct GuideCard {
         struct Measurement {
-            static let title = "Apple Watch에서 CPR 측정을 \n시작해보세요."
+            static let title = "Apple Watch에서 CPR 측정하기"
             static let content = "Apple Watch로 손목의 움직임을 감지해 가슴 압박 깊이와 속도를 측정합니다. 이후 CPR 리포트를 제공합니다."
             static let button = "시작하기"
             static let cardHeight: CGFloat = 186
@@ -59,14 +59,14 @@ struct Constants {
         static let step1: AttributedString = {
             var text = AttributedString("\"CPR 측정 시작하기\"를 누르면 Apple Watch앱과 연동을 시작합니다.")
             if let range = text.range(of: "\"CPR 측정 시작하기\"") {
-                text[range].font = .system(.body, weight: .bold)
+                text[range].font = .system(size: 16, weight: .bold)
             }
             return text
         }()
         static let step2: AttributedString = {
             var text = AttributedString("Apple Watch 앱에서 \"확인\" 버튼을 누르면, iPhone과 Watch가 자동으로 연동돼 압박 리듬 가이드를 함께 제공합니다.")
             if let range = text.range(of: "\"확인\" 버튼") {
-                text[range].font = .system(.body, weight: .bold)
+                text[range].font = .system(size: 16, weight: .bold)
             }
             return text
         }()
@@ -80,7 +80,7 @@ struct Constants {
             var text = AttributedString("가슴 압박 속도는 분당 100-120회(bpm)을\n권장합니다.")
             
             if let range = text.range(of: "분당 100-120회(bpm)") {
-                text[range].font = .system(.body, weight: .bold)
+                text[range].font = .system(size: 16, weight: .bold)
             }
             return text
         }()
@@ -89,10 +89,10 @@ struct Constants {
             var text = AttributedString("BEAT100은 110bpm에 맞춰 Apple Watch 진동으로 압박 리듬을 제공합니다.")
             
             if let range110 = text.range(of: "110bpm") {
-                text[range110].font = .system(.body, weight: .bold)
+                text[range110].font = .system(size: 16, weight: .bold)
             }
             if let rangeWatch = text.range(of: "Apple Watch 진동") {
-                text[rangeWatch].font = .system(.body, weight: .bold)
+                text[rangeWatch].font = .system(size: 16, weight: .bold)
             }
             return text
         }()
@@ -101,7 +101,7 @@ struct Constants {
             var text = AttributedString("깊이는 약 5~6cm를 유지하며 진동에 맞는 \n일정한 속도로 압박해주세요.")
             
             if let range = text.range(of: "5~6cm") {
-                text[range].font = .system(.body, weight: .bold)
+                text[range].font = .system(size: 16, weight: .bold)
             }
             return text
         }()

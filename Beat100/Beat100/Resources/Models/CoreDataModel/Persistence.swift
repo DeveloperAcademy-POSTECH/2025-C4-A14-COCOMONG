@@ -9,56 +9,9 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-
-    @MainActor
-    static let preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        
-        let cycle = CprCycle(
-            context: viewContext,
-            accuracy: CycleAccuracy(
-                context: viewContext,
-                correctNumber: 1,
-                totalNumber: 1
-            ),
-            bpmPoints: [BpmPoint(
-                context: viewContext,
-                time: 0,
-                bpm: 110
-            )],
-            depthPoints: [DepthPoint(
-                context: viewContext,
-                compressionNumber: 1,
-                depth: 4
-            )]
-        )
-        
-        let newCprReport = CprReport(
-            context: viewContext,
-            createdAt: Date(),
-            totalAccuracy: TotalAccuracy(
-                context: viewContext,
-                correctNumber: 1,
-                totalNumber: 1
-            ),
-            numberOfCycles: 1,
-            cycles: [cycle]
-        )
-        
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        return result
-    }()
-
+    
     let container: NSPersistentContainer
-
+    
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Beat100")
         if inMemory {
@@ -68,7 +21,7 @@ struct PersistenceController {
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
+                
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
