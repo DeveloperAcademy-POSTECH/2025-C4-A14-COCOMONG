@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MeasurementStartView: View {
     @Binding var isPresented: Bool
+    @AppStorage("guideViewed") var guideViewed: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -24,6 +25,7 @@ struct MeasurementStartView: View {
                     Content()
                     Spacer()
                     Button(Constants.MeasurementStartText.startButtonText) {
+                        guideViewed = true
                         isPresented = false
                     }
                     .largeButtonStyle(.complete)
