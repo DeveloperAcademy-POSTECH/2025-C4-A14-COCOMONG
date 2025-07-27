@@ -114,7 +114,12 @@ struct measureView: View {
         let encoder = JSONEncoder()
         if let data = try? encoder.encode(allLogs[round]),
            let jsonString = String(data: data, encoding: .utf8) {
-            manager.sendMessage(["allLogs": jsonString])
+            
+            // 🔄 cycleCount도 같이 전송
+            manager.sendMessage([
+                "allLogs": jsonString,
+                "cycleCount": vm.selectedIndex
+            ])
         } else {
             print("❌ Failed to encode zLogData")
         }

@@ -49,6 +49,19 @@ struct SourceCheckView: View {
 
                     self.zLogData = parsed
                     print("✅ zLogData updated with \(parsed.count) items")
+                    
+                    // 🔍 분석 및 저장
+                    Task {
+                        let result = ReportAnalyzerService.analyze(from: parsed)
+                        
+                        do {
+                            let context = PersistenceController.shared.container.viewContext
+                            let report = try await ReportAnalyzerService.save(to: context, result: result)
+                            print("✅ 저장 성공: \(report)")
+                        } catch {
+                            print("❌ 저장 실패: \(error)")
+                        }
+                    }
                 } else {
                     print("❌ [String] 디코딩 실패")
                 }
