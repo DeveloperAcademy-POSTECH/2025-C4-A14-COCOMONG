@@ -29,6 +29,7 @@ struct GuideHomeView: View {
         .sheet(isPresented: $isCPRGuidePresented) {
             CPRGuideView()
                 .presentationDragIndicator(.visible)
+                .padding(.top, 10)
         }
     }
 }
@@ -60,7 +61,6 @@ private struct Content: View {
                 action: { isMeasurementGuidePresented = true },
                 isEmphasized: !guideViewed
             )
-            
             LargeCard(
                 imageResource: .cprHeart,
                 titleText: Constants.GuideCard.CPR.title,
