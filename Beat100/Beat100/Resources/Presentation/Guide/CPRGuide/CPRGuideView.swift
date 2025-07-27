@@ -21,7 +21,7 @@ struct CPRGuideView: View {
 
 private struct Content: View {
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        ScrollView() {
             VStack(alignment: .leading, spacing: 24) {
                 Step(
                     imageResource: .guide1,
