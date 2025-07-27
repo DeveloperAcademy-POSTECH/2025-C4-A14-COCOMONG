@@ -80,8 +80,3 @@ struct ReportHomeView: View {
         }
     }
 }
-
-#Preview {
-    ReportHomeView()
-        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-}
