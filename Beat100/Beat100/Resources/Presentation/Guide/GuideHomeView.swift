@@ -30,6 +30,7 @@ struct GuideHomeView: View {
             CPRGuideView()
                 .presentationDragIndicator(.visible)
                 .padding(.top, 10)
+                .background(.gray200)
         }
     }
 }
