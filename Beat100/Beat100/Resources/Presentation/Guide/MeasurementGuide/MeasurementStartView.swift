@@ -66,7 +66,7 @@ private struct Content: View {
                     Text(Constants.MeasurementStartText.step3)
                 }
             }
-            .font(.system(size: 16))
+            .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
             .foregroundColor(.black)
             .padding(.horizontal, 9.5)
         }
