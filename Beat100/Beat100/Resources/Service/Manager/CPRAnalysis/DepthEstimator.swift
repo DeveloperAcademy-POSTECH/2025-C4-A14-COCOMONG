@@ -15,7 +15,7 @@ struct DepthEstimator {
 
     func estimateDepth(from data: [AccelerationData]) -> [DisplacementData] { // 가속도 데이터를 입력으로 받아서 변위 데이터를 반환하는 메서드.
         let gravity = 9.80665
-        let accZ = data.map { $0.user_acc_z * gravity }  // z축만 사용, 단위 m/s^2
+        let accZ = data.map { $0.zValue * gravity }  // z축만 사용, 단위 m/s^2
 //        let accZ = data.map { ($0.z * gravity) / cos($0.pitch) } //pitch 보정된 수직 z 가속도
 //        let accZ = data.map {
 //            let g = gravity

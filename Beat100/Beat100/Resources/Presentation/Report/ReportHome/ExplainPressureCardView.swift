@@ -24,9 +24,9 @@ struct ExplainPressureCardView: View {
     
     private var ExplainPressureTextView: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(Constants.ReportHomeText.explainPressureTitle)
+            Text(Constants.ReportHome.explainPressureTitle)
             
-            Text(Constants.ReportHomeText.explainPressureText)
+            Text(Constants.ReportHome.explainPressureText)
                 .lineSpacing(3)
         }
         .font(.system(size: 14, weight: .regular))

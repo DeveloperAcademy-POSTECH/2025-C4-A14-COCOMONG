@@ -162,7 +162,7 @@ struct Constants {
     }
     
     //MARK: - Report
-    struct ReportHomeText {
+    struct ReportHome {
         static let navTitle = "리포트"
         static let explainPressureTitle = "정확한 압박이란?"
         static let explainPressureText: AttributedString = {
@@ -178,6 +178,12 @@ struct Constants {
                 
             return text
         }()
+        
+        static let noReportText = """
+            저장된 리포트가 없습니다.
+            가이드를 따라 CPR을 측정하면 
+            리포트가 자동으로 생성됩니다.
+        """
     }
     
     struct ReportDetail {
