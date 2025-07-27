@@ -11,13 +11,6 @@ struct ReportHomeView: View {
     @Environment(\.managedObjectContext) private var context
     @State private var groupedReports: [String: [CprReport]] = [:]
     
-    private let readableKoreanFormatter: DateFormatter = {
-        let f = DateFormatter()
-        f.locale = Locale(identifier: "ko_KR")
-        f.dateFormat = "yyyy년 M월 d일 (E) a h:mm"
-        return f
-    }()
-    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -40,6 +33,7 @@ struct ReportHomeView: View {
                     }
                 }
             }
+            .background(Color.gray200)
         }
     }
     
@@ -61,19 +55,16 @@ struct ReportHomeView: View {
             
             LazyVStack(alignment: .leading, spacing: 20) {
                 ForEach(reports, id: \.self) { (report: CprReport) in
-                    if let createdAt = report.createdAt,
-                       let total = report.totalAccuracy?.totalNumber,
-                       let correct = report.totalAccuracy?.correctNumber,
-                       let percent = report.totalAccuracy?.percentage {
-                        
-                        NavigationLink(destination: ReportDetailView(selectedReport: report)) {
-                            ReportSummaryCardView(
-                                measureDate: readableKoreanFormatter.string(from: createdAt),
-                                total: Int(total),
-                                count: Int(correct),
-                                percent: Int(percent)
-                            )
-                        }
+                    NavigationLink(
+                        destination: ReportDetailView(
+                            selectedReport: report)
+                    ) {
+                        ReportSummaryCardView(
+                            measureDate: report.formattedDateFull,
+                            total: report.totalCount,
+                            count: report.correctCount,
+                            percent: report.percent
+                        )
                     }
                 }
             }

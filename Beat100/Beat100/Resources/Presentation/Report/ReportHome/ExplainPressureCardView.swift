@@ -12,7 +12,7 @@ struct ExplainPressureCardView: View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(.gray400, style: .init(lineWidth: 0.4))
-                .foregroundStyle(Color.clear)
+                .background(Color.white)
                 
             ExplainPressureTextView
                 .padding(.leading, 20)
