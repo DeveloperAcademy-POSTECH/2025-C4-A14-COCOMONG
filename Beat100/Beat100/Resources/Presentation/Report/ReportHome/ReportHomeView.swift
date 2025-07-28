@@ -20,24 +20,29 @@ struct ReportHomeView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: 20) {
-                    ExplainPressureCardView()
-                    
-                    YearMonthReportCardListView
-                }
-                .padding(.all, 16)
-                .padding(.bottom, 20)
-                .navigationTitle(Constants.ReportHomeText.navTitle)
-                .navigationBarTitleDisplayMode(.large)
-                .task { // extension 메서드로 전체 리포트 가져오기
-                    do {
-                        let allReports = try CprReport.fetchAll(in: context)
-                        groupedReports = try CprReport.groupedByYearMonth(cprReports: allReports)
-                        print("CPR Reports loaded: \(allReports.count)")
-                    } catch {
-                        print("Failed to load reports: \(error)")
+            Group {
+                if groupedReports.isEmpty {
+                    NoReportTextView
+                } else {
+                    ScrollView {
+                        VStack(spacing: 20) {
+                            ExplainPressureCardView()
+                            YearMonthReportCardListView
+                        }
+                        .padding(.all, 16)
+                        .padding(.bottom, 20)
                     }
+                }
+            }
+            .navigationTitle(Constants.ReportHome.navTitle)
+            .navigationBarTitleDisplayMode(.large)
+            .task {
+                do {
+                    let allReports = try CprReport.fetchAll(in: context)
+                    groupedReports = try CprReport.groupedByYearMonth(cprReports: allReports)
+                    print("CPR Reports loaded: \(allReports.count)")
+                } catch {
+                    print("Failed to load reports: \(error)")
                 }
             }
         }
@@ -78,5 +83,13 @@ struct ReportHomeView: View {
                 }
             }
         }
+    }
+    
+    private var NoReportTextView: some View {
+        Text(Constants.ReportHome.noReportText)
+            .multilineTextAlignment(.center)
+            .font(.nanumSquareNeo(type: .heavy, size: 16))
+            .foregroundStyle(Color.gray800)
+            .lineSpacing(8)
     }
 }

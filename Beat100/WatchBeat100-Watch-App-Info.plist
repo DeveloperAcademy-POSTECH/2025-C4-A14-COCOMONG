@@ -10,11 +10,5 @@
 		<string>NanumSquareNeo-dEb.ttf</string>
 		<string>NanumSquareNeo-eHv.ttf</string>
 	</array>
-	<key>UIBackgroundModes</key>
-	<array/>
-	<key>WKBackgroundModes</key>
-	<array>
-		<string>workout-processing</string>
-	</array>
 </dict>
 </plist>

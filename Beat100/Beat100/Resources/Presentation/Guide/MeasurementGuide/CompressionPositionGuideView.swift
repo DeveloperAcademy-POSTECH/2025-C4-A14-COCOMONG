@@ -48,7 +48,7 @@ private struct Content: View {
                 .cornerRadius(10)
             
             Text(bodyText)
-                .font(.system(size: 16))
+                .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.black)
         }

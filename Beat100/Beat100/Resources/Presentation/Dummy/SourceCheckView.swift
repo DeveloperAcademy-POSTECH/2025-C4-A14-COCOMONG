@@ -63,6 +63,19 @@ struct SourceCheckView: View {
                        let parsed = try? JSONDecoder().decode([AccelerationData].self, from: data) {
                         self.MeasureLogs = parsed
                         print("\(parsed.count) items")
+                        
+                        // 분석 및 저장 로직
+                        Task {
+                            let result = ReportAnalyzerService.analyze(from: parsed)
+                            
+                            do {
+                                let context = PersistenceController.shared.container.viewContext
+                                let report = try await ReportAnalyzerService.save(to: context, result: result, cycleCount: selectedNumber)
+                                print("저장 성공: \(report)")
+                            } catch {
+                                print("저장 실패: \(error)")
+                            }
+                        }
                     } else {
                         print("디코딩 실패")
                     }
