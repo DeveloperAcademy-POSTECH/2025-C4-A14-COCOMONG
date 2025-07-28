@@ -60,9 +60,11 @@ private struct Content: View {
                     description: Constants.CPRGuideText.Step5.description
                 )
             }
-            .padding(.horizontal, 20)
+            .padding(.leading, 20)
+            .padding(.trailing, 18)
             .padding(.bottom, 69)
         }
+        .padding(.trailing, 2)
     }
 }
 
