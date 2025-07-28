@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RiveRuntime
 
 struct AppMechanismGuideView: View {
     @Binding var isPresented: Bool
@@ -38,6 +39,7 @@ struct AppMechanismGuideView: View {
 private struct Content: View {
     let titleText = Constants.AppMechanismGuideText.title
     let bodyText = Constants.AppMechanismGuideText.body
+    let illustration: (fileName: String, width: CGFloat, height: CGFloat) = (fileName: "guide1", width: 1978, height: 1080)
     
     var body: some View {
         VStack(spacing: 22) {
@@ -45,16 +47,17 @@ private struct Content: View {
                 .font(.nanumSquareNeo(type: .heavy, size: 28))
                 .foregroundColor(.black)
             
-            //TODO: 실제 애니메이션으로 교체하기
-            Rectangle()
-                .foregroundColor(.gray)
-                .frame(height: 197)
-                .cornerRadius(10)
+            GeometryReader { geometry in
+                RiveViewModel(fileName: illustration.fileName)
+                    .view()
+                    .frame(width: geometry.size.width)
+            }
+            .aspectRatio(illustration.width / illustration.height, contentMode: .fit)
             
             Text(bodyText)
-            .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
-            .multilineTextAlignment(.center)
-            .foregroundColor(.black)
+                .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
+                .multilineTextAlignment(.center)
+                .foregroundColor(.black)
         }
     }
 }
@@ -62,9 +65,9 @@ private struct Content: View {
 private struct Disclaimer: View {
     var body: some View {
         Text(Constants.AppMechanismGuideText.disclaimer)
-        .font(.system(size: 12))
-        .multilineTextAlignment(.center)
-        .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
+            .font(.system(size: 12))
+            .multilineTextAlignment(.center)
+            .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
     }
 }
 

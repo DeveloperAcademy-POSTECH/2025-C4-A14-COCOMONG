@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import RiveRuntime
 
 struct MeasurementStartView: View {
     @Binding var isPresented: Bool
     @AppStorage("guideViewed") var guideViewed: Bool = false
+    let illustration: (fileName: String, width: CGFloat, height: CGFloat) = (fileName: "guide5", width: 393, height: 237)
     let ConnectivityManager = WatchConnectivityManager.shared
     
     var body: some View {
@@ -18,9 +20,12 @@ struct MeasurementStartView: View {
                 .padding(.top, 8)
             
             VStack(spacing: 32) {
-                //TODO: 실제 애니메이션으로 교체하기
-                Rectangle()
-                    .frame(height: 237)
+                GeometryReader { geometry in
+                    RiveViewModel(fileName: illustration.fileName)
+                        .view()
+                        .frame(width: geometry.size.width)
+                }
+                .aspectRatio(illustration.width / illustration.height, contentMode: .fit)
                 
                 VStack {
                     Content()
