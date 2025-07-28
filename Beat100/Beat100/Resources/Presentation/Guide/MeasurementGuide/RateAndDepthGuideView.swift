@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RiveRuntime
 
 struct RateAndDepthGuideView: View {
     @Binding var isPresented: Bool
@@ -33,6 +34,7 @@ struct RateAndDepthGuideView: View {
 
 private struct Content: View {
     let titleText = Constants.RateAndDepthGuideText.title
+    let illustration: (fileName: String, width: CGFloat, height: CGFloat) = (fileName: "guide4", width: 1978, height: 1080)
     
     var body: some View {
         VStack(spacing: 22) {
@@ -40,11 +42,12 @@ private struct Content: View {
                 .font(.nanumSquareNeo(type: .heavy, size: 28))
                 .foregroundColor(.black)
             
-            //TODO: 실제 애니메이션으로 교체하기
-            Rectangle()
-                .foregroundColor(.gray)
-                .frame(height: 197)
-                .cornerRadius(10)
+            GeometryReader { geometry in
+                RiveViewModel(fileName: illustration.fileName)
+                    .view()
+                    .frame(width: geometry.size.width)
+            }
+            .aspectRatio(illustration.width / illustration.height, contentMode: .fit)
             
             VStack(alignment: .leading, spacing: 16) {
                 HStack(alignment: .top, spacing: 3) {
