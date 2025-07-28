@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RiveRuntime
 
 struct CompressionPositionGuideView: View {
     @Binding var isPresented: Bool
@@ -34,6 +35,7 @@ struct CompressionPositionGuideView: View {
 private struct Content: View {
     let titleText = Constants.CompressionPositionGuideText.title
     let bodyText = Constants.CompressionPositionGuideText.body
+    let illustration: (fileName: String, width: CGFloat, height: CGFloat) = (fileName: "guide3", width: 1978, height: 1080)
     
     var body: some View {
         VStack(spacing: 22) {
@@ -41,11 +43,12 @@ private struct Content: View {
                 .font(.nanumSquareNeo(type: .heavy, size: 28))
                 .foregroundColor(.black)
             
-            //TODO: 실제 애니메이션으로 교체하기
-            Rectangle()
-                .foregroundColor(.gray)
-                .frame(height: 197)
-                .cornerRadius(10)
+            GeometryReader { geometry in
+                RiveViewModel(fileName: illustration.fileName)
+                    .view()
+                    .frame(width: geometry.size.width)
+            }
+            .aspectRatio(illustration.width / illustration.height, contentMode: .fit)
             
             Text(bodyText)
                 .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
