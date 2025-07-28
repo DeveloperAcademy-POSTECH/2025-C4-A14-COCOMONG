@@ -3,7 +3,7 @@
 //  Beat100
 //
 //  Created by 이현주 on 7/15/25.
-//
+//r
 
 import SwiftUI
 
@@ -16,7 +16,8 @@ struct Beat100App: App {
     
     var body: some Scene {
         WindowGroup {
-            SourceCheckView()
+            MainTabView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

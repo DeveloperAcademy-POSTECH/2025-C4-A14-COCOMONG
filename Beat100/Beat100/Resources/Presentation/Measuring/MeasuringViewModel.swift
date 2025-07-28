@@ -12,9 +12,13 @@ class MeasuringViewModel: ObservableObject {
     let motionManager = CMMotionManager()
     private let manager = WatchConnectivityManager.shared
     
-    struct LogEntry: Codable {
+    struct LogEntry: Codable, CustomStringConvertible {
         let timestamp: TimeInterval
         let zValue: Double
+        
+        var description: String {
+            "LogEntry(timestamp: \(timestamp), zValue: \(zValue))"
+        }
     }
 
     @Published var logs: [LogEntry] = []
