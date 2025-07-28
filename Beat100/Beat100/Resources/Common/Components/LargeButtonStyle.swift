@@ -13,7 +13,7 @@ struct LargeButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(size: 17, weight: .semibold))
-            .foregroundColor(foregroundColor)
+            .foregroundColor(configuration.isPressed ? foregroundColor.opacity(0.25) : foregroundColor)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .frame(height: 56)
             .background(backgroundColor)
