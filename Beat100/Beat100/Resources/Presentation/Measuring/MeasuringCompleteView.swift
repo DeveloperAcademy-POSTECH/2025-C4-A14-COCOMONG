@@ -10,7 +10,7 @@ import SwiftUI
 struct MeasuringCompleteView: View {
     #if os(iOS)
     @Binding var selectedNumber: Int
-    @StateObject var notificationFunction = NotificationFunction()
+    @StateObject private var notificationFunction = NotificationFunction()
     #elseif os(watchOS)
     @StateObject private var watchNotificationFunction = WatchNotificationFunction()
     #endif
@@ -36,14 +36,9 @@ struct MeasuringCompleteView: View {
             .disabledToolbar()
         }
 #if os(iOS)
-        .onAppear {
-            notificationFunction.setupNotificationObservers()
-        }
-        .onReceive(notificationFunction.$isMeasuringComplete) { newValue in
-            print("받음? \(newValue)")
-            if newValue {
-                onComplete()
-            }
+        .onReceive(NotificationCenter.default.publisher(for: .measuringComplete)) { _ in
+            print("📬 Notification received directly!")
+            onComplete()
         }
 #elseif os(watchOS)
         .onAppear {

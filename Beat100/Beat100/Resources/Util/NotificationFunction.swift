@@ -54,8 +54,7 @@ class NotificationFunction: ObservableObject {
                     self.ConnectivityManager.sendMessage([
                         "MeasuringCompleteFlag": true,
                     ])
-                    self.isMeasuringComplete.toggle()
-                    print("✅ isMeasuringComplete 바뀜: \(self.isMeasuringComplete)")
+                    NotificationCenter.default.post(name: .measuringComplete, object: nil)
                 } catch {
                     print("저장 실패: \(error)")
                 }
