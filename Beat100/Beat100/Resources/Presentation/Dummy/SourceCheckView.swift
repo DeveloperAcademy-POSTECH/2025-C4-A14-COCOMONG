@@ -7,16 +7,9 @@
 
 import SwiftUI
 
-struct AccelerationData: Codable, Identifiable {
-    var id: TimeInterval { timestamp } // For List
-    let zValue: Double
-    let timestamp: Double
-}
-
 struct SourceCheckView: View {
     @State private var iosshowingMeasuringModal: Bool = false
     @State private var MeasureLogs: [AccelerationData] = []
-    @State private var TextAmount: Int = 0
     @State var selectedNumber: Int = 1
     
     var body: some View {

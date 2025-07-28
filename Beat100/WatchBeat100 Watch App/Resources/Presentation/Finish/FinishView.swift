@@ -13,39 +13,49 @@ struct FinishView: View {
     
     var body: some View {
         NavigationStack{
-            ZStack{
-                Color.black
-                    .edgesIgnoringSafeArea(.all)
-                VStack(spacing: 0){
-                    Text("측정 완료")
-                        .font(.system(size: 14, weight: .bold))
-                    
-                    Text("\(selectedNumber)사이클")
-                        .font(.system(size: 10, weight: .bold))
-                        .padding(.bottom, 10)
-                    
-                    Image("Beat100_Check")
-                        .frame(width:75, height: 75)
-                        .padding(.horizontal, 46)
-                        .padding(.bottom, 10)
-                    
-                    Text("iPhone의 BEAT100 앱에서")
-                        .font(.system(size: 12))
-                        .multilineTextAlignment(.center)
-                    Text("CPR 피드백을 확인하세요.")
-                        .font(.system(size: 12))
-                        .multilineTextAlignment(.center)
-                    
-                }
-                .padding(.horizontal, 8.5)
-                .toolbar{
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button{
-                            //TODO: 유저플로우 대로 Navigation 조정 예정
-                        } label: {
-                            Image(systemName: "xmark")
+            ScrollView{
+                ZStack{
+                    Color.black
+                        .edgesIgnoringSafeArea(.all)
+                    VStack(spacing: 0){
+                        Text("리포트 생성 완료")
+                            .font(.nanumSquareNeo(type: .heavy, size: 14))
+                            .padding(.bottom, 5)
+                        
+                        Text("\(selectedNumber)사이클")
+                            .font(.nanumSquareNeo(type: .heavy, size: 10))
+                            .padding(.bottom, 10)
+                        
+                        Image("Beat100_Check")
+                            .frame(width:75, height: 75)
+                            .padding(.horizontal, 46)
+                            .padding(.bottom, 10)
+                        
+                        Text("iPhone의 BEAT100 앱에서")
+                            .font(.system(size: 12))
+                            .multilineTextAlignment(.center)
+                        Text("CPR 피드백을 확인하세요.")
+                            .font(.system(size: 12))
+                            .multilineTextAlignment(.center)
+                        
+                        Button(action: {
+                            onComplete()
+                        }) {
+                            Text("완료")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundStyle(.black)
                         }
+                        .background(.beatBlue)
+                        .clipShape(RoundedRectangle(cornerRadius: 100))
+                        .padding(.top, 24)
+                        .padding(.horizontal, 10)
+                        
                     }
+                    .padding(.horizontal, 8.5)
+                    .padding(.bottom, 30)
+                    
+                    Spacer()
+                    .disabledToolbar()
                 }
             }
         }

@@ -12,6 +12,7 @@ struct MeasurementStartView: View {
     @Binding var isPresented: Bool
     @AppStorage("guideViewed") var guideViewed: Bool = false
     let illustration: (fileName: String, width: CGFloat, height: CGFloat) = (fileName: "guide5", width: 393, height: 237)
+    let ConnectivityManager = WatchConnectivityManager.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -32,6 +33,9 @@ struct MeasurementStartView: View {
                     Button(Constants.MeasurementStartText.startButtonText) {
                         guideViewed = true
                         isPresented = false
+                        ConnectivityManager.sendMessage([
+                            "GuideFinishFlag": true,
+                        ])
                     }
                     .largeButtonStyle(.complete)
                 }

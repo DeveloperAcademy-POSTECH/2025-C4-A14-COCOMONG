@@ -63,4 +63,15 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
             )
         }
     }
+    
+    func sendMessage(_ message: [String: Any]) {
+            let session = WCSession.default
+            if session.isReachable {
+                session.sendMessage(message, replyHandler: nil, errorHandler: { error in
+                    print("sendMessage error: \(error.localizedDescription)")
+                })
+            } else {
+                print("WCSession is not reachable.")
+            }
+        }
 }

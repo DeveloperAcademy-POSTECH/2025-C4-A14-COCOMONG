@@ -67,7 +67,12 @@ struct MeasuringView: View {
         .onDisappear {
             viewModel.stopAnimating()
         }
-        .disabledToolbar()
+        .toolbar{
+            ToolbarItem(placement: .cancellationAction) {
+                Button("취소"){}
+                    .tint(.gray900)
+            }
+        }
     }
 #endif
 }
