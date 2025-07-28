@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct iOSMeasuringFlowView: View {
+    @EnvironmentObject var appState: AppState
     var selectedNumber: Int
     @Environment(\.dismiss) private var dismiss
     @State private var step: iOSMeasuringStep = .countdown
@@ -24,7 +25,7 @@ struct iOSMeasuringFlowView: View {
                     step = .measuringComplete
                 }
             case .measuringComplete:
-                MeasuringCompleteView {
+                MeasuringCompleteView(selectedNumber: .constant(selectedNumber)) {
                     dismiss()
                 }
             }

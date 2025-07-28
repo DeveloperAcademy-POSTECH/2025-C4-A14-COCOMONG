@@ -24,7 +24,7 @@ struct MeasuringFlowView: View {
                     step = .measuringComplete
                 }
             case .measuringComplete:
-                MeasuringCompleteView {
+                MeasuringCompleteView() {
                     step = .finish
                 }
             case .finish:

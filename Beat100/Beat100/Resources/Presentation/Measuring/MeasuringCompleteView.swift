@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct MeasuringCompleteView: View {
+    #if os(iOS)
+    @Binding var selectedNumber: Int
+    #endif
+    
     var onComplete: () -> Void
     private let config = MeasuringCompleteConfig.current
     
@@ -34,8 +38,4 @@ struct MeasuringCompleteView: View {
             .disabledToolbar()
         }
     }
-}
-
-#Preview {
-    MeasuringCompleteView(onComplete: {})
 }

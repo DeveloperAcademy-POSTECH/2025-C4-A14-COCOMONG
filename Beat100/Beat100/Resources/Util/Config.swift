@@ -42,3 +42,9 @@ struct MeasuringConfig {
     static let heartScaleSmall: CGFloat = 0.25
     static let heartScaleLarge: CGFloat = 0.1
 }
+
+struct AccelerationData: Codable, Identifiable {
+    var id: TimeInterval { timestamp }
+    let zValue: Double
+    let timestamp: Double
+}
