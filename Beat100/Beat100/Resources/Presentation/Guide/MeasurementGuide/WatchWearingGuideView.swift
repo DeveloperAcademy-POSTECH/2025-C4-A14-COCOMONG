@@ -60,7 +60,7 @@ private struct Content: View {
                 }
             }
             .padding(.horizontal, 6.5)
-            .font(.system(size: 16))
+            .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
             .foregroundColor(.black)
         }
     }
