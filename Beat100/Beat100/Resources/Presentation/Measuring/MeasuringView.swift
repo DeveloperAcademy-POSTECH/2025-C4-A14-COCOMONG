@@ -35,7 +35,10 @@ struct MeasuringView: View {
     }
 #elseif os(watchOS)
     @Binding var selectedNumber: Int
+    @Environment(\.dismiss) private var dismiss
     var onComplete: () -> Void
+    
+    let ConnectivityManager = WatchConnectivityManager.shared
     
     var body: some View {
         GeometryReader { geometry in
@@ -69,7 +72,13 @@ struct MeasuringView: View {
         }
         .toolbar{
             ToolbarItem(placement: .cancellationAction) {
-                Button("취소"){}
+                Button("취소"){
+                    ConnectivityManager.sendMessage([
+                        "MeasuringCancelFlag": true,
+                    ])
+                    viewModel.reset()
+                    dismiss()
+                }
                     .tint(.gray900)
             }
         }

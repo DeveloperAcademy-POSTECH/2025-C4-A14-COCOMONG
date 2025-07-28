@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct Beat100App: App {
-    @StateObject var appState = AppState()
     @StateObject var notificationFunction = NotificationFunction()
     init() {
         _ = WatchConnectivityManager.shared
@@ -20,14 +19,17 @@ struct Beat100App: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
-                .environmentObject(appState)
+                .environmentObject(notificationFunction)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .onAppear {
-                    notificationFunction.setupNotificationObservers()
+                    notificationFunction.observeSelectedNumber()
+                    notificationFunction.observeMeasureStart()
+                    notificationFunction.observeDidReceiveAllLogs()
+                    notificationFunction.observeMeasuringCancel()
                 }
                 .fullScreenCover(isPresented: $notificationFunction.showingMeasuringModal) {
                     iOSMeasuringFlowView(selectedNumber: notificationFunction.selectedNumber)
-                        .environmentObject(appState)
+                        .environmentObject(notificationFunction)
                 }
         }
     }

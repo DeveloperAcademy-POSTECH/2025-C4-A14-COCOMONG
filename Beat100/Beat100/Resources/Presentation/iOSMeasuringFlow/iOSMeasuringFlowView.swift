@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct iOSMeasuringFlowView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var notificationFunction: NotificationFunction
     var selectedNumber: Int
     @Environment(\.dismiss) private var dismiss
     @State private var step: iOSMeasuringStep = .countdown
@@ -23,6 +23,11 @@ struct iOSMeasuringFlowView: View {
             case .measuring:
                 MeasuringView(selectedNumber: .constant(selectedNumber)) {
                     step = .measuringComplete
+                }
+                .onReceive(notificationFunction.$isMeasuringCancel) { isCancelled in
+                    if isCancelled {
+                        dismiss()
+                    }
                 }
             case .measuringComplete:
                 MeasuringCompleteView(selectedNumber: .constant(selectedNumber)) {

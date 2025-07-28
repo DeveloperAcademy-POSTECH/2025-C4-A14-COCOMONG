@@ -55,6 +55,14 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
                 )
         }
         
+        if let flag = message["MeasuringCancelFlag"] as? NSNumber, flag.boolValue {
+            NotificationCenter.default.post(
+                name: Notification.Name("MeasuringCancelNotification"),
+                object: nil,
+                userInfo: message
+            )
+        }
+        
         if let jsonString = message["allLogs"] as? String {
             NotificationCenter.default.post(
                 name: Notification.Name("didReceiveAllLogs"),

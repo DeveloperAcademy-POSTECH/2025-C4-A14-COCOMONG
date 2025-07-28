@@ -36,9 +36,12 @@ struct MeasuringCompleteView: View {
             .disabledToolbar()
         }
 #if os(iOS)
-        .onReceive(NotificationCenter.default.publisher(for: .measuringComplete)) { _ in
-            print("📬 Notification received directly!")
-            onComplete()
+        .onAppear {
+            print("✅ MeasuringCompleteView .onAppear 실행됨")
+            print("지금 뷰 시작")
+            notificationFunction.observeMeasuringComplete(onComplete: onComplete)
+            print("지금 noti: \(Notification.Name.measuringComplete.rawValue)")
+            notificationFunction.observeDidReceiveAllLogs()
         }
 #elseif os(watchOS)
         .onAppear {

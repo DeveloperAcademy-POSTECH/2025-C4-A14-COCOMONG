@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct RootFlowView: View {
-    var isGuideFinish: Bool
+    @AppStorage("hasSeenGuide") var hasSeenGuide: Bool = false
     
     var body: some View {
-        if isGuideFinish {
+        if hasSeenGuide {
             ChooseCycleView()
         } else {
             BeforeWatchView()

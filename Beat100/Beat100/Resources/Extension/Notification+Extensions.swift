@@ -7,5 +7,5 @@
 import Foundation
 
 extension Notification.Name {
-    static let measuringComplete = Notification.Name("MeasuringComplete")
+    static let measuringComplete = Notification.Name("measuringComplete")
 }
