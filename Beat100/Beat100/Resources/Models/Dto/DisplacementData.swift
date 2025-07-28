@@ -19,7 +19,7 @@ struct RhythmAnalysisResult {
     let compressions: [DisplacementData]
     let releases: [DisplacementData]
     let bpmPoints: [DisplacementData]        // 분석용 인스턴탄이여 속도
-    let relativeBPMData: [DisplacementData]  // 시간 보정된 bpm points
+    let relativeBPMData: [(time: Double, bpm: Double)]
     let avgBPM: Double
     let stdDev: Double
     let total: Int

@@ -42,10 +42,12 @@ struct PaceSectionView: View {
     private var PaceChartView: some View {
         Chart {
             ForEach(cprReport.cprCycleList[selectedIndex].bpmSeries, id: \.self) { point in
-                PointMark(
+                LineMark(
                     x: .value("Time", point.time),
                     y: .value("BPM", point.bpm)
                 )
+                .interpolationMethod(.monotone)
+                .foregroundStyle(Color.beatMint)
             }
             // 기준선 (110)
             RuleMark(y: .value("Threshold", 110))
@@ -65,6 +67,7 @@ struct PaceSectionView: View {
                 }
             }
         }
+        .chartXScale(domain: 0...15)
         .chartYScale(domain: 90...130)
         .chartScrollableAxes(.horizontal)
         .frame(height: 150)

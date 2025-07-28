@@ -42,9 +42,10 @@ struct ReportAnalyzerService {
         )
         
         let bpmInstant = RhythmAnalyzer.calculateInstantaneousBPMs(from: peaks)
-        let relativeBPMData = bpmInstant.map {
-            DisplacementData(timestamp: $0.time - startTime, displacement: $0.bpm)
-        }
+//        let relativeBPMData = bpmInstant.map {
+//            DisplacementData(timestamp: $0.time - startTime, displacement: $0.bpm)
+//        }
+        let relativeBPMData = bpmInstant.map { (time: $0.time - startTime, bpm: $0.bpm) }
         
         let (avgBPM, stdDev) = RhythmAnalyzer.calculateBPM(from: peaks)
         let (total, valid, percent) = ReportSummary.countValidCPRSets(compressions: compressions, releases: releases)
@@ -88,21 +89,47 @@ struct ReportAnalyzerService {
                 totalNumber: Int16(summary.total)
             )
             
-            let bpmPoints = NSSet(array: pair.compressions.enumerated().compactMap { idx, point in
-                guard result.bpmPoints.indices.contains(idx) else { return nil }
-                return BpmPoint(
-                    context: context,
-                    time: point.timestamp,
-                    bpm: result.bpmPoints[idx].displacement
-                )
-            })
+//            let startTime = pair.compressions.first?.timestamp ?? 0
+//            let endTime = pair.releases.last?.timestamp ?? 0
+
+            let bpmPoints = NSSet(array:
+                zip(pair.compressions, result.bpmPoints)
+                    .enumerated()
+                    .compactMap { idx, zipped in
+                        let (_, bpmPoint) = zipped
+                        return BpmPoint(
+                            context: context,
+                            time: bpmPoint.timestamp, // 또는 bpmPoint.time (형태에 따라)
+                            bpm: bpmPoint.displacement // 또는 bpmPoint.bpm
+                        )
+                    }
+            )
+
             
-            let depthPoints = NSSet(array: pair.compressions.enumerated().map { idx, point in
-                DepthPoint(
-                    context: context,
-                    compressionNumber: Double(idx + 1),
-                    depth: point.displacement
-                )
+//            let bpmStartIndex = offset * 30
+//            let bpmEndIndex = min(bpmStartIndex + 30, result.bpmPoints.count)
+//            let slicedBPMs = result.bpmPoints[bpmStartIndex..<bpmEndIndex]
+//
+//            let bpmPoints = NSSet(array: slicedBPMs.map {
+//                BpmPoint(context: context, time: $0.timestamp, bpm: $0.displacement)
+//            })
+
+
+            
+            let depthPoints = NSSet(array: pair.compressions.enumerated().compactMap { idx, compression in
+                let release = pair.releases[idx]
+                return [
+                    DepthPoint(
+                        context: context,
+                        compressionNumber: Double(idx * 2 + 1), // 압박: 홀수
+                        depth: compression.displacement
+                    ),
+                    DepthPoint(
+                        context: context,
+                        compressionNumber: Double(idx * 2 + 2), // 이완: 짝수
+                        depth: release.displacement
+                    )
+                ]
             })
             
             return CprCycle(
