@@ -7,13 +7,11 @@
 
 import SwiftUI
 
-
-
-struct LargeButtonStyle: ViewModifier {
+struct LargeButtonStyle: ButtonStyle {
     let type: LargeButtonType
     
-    func body(content: Content) -> some View {
-        content
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
             .font(.system(size: 17, weight: .semibold))
             .foregroundColor(foregroundColor)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -41,15 +39,9 @@ struct LargeButtonStyle: ViewModifier {
     }
 }
 
-extension View {
-    func largeButtonStyle(_ role: LargeButtonType = .normal) -> some View {
-        modifier(LargeButtonStyle(type: role))
-    }
-}
-
 #Preview {
     Button("다음") {}
-        .largeButtonStyle()
+        .buttonStyle(LargeButtonStyle(type: .normal))
     Button("다음") {}
-        .largeButtonStyle(.complete)
+        .buttonStyle(LargeButtonStyle(type: .complete))
 }

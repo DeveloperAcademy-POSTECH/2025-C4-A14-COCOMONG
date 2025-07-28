@@ -37,7 +37,7 @@ struct MeasurementStartView: View {
                             "GuideFinishFlag": true,
                         ])
                     }
-                    .largeButtonStyle(.complete)
+                    .buttonStyle(LargeButtonStyle(type: .complete))
                 }
                 .padding(.horizontal, 16)
             }
