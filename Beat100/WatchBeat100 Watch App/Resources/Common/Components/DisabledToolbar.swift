@@ -11,8 +11,8 @@ struct DisabledToolbar: ViewModifier {
     func body(content: Content) -> some View {
         content.toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("") { }
-                    .tint(Color.black)
+                Button(""){}
+                    .hidden()
                     .disabled(true)
             }
         }

@@ -10,7 +10,7 @@ import SwiftUI
 struct ChooseCycleView: View {
     @State var selectedNumber: Int = 1
     @ObservedObject var viewModel: ChooseCycleViewModel = .init()
-    let manager = WatchConnectivityManager.shared
+    let ConnectivityManager = WatchConnectivityManager.shared
     
     var body: some View {
         NavigationStack{
@@ -26,32 +26,12 @@ struct ChooseCycleView: View {
                 }
                 .defaultWheelPickerItemHeight(40)
                 .frame(width: 85, height: 85)
-                .background(LinearGradient(
-                    gradient: Gradient(stops: [
-                        .init(color: .beatPink, location: 0.0),
-                        .init(color: .beatPink, location: 0.25),
-                        .init(color: .beatBlue, location: 1.0)
-                    ]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ).opacity(0.25)
+                .background(
+                    PickerGradientBackgroundColor()
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 13))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 13)
-                        .stroke(
-                            LinearGradient(
-                                gradient: Gradient(stops: [
-                                    .init(color: .beatPink, location: 0.0),
-                                    .init(color: .beatPink, location: 0.25),
-                                    .init(color: .beatBlue, location: 1.0)
-                                ]),
-                                startPoint: .topTrailing,
-                                endPoint: .bottomLeading
-                            ),
-                            lineWidth: 2
-                        )
-                        .frame(width:84, height:84)
+                    PickerGradientOverlay()
                 )
                 .labelsHidden()
                 .pickerStyle(.wheel)
@@ -59,7 +39,7 @@ struct ChooseCycleView: View {
                 VStack{
                     Button(action: {
                         viewModel.showingMeasuringModal.toggle()
-                        manager.sendMessage([
+                        ConnectivityManager.sendMessage([
                             "MeasureStartFlag": true,
                             "selectedNumber": selectedNumber
                         ])

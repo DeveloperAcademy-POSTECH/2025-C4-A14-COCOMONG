@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @EnvironmentObject var appState: AppState
+    
     var body: some View {
         TabView {
             Tab("가이드", systemImage: "book.fill") {
