@@ -34,5 +34,5 @@ struct iOSMeasuringFlowView: View {
 }
 
 #Preview {
-    MeasuringFlowView(selectedNumber: 1)
+    iOSMeasuringFlowView(selectedNumber: 1)
 }
