@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A703C9562E374C9B00903AFC /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = A703C9552E374C9B00903AFC /* RiveRuntime */; };
 		CF09C9EF2E266A7700E11198 /* WatchBeat100 Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CF09C9E52E266A7600E11198 /* WatchBeat100 Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A703C9562E374C9B00903AFC /* RiveRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +158,7 @@
 			);
 			name = Beat100;
 			packageProductDependencies = (
+				A703C9552E374C9B00903AFC /* RiveRuntime */,
 			);
 			productName = Beat100;
 			productReference = CF09C8D82E26666000E11198 /* Beat100.app */;
@@ -211,6 +214,7 @@
 			mainGroup = CF09C8CF2E26666000E11198;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				A703C9542E374C9B00903AFC /* XCRemoteSwiftPackageReference "rive-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CF09C8D92E26666000E11198 /* Products */;
@@ -550,6 +554,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A703C9542E374C9B00903AFC /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A703C9552E374C9B00903AFC /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A703C9542E374C9B00903AFC /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CF09C8D02E26666000E11198 /* Project object */;
 }
