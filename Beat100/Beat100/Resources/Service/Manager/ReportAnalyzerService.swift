@@ -58,7 +58,7 @@ struct ReportAnalyzerService {
     
     /// 저장 함수: analyze 결과를 Core Data로 저장
     @MainActor
-    static func save(to context: NSManagedObjectContext, result: RhythmAnalysisResult) async throws -> CprReport {
+    static func save(to context: NSManagedObjectContext, result: RhythmAnalysisResult, cycleCount: Int) async throws -> CprReport {
         let totalAccuracy = TotalAccuracy(
             context: context,
             correctNumber: Int16(result.valid),
@@ -70,7 +70,8 @@ struct ReportAnalyzerService {
             releases: result.releases
         )
         
-        let cycles: [CprCycle] = cyclePairs.enumerated().map { offset, pair in
+        let limitedCycles = Array(cyclePairs.prefix(cycleCount))
+        let cycles: [CprCycle] = limitedCycles.enumerated().map { offset, pair in
             let summary = ReportSummary.countValidCPRSets(
                 compressions: pair.compressions, releases: pair.releases
             )
@@ -108,7 +109,7 @@ struct ReportAnalyzerService {
         return try await CprReport.create(
             context: context,
             totalAccuracy: totalAccuracy,
-            numberOfCycles: Int16(cycles.count),
+            numberOfCycles: Int16(cycleCount),
             cycles: cycles
         )
     }
