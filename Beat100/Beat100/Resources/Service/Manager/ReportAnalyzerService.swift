@@ -12,7 +12,7 @@ struct ReportAnalyzerService {
     
     /// 분석 함수: rawData → RhythmAnalysisResult 생성
     static func analyze(from rawData: [AccelerationData]) -> RhythmAnalysisResult {
-        let estimator = DepthEstimator(sampleRate: 25.0)
+        let estimator = DepthEstimator(sampleRate: 23.1)
         let depthData = estimator.estimateDepth(from: rawData)
         guard !depthData.isEmpty else { return .empty }
         
@@ -24,13 +24,20 @@ struct ReportAnalyzerService {
         let displacements = depthData.map { $0.displacement }
         let timestamps = depthData.map { $0.timestamp }
         
-        let peaks = RhythmAnalyzer.detectPeaks(from: displacements, timestamps: timestamps)
-        let valleys = RhythmAnalyzer.detectValleys(from: displacements, timestamps: timestamps)
+        let valleyIndices = RhythmAnalyzer.detectValleyIndices(from: displacements)
+        let peaks = RhythmAnalyzer.detectPeaksBetweenValleys(
+            signal: displacements,
+            timestamps: timestamps,
+            valleyIndices: valleyIndices
+        )
+        let valleys = valleyIndices.map { timestamps[$0] }
+        
         let relativePeaks = peaks.map { $0 - startTime }
+        let relativeValleys = valleys.map { $0 - startTime }
         
         let (compressions, releases) = DepthEstimator.calculateInterpolatedCompressionAndReleaseDepths(
             peakTimes: relativePeaks,
-            valleyTimes: valleys.map { $0 - startTime },
+            valleyTimes: relativeValleys,
             from: relativeDepth
         )
         
