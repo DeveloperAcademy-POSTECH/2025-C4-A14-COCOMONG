@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct WatchBeat100_Watch_AppApp: App {
+    @StateObject var notificationFunction = WatchNotificationFunction()
+    
     var body: some Scene {
         WindowGroup {
-            ChooseCycleView()
+            RootFlowView(isGuideFinish: notificationFunction.isGuideFinish)
+                .onAppear {
+                    notificationFunction.setupNotificationObservers()
+                }
         }
     }
 }

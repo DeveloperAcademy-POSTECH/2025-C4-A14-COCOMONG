@@ -52,4 +52,24 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
                 print("WCSession is not reachable.")
             }
         }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        print("iOS received message: \(message)")
+        
+        if let flag = message["GuideFinishFlag"] as? NSNumber, flag.boolValue {
+            NotificationCenter.default.post(
+                name: Notification.Name("GuideFinishNotification"),
+                object: nil,
+                userInfo: message
+            )
+        }
+        
+        if let flag = message["MeasuringCompleteFlag"] as? NSNumber, flag.boolValue {
+            NotificationCenter.default.post(
+                name: Notification.Name("MeasuringCompleteNotification"),
+                object: nil,
+                userInfo: message
+            )
+        }
+    }
 }

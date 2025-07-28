@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Beat100App: App {
     @StateObject var appState = AppState()
-    @StateObject var notificationFunction = NotificationFunction() // 추가
+    @StateObject var notificationFunction = NotificationFunction()
     init() {
         _ = WatchConnectivityManager.shared
     }
