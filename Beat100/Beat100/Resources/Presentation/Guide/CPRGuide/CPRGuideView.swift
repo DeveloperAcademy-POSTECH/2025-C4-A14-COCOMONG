@@ -9,19 +9,30 @@ import SwiftUI
 
 struct CPRGuideView: View {
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
-            CustomNavigationBar(title: {
-                Text(Constants.CPRGuideText.navTitle)
-            })
+        VStack(alignment: .center, spacing: 10) {
+            TopBar()
             Content()
         }
         .background(.gray200)
     }
 }
 
+private struct TopBar: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            Text(Constants.CPRGuideText.topBarTitle)
+                .font(.system(size: 16, weight: .bold))
+            Spacer()
+        }
+        .padding(.vertical, 11)
+        .padding(.horizontal, 16)
+    }
+}
+
 private struct Content: View {
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        ScrollView() {
             VStack(alignment: .leading, spacing: 24) {
                 Step(
                     imageResource: .guide1,
@@ -49,14 +60,11 @@ private struct Content: View {
                     description: Constants.CPRGuideText.Step5.description
                 )
             }
-            .padding(.top, 40)
-            .padding(.bottom, 102)
             .padding(.horizontal, 20)
+            .padding(.bottom, 69)
         }
     }
 }
-
-
 
 #Preview {
     CPRGuideView()

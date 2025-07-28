@@ -118,7 +118,7 @@ struct Constants {
     
     //MARK: - CPRGuide
     struct CPRGuideText {
-        static let navTitle = "CPR 전체 가이드라인"
+        static let topBarTitle = "CPR 전체 가이드라인"
         
         struct Step1 {
             static let title = "1단계 : 환자의 반응과 호흡 확인"
