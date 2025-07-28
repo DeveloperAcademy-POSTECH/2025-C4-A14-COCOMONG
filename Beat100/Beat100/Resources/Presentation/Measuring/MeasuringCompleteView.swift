@@ -10,6 +10,9 @@ import SwiftUI
 struct MeasuringCompleteView: View {
     #if os(iOS)
     @Binding var selectedNumber: Int
+    @StateObject var notificationFunction = NotificationFunction()
+    #elseif os(watchOS)
+    @StateObject private var watchNotificationFunction = WatchNotificationFunction()
     #endif
     
     var onComplete: () -> Void
@@ -28,14 +31,29 @@ struct MeasuringCompleteView: View {
                 Text("리포트를 생성중입니다")
                     .foregroundStyle(Color.white)
                     .font(.system(size: config.fontSize, weight: .heavy))
-                
-                //TODO: 임시로 다음 동작 보기 위해서 넣어놨습니다. 측정완료 Notification 기능 업데이트 되면 제거하겠습니다.
-                Button("종료"){
-                    onComplete()
-                }
             }
             .padding(.top, config.topPadding)
             .disabledToolbar()
         }
+#if os(iOS)
+        .onAppear {
+            notificationFunction.setupNotificationObservers()
+        }
+        .onReceive(notificationFunction.$isMeasuringComplete) { newValue in
+            print("받음? \(newValue)")
+            if newValue {
+                onComplete()
+            }
+        }
+#elseif os(watchOS)
+        .onAppear {
+            watchNotificationFunction.MeasuringCompleteNotificationObservers()
+        }
+        .onChange (of: watchNotificationFunction.isMeasuringComplete) {
+            if watchNotificationFunction.isMeasuringComplete {
+                onComplete()
+            }
+        }
+#endif
     }
 }

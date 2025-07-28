@@ -11,8 +11,11 @@ import SwiftUI
 class NotificationFunction: ObservableObject {
     
     @Published var showingMeasuringModal: Bool = false
+    @Published var isMeasuringComplete: Bool = false
     @Published var selectedNumber: Int = 0
     @Published var receivedLogs: [AccelerationData] = []
+    
+    let ConnectivityManager = WatchConnectivityManager.shared
 
     func setupNotificationObservers() {
         NotificationCenter.default.addObserver(forName: Notification.Name("selectedNumberNotification"), object: nil, queue: .main) { [weak self] notification in
@@ -48,6 +51,11 @@ class NotificationFunction: ObservableObject {
                     let context = PersistenceController.shared.container.viewContext
                     let report = try await ReportAnalyzerService.save(to: context, result: result, cycleCount: self.selectedNumber)
                     print("저장 성공: \(report)")
+                    self.ConnectivityManager.sendMessage([
+                        "MeasuringCompleteFlag": true,
+                    ])
+                    self.isMeasuringComplete.toggle()
+                    print("✅ isMeasuringComplete 바뀜: \(self.isMeasuringComplete)")
                 } catch {
                     print("저장 실패: \(error)")
                 }

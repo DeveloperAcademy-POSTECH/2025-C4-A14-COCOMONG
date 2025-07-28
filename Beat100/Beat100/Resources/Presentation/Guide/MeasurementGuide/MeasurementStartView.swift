@@ -10,6 +10,7 @@ import SwiftUI
 struct MeasurementStartView: View {
     @Binding var isPresented: Bool
     @AppStorage("guideViewed") var guideViewed: Bool = false
+    let ConnectivityManager = WatchConnectivityManager.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -27,6 +28,9 @@ struct MeasurementStartView: View {
                     Button(Constants.MeasurementStartText.startButtonText) {
                         guideViewed = true
                         isPresented = false
+                        ConnectivityManager.sendMessage([
+                            "GuideFinishFlag": true,
+                        ])
                     }
                     .largeButtonStyle(.complete)
                 }
