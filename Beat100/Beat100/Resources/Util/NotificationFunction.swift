@@ -10,30 +10,67 @@ import SwiftUI
 
 class NotificationFunction: ObservableObject {
     
+    @Published var selectedTab: Int = 0
     @Published var showingMeasuringModal: Bool = false
     @Published var isMeasuringComplete: Bool = false
     @Published var selectedNumber: Int = 0
     @Published var receivedLogs: [AccelerationData] = []
+    @Published var isMeasuringCancel: Bool = false
+    @Published var hasSavedReport: Bool = false
     
     let ConnectivityManager = WatchConnectivityManager.shared
+    
+    private var hasSetMeasuringCompleteObserver = false
 
-    func setupNotificationObservers() {
+    func observeSelectedNumber() {
         NotificationCenter.default.addObserver(forName: Notification.Name("selectedNumberNotification"), object: nil, queue: .main) { [weak self] notification in
             if let selectedNum = notification.userInfo?["selectedNumber"] as? Int {
                 self?.selectedNumber = selectedNum
                 print("selectedNumber on iOS: \(selectedNum)")
             }
         }
+    }
+    
+    func observeMeasuringComplete(onComplete: @escaping () -> Void) {
+        guard !hasSetMeasuringCompleteObserver else { return }
+        hasSetMeasuringCompleteObserver = true
 
+        NotificationCenter.default.addObserver(forName: .measuringComplete, object: nil, queue: .main) { _ in
+            
+                if self.isMeasuringComplete { return }
+
+                self.isMeasuringComplete = true
+                print("onComplete 작동 확인")
+                DispatchQueue.main.async {
+                    onComplete()
+                }
+        }
+    }
+
+    func observeMeasureStart() {
         NotificationCenter.default.addObserver(forName: Notification.Name("MeasureStartNotification"), object: nil, queue: .main) { [weak self] _ in
             print("MeasureStart Notification received!")
             self?.showingMeasuringModal = true
         }
+    }
+    
+    func observeMeasuringCancel() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("MeasuringCancelNotification"), object: nil, queue: .main) { [weak self] _ in
+            print("MeasuringCancel Notification received!")
+            self?.isMeasuringCancel = true
+        }
+    }
 
+    func observeDidReceiveAllLogs() {
         NotificationCenter.default.addObserver(forName: Notification.Name("didReceiveAllLogs"), object: nil, queue: .main) { [weak self] notification in
+            guard let self = self, !self.hasSavedReport else {
+                print("⚠️ 이미 저장됨 — 중복 저장 방지 또는 self is nil")
+                return
+            }
+            
             print("Notification received!")
 
-            guard let self = self,
+            guard !self.hasSavedReport,
                   let json = notification.userInfo?["allLogs"] as? String,
                   let data = json.data(using: .utf8),
                   let parsed = try? JSONDecoder().decode([AccelerationData].self, from: data)
@@ -42,19 +79,22 @@ class NotificationFunction: ObservableObject {
                 return
             }
 
-            self.receivedLogs = parsed
-            print("\(parsed.count) items")
-
-            Task {
+            Task { @MainActor in
                 let result = ReportAnalyzerService.analyze(from: parsed)
                 do {
                     let context = PersistenceController.shared.container.viewContext
                     let report = try await ReportAnalyzerService.save(to: context, result: result, cycleCount: self.selectedNumber)
                     print("저장 성공: \(report)")
-                    self.ConnectivityManager.sendMessage([
-                        "MeasuringCompleteFlag": true,
-                    ])
-                    NotificationCenter.default.post(name: .measuringComplete, object: nil)
+                    self.hasSavedReport = true
+                    self.ConnectivityManager.sendMessage(["MeasuringCompleteFlag": true])
+                    self.receivedLogs = parsed
+                    print("지금 noti")
+                    self.selectedTab = 1 // Switch to Report tab
+                    print("실행 횟수수수퍼노바 체크")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        print("실행 횟수 체크")
+                        NotificationCenter.default.post(name: .measuringComplete, object: nil)
+                    }
                 } catch {
                     print("저장 실패: \(error)")
                 }

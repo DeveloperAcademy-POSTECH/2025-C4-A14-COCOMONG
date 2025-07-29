@@ -8,24 +8,28 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var notificationFunction: NotificationFunction
     
     var body: some View {
-        TabView {
-            Tab("가이드", systemImage: "book.fill") {
-                VStack(spacing: 0) {
-                    GuideHomeView()
-                    Divider()
-                }
+        TabView(selection: $notificationFunction.selectedTab) {
+            VStack(spacing: 0) {
+                GuideHomeView()
+                Divider()
             }
-            
-            Tab("리포트", systemImage: "heart.text.clipboard.fill") {
-                VStack(spacing: 0) {
-                    ReportHomeView()
-                        .tint(.black)
-                    Divider()
-                }
+            .tabItem {
+                Label("가이드", systemImage: "book.fill")
             }
+            .tag(0)
+
+            VStack(spacing: 0) {
+                ReportHomeView()
+                    .tint(.black)
+                Divider()
+            }
+            .tabItem {
+                Label("리포트", systemImage: "heart.text.clipboard.fill")
+            }
+            .tag(1)
         }
         .tint(.beatDarkPink)
     }

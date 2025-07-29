@@ -13,9 +13,9 @@ struct WatchBeat100_Watch_AppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootFlowView(isGuideFinish: notificationFunction.isGuideFinish)
+            RootFlowView()
                 .onAppear {
-                    notificationFunction.setupNotificationObservers()
+                    notificationFunction.GuideHasSeenNotification()
                 }
         }
     }
