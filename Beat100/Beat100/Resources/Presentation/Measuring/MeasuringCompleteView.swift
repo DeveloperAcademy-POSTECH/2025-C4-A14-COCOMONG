@@ -10,7 +10,7 @@ import SwiftUI
 struct MeasuringCompleteView: View {
     #if os(iOS)
     @Binding var selectedNumber: Int
-    @StateObject private var notificationFunction = NotificationFunction()
+    @EnvironmentObject private var notificationFunction: NotificationFunction
     #elseif os(watchOS)
     @StateObject private var watchNotificationFunction = WatchNotificationFunction()
     #endif
@@ -41,7 +41,7 @@ struct MeasuringCompleteView: View {
             print("지금 뷰 시작")
             notificationFunction.observeMeasuringComplete(onComplete: onComplete)
             print("지금 noti: \(Notification.Name.measuringComplete.rawValue)")
-            notificationFunction.observeDidReceiveAllLogs()
+//            notificationFunction.observeDidReceiveAllLogs()
         }
 #elseif os(watchOS)
         .onAppear {
