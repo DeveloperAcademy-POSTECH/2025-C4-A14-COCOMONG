@@ -32,7 +32,7 @@ struct ReportSummary {
             totalCompressionDepth += compressionDepth
             totalReleaseDepth += releaseDepth
             
-            let isDepthValid = (3.0...6.0).contains(compressionDepth) && (3.0...6.0).contains(releaseDepth)
+            let isDepthValid = (4.0...6.0).contains(compressionDepth) && (4.0...6.0).contains(releaseDepth)
             let isBPMValid = (100.0...120.0).contains(bpm)
             print(bpm)
             print("압박 깊이: \(compressionDepth), 이완 깊이: \(releaseDepth), BPM: \(bpm)")

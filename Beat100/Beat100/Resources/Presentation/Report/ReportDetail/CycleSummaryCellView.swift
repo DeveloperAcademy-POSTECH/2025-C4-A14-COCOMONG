@@ -31,7 +31,7 @@ struct CycleSummaryCellView: View {
                     .font(.nanumSquareNeo(type: .heavy, size: 14))
             }
             .frame(width: 116)
-            .foregroundStyle(percent < 90 ? Color.beatDarkPink : .black)
+            .foregroundStyle(percent < 80 ? Color.beatDarkPink : .black)
         }
     }
 }

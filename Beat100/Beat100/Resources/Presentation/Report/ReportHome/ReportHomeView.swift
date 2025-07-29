@@ -58,14 +58,19 @@ struct ReportHomeView: View {
     
     
     private func SectionView(dateString: String, reports: [CprReport]) -> some View {
-        VStack(alignment: .leading, spacing: 20) {
+        let sortedReports = reports.sorted {
+            guard let date1 = $0.createdAt, let date2 = $1.createdAt else { return false }
+            return date1 > date2 // 최신 순 정렬
+        }
+        
+        return VStack(alignment: .leading, spacing: 20) {
             Text(dateString)
                 .font(.nanumSquareNeo(type: .heavy, size: 18))
                 .foregroundStyle(Color.gray800)
                 .padding(.leading, 8)
             
             LazyVStack(alignment: .leading, spacing: 20) {
-                ForEach(reports, id: \.self) { (report: CprReport) in
+                ForEach(sortedReports, id: \.self) { (report: CprReport) in
                     if let createdAt = report.createdAt,
                        let total = report.totalAccuracy?.totalNumber,
                        let correct = report.totalAccuracy?.correctNumber,

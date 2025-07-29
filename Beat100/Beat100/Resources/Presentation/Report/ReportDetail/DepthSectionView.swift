@@ -61,30 +61,7 @@ struct DepthSectionView: View {
         let compressionPoints = cycle.depthSeries.filter { Int($0.compressionNumber) % 2 == 1 }
         let releasePoints = cycle.depthSeries.filter { Int($0.compressionNumber) % 2 == 0 }
         
-        // 압박-이완 데이터를 짝으로 묶기
-        let pairedPoints: [(index: Int, compression: DepthPoint, release: DepthPoint)] =
-            zip(compressionPoints, releasePoints)
-                .enumerated()
-                .map { ($0.offset, $0.element.0, $0.element.1) }
-        
         return Chart {
-            // 압박-이완 연결선 (수평 LineMark)
-            ForEach(pairedPoints, id: \.compression.id) { pair in
-                LineMark(
-                    x: .value("Index", pair.index + 1),
-                    y: .value("압박", pair.compression.depth)
-                )
-                .interpolationMethod(.catmullRom)
-                .foregroundStyle(Color.gray600)
-                
-                LineMark(
-                    x: .value("Index", pair.index + 1),
-                    y: .value("이완", pair.release.depth)
-                )
-                .interpolationMethod(.catmullRom)
-                .foregroundStyle(Color.gray600)
-            }
-            
             // 압박 점
             ForEach(Array(compressionPoints.enumerated()), id: \.element.id) { index, point in
                 PointMark(
@@ -104,7 +81,14 @@ struct DepthSectionView: View {
             }
         }
         .chartXScale(domain: 0...31)
-        .chartYScale(domain: 3...8)
+        .chartYScale(domain: 3.5...7.5)
+        .chartYAxis {
+            AxisMarks(values: [5, 6]) { value in
+                AxisGridLine()
+                AxisTick()
+                AxisValueLabel()
+            }
+        }
         .chartScrollableAxes(.horizontal)
         .frame(height: 150)
         .padding()
