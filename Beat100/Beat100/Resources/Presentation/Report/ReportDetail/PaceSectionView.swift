@@ -48,16 +48,16 @@ struct PaceSectionView: View {
                 .lineStyle(StrokeStyle(lineWidth: 1))
                 .foregroundStyle(Color.beatDarkPink)
             
-            ForEach(Array(cprReport.cprCycleList[selectedIndex].bpmSeries.enumerated()), id: \.offset) { index, point in
+            let bpmData = Array(cprReport.cprCycleList[selectedIndex].bpmSeries.enumerated())
+            
+            ForEach(bpmData, id: \.0) { index, point in
                 LineMark(
                     x: .value("횟수", index + 1),
                     y: .value("BPM", point.bpm)
                 )
-                PointMark(
-                    x: .value("횟수", index + 1),
-                    y: .value("BPM", point.bpm)
-                )
                 .interpolationMethod(.monotone)
+                .foregroundStyle(Color.beatTeal)
+                .symbol(Circle())
             }
         }
         // Y축 110만 highlight
