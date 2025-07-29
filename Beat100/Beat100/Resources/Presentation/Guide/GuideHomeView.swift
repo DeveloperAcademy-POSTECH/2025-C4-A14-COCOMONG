@@ -54,7 +54,7 @@ private struct Content: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
-            LargeCard(
+            ConditionalLargeCard(
                 imageResource: .appleWatch,
                 titleText: Constants.GuideCard.Measurement.title,
                 contentText: Constants.GuideCard.Measurement.content,

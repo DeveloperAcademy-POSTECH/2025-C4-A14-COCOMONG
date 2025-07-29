@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct LargeCard: View {
+struct ConditionalLargeCard: View {
     var imageResource: ImageResource
     var titleText : String
     var contentText: String
     var buttonText: String
     var action: () -> Void
+    var isEmphasized: Bool = false
     
     var body: some View {
         HStack(alignment: .top, spacing: 20) {
@@ -27,6 +28,10 @@ struct LargeCard: View {
                 
                 HStack(alignment: .top, spacing: 12) {
                     SmallButton(buttonText , action: action)
+                    if isEmphasized {
+                        ExclamationIcon()
+                            .padding(.top, 4)
+                    }
                 }
             }
         }
@@ -67,12 +72,15 @@ private struct Content: View {
     ZStack {
         Color.gray200
         
-        LargeCard(
-            imageResource: .cprHeart,
-            titleText: Constants.GuideCard.CPR.title,
-            contentText: Constants.GuideCard.CPR.content,
-            buttonText: Constants.GuideCard.CPR.button,
-            action: {}
-        )
+        VStack(spacing: 24) {
+            ConditionalLargeCard(
+                imageResource: .appleWatch,
+                titleText: Constants.GuideCard.Measurement.title,
+                contentText: Constants.GuideCard.Measurement.content,
+                buttonText: Constants.GuideCard.Measurement.button,
+                action: {},
+                isEmphasized: true
+            )
+        }
     }
 }
