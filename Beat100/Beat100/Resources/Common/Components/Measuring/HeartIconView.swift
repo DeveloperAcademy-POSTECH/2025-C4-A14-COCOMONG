@@ -8,12 +8,23 @@
 import SwiftUI
 
 struct HeartIconView: View {
+    @State private var fixedWidth: CGFloat?
     let beatAnimation: Bool
 
     var body: some View {
-        Image("Profile")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 120)
+        GeometryReader { geometry in
+            let width = fixedWidth ?? geometry.size.width * 0.25
+
+            Image("Profile")
+                .resizable()
+                .scaledToFit()
+                .frame(width: width)
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                .onAppear {
+                    if fixedWidth == nil {
+                        fixedWidth = geometry.size.width * 0.25
+                    }
+                }
+        }
     }
 }
