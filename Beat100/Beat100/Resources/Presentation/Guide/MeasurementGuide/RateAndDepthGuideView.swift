@@ -18,12 +18,10 @@ struct RateAndDepthGuideView: View {
             VStack {
                 Content()
                 Spacer()
-                NavigationLink {
+                NavigationLink("다음") {
                     MeasurementStartView(isPresented: $isPresented)
-                } label: {
-                    Text("다음")
-                        .largeButtonStyle()
                 }
+                .buttonStyle(LargeButtonStyle(type: .normal))
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 40)

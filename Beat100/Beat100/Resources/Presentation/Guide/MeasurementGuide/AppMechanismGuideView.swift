@@ -21,12 +21,10 @@ struct AppMechanismGuideView: View {
                 VStack(spacing: 24) {
                     Disclaimer()
                     
-                    NavigationLink {
+                    NavigationLink("계속") {
                         WatchWearingGuideView(isPresented: $isPresented)
-                    } label: {
-                        Text("계속")
-                            .largeButtonStyle()
                     }
+                    .buttonStyle(LargeButtonStyle(type: .normal))
                 }
             }
             .padding(.horizontal, 16)
