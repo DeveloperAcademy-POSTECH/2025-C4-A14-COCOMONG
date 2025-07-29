@@ -58,7 +58,7 @@ struct MeasuringView: View {
             viewModel.selectedIndex = selectedNumber
             viewModel.startDetectingShakes()
             viewModel.startTimer()
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(selectedNumber) * 17) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(selectedNumber) * 19) {
                 onComplete()
             }
         }

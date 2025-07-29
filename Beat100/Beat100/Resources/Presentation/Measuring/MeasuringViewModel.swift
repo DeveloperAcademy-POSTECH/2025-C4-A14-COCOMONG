@@ -59,7 +59,7 @@ class MeasuringViewModel: ObservableObject {
         isCountdownDone = false
 
         roundTimer?.invalidate()
-        roundTimer = Timer.scheduledTimer(withTimeInterval: 17, repeats: false) { [weak self] _ in
+        roundTimer = Timer.scheduledTimer(withTimeInterval: 19, repeats: false) { [weak self] _ in
             print("timer end check")
             self?.isCountdownDone = true
         }
@@ -98,7 +98,7 @@ class MeasuringViewModel: ObservableObject {
     func startIOSAnimationCycles(onComplete: @escaping () -> Void) { 
         currentRound = 0
         func runCycle() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 17) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 19) {
                 self.currentRound += 1
                 if self.currentRound < self.selectedIndex {
                     runCycle()
