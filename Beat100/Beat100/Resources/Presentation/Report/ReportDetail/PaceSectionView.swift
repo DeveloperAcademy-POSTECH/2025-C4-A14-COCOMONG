@@ -55,6 +55,7 @@ struct PaceSectionView: View {
                     x: .value("횟수", index + 1),
                     y: .value("BPM", point.bpm)
                 )
+                .lineStyle(StrokeStyle(lineWidth: 1.5))
                 .interpolationMethod(.monotone)
                 .foregroundStyle(Color.beatTeal)
                 .symbol(Circle())
