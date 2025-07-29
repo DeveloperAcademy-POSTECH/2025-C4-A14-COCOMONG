@@ -11,12 +11,9 @@ struct HeartIconView: View {
     let beatAnimation: Bool
 
     var body: some View {
-        Image(systemName: "heart.fill")
+        Image("Profile")
             .resizable()
             .scaledToFit()
-            .scaleEffect(beatAnimation ? MeasuringConfig.heartScaleLarge : MeasuringConfig.heartScaleSmall)
-            .foregroundColor(beatAnimation ? .pink : .black)
-            .shadow(color: .white.opacity(0.9), radius: 15)
-            .animation(.spring(response: 0.4, dampingFraction: 0.5), value: beatAnimation)
+            .frame(width: 120)
     }
 }
