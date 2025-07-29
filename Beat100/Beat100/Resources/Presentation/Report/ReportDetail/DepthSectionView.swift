@@ -81,7 +81,14 @@ struct DepthSectionView: View {
             }
         }
         .chartXScale(domain: 0...31)
-        .chartYScale(domain: 3...7)
+        .chartYScale(domain: 3.5...7.5)
+        .chartYAxis {
+            AxisMarks(values: [5, 6]) { value in
+                AxisGridLine()
+                AxisTick()
+                AxisValueLabel()
+            }
+        }
         .chartScrollableAxes(.horizontal)
         .frame(height: 150)
         .padding()

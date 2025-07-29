@@ -74,13 +74,4 @@ struct CycleSegmenter {
             }
         }
     }
-
-    /// 각 사이클의 정확도를 계산하여 요약
-    static func summarizeEachCycle(
-        cycles: [(compressions: [DisplacementData], releases: [DisplacementData])]
-    ) -> [(total: Int, count: Int, percentage: Double)] {
-        return cycles.map {
-            ReportSummary.countValidCPRSets(compressions: $0.compressions, releases: $0.releases)
-        }
-    }
 }
