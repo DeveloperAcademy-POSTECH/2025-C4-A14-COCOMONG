@@ -24,13 +24,20 @@ struct ReportAnalyzerService {
         let displacements = depthData.map { $0.displacement }
         let timestamps = depthData.map { $0.timestamp }
         
-        let peaks = RhythmAnalyzer.detectPeaks(from: displacements, timestamps: timestamps)
-        let valleys = RhythmAnalyzer.detectValleys(from: displacements, timestamps: timestamps)
+        let valleyIndices = RhythmAnalyzer.detectValleyIndices(from: displacements)
+        let peaks = RhythmAnalyzer.detectPeaksBetweenValleys(
+            signal: displacements,
+            timestamps: timestamps,
+            valleyIndices: valleyIndices
+        )
+        let valleys = valleyIndices.map { timestamps[$0] }
+        
         let relativePeaks = peaks.map { $0 - startTime }
+        let relativeValleys = valleys.map { $0 - startTime }
         
         let (compressions, releases) = DepthEstimator.calculateInterpolatedCompressionAndReleaseDepths(
             peakTimes: relativePeaks,
-            valleyTimes: valleys.map { $0 - startTime },
+            valleyTimes: relativeValleys,
             from: relativeDepth
         )
         
@@ -90,13 +97,32 @@ struct ReportAnalyzerService {
                 )
             })
             
-            let depthPoints = NSSet(array: pair.compressions.enumerated().map { idx, point in
-                DepthPoint(
-                    context: context,
-                    compressionNumber: Double(idx + 1),
-                    depth: point.displacement
-                )
-            })
+//            let depthPoints = NSSet(array: pair.compressions.enumerated().map { idx, point in
+//                DepthPoint(
+//                    context: context,
+//                    compressionNumber: Double(idx + 1),
+//                    depth: point.displacement
+//                )
+//            })
+            
+            let depthPoints = NSSet(array:
+                pair.compressions.enumerated().flatMap { idx, compression in
+                    guard pair.releases.indices.contains(idx) else { return [] }
+                    let release = pair.releases[idx]
+                    return [
+                        DepthPoint(
+                            context: context,
+                            compressionNumber: Double(idx * 2 + 1), // 압박: 홀수
+                            depth: compression.displacement
+                        ),
+                        DepthPoint(
+                            context: context,
+                            compressionNumber: Double(idx * 2 + 2), // 이완: 짝수
+                            depth: release.displacement
+                        )
+                    ]
+                }
+            )
             
             return CprCycle(
                 context: context,
