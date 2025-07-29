@@ -24,18 +24,29 @@ struct ReportAnalyzerService {
         let displacements = depthData.map { $0.displacement }
         let timestamps = depthData.map { $0.timestamp }
         
-        let peaks = RhythmAnalyzer.detectPeaks(from: displacements, timestamps: timestamps)
-        let valleys = RhythmAnalyzer.detectValleys(from: displacements, timestamps: timestamps)
+        let valleyIndices = RhythmAnalyzer.detectValleyIndices(from: displacements)
+        let peaks = RhythmAnalyzer.detectPeaksBetweenValleys(
+            signal: displacements,
+            timestamps: timestamps,
+            valleyIndices: valleyIndices
+        )
+        let valleys = valleyIndices.map { timestamps[$0] }
+        
         let relativePeaks = peaks.map { $0 - startTime }
+        let relativeValleys = valleys.map { $0 - startTime }
         
         let (compressions, releases) = DepthEstimator.calculateInterpolatedCompressionAndReleaseDepths(
             peakTimes: relativePeaks,
-            valleyTimes: valleys.map { $0 - startTime },
+            valleyTimes: relativeValleys,
             from: relativeDepth
         )
         
         let bpmInstant = RhythmAnalyzer.calculateInstantaneousBPMs(from: peaks)
-        let relativeBPMData = bpmInstant.map {
+        let matchedBPM = CycleSegmenter.matchBPMsToCompressions(
+            compressions: compressions,
+            bpmSeries: bpmInstant
+        )
+        let relativeBPMData = matchedBPM.map {
             DisplacementData(timestamp: $0.time - startTime, displacement: $0.bpm)
         }
         
@@ -70,8 +81,19 @@ struct ReportAnalyzerService {
             releases: result.releases
         )
         
-        let limitedCycles = Array(cyclePairs.prefix(cycleCount))
-        let cycles: [CprCycle] = limitedCycles.enumerated().map { offset, pair in
+        let actualCycleCount = cyclePairs.count
+        let useCount = min(cycleCount, actualCycleCount)
+        let limitedCycles = Array(cyclePairs.prefix(useCount))
+        let compressionCycles = limitedCycles.map { $0.compressions }
+
+        let bpmCycles = CycleSegmenter.sliceMatchedBPMPerCycle(
+            matchedBPM: result.bpmPoints.map { ($0.timestamp, $0.displacement) },
+            compressions: compressionCycles
+        )
+
+        let cycles: [CprCycle] = limitedCycles.enumerated().compactMap { offset, pair in
+            guard offset < bpmCycles.count else { return nil }
+            
             let summary = ReportSummary.countValidCPRSets(
                 compressions: pair.compressions, releases: pair.releases
             )
@@ -81,22 +103,28 @@ struct ReportAnalyzerService {
                 totalNumber: Int16(summary.total)
             )
             
-            let bpmPoints = NSSet(array: pair.compressions.enumerated().compactMap { idx, point in
-                guard result.bpmPoints.indices.contains(idx) else { return nil }
-                return BpmPoint(
-                    context: context,
-                    time: point.timestamp,
-                    bpm: result.bpmPoints[idx].displacement
-                )
+            let bpmPoints = NSSet(array: bpmCycles[offset].enumerated().map { idx, point in
+                BpmPoint(context: context, time: point.time, bpm: point.bpm)
             })
             
-            let depthPoints = NSSet(array: pair.compressions.enumerated().map { idx, point in
-                DepthPoint(
-                    context: context,
-                    compressionNumber: Double(idx + 1),
-                    depth: point.displacement
-                )
-            })
+            let depthPoints = NSSet(array:
+                pair.compressions.enumerated().flatMap { idx, compression in
+                    guard pair.releases.indices.contains(idx) else { return [] }
+                    let release = pair.releases[idx]
+                    return [
+                        DepthPoint(
+                            context: context,
+                            compressionNumber: Double(idx * 2 + 1), // 압박: 홀수
+                            depth: compression.displacement
+                        ),
+                        DepthPoint(
+                            context: context,
+                            compressionNumber: Double(idx * 2 + 2), // 이완: 짝수
+                            depth: release.displacement
+                        )
+                    ]
+                }
+            )
             
             return CprCycle(
                 context: context,

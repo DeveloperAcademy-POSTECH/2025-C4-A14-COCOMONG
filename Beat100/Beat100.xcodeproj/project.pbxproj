@@ -55,11 +55,11 @@
 		CF09CA342E266F7F00E11198 /* Exceptions for "Beat100" folder in "WatchBeat100 Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/Common/Components/CustomGradientCircle.swift,
 				Resources/Common/Components/Measuring/BouncingDotsView.swift,
 				Resources/Common/Components/Measuring/CountdownCircle.swift,
 				Resources/Common/Components/Measuring/HeartBeatBackgroundView.swift,
 				Resources/Common/Components/Measuring/HeartIconView.swift,
+				Resources/Common/Components/ProgressBar/CustomGradientCircle.swift,
 				Resources/Presentation/Countdown/CountdownAnimationView.swift,
 				Resources/Presentation/Countdown/CountdownViewModel.swift,
 				Resources/Presentation/Measuring/MeasuringCompleteView.swift,
@@ -398,7 +398,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8ZUB5C2R66;
+				DEVELOPMENT_TEAM = UKY6HK6U6Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beat100/Info.plist;
@@ -433,7 +433,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8ZUB5C2R66;
+				DEVELOPMENT_TEAM = UKY6HK6U6Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beat100/Info.plist;
@@ -469,7 +469,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8ZUB5C2R66;
+				DEVELOPMENT_TEAM = UKY6HK6U6Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";
@@ -502,7 +502,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8ZUB5C2R66;
+				DEVELOPMENT_TEAM = UKY6HK6U6Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";

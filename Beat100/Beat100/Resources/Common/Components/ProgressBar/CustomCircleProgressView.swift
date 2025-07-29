@@ -10,6 +10,17 @@ import SwiftUI
 struct CustomCircleProgressView: View {
     let progress: Int
     
+    private var statusText: String {
+        switch progress {
+        case 80...:
+            return "우수"
+        case 60..<80:
+            return "보통"
+        default:
+            return "미흡"
+        }
+    }
+    
     var body: some View {
         ZStack {
             CustomReportGradientCircle(progress: 1.0)
@@ -21,8 +32,7 @@ struct CustomCircleProgressView: View {
                 Text("\(progress)%")
                     .font(.nanumSquareNeo(type: .heavy, size: 12))
                 
-                // TODO: - progress값 따라 enum 처리해서 상태 String 넣기
-                Text("보통")
+                Text(statusText)
                     .font(.nanumSquareNeo(type: .bold, size: 12))
             }
             .foregroundStyle(Color.black)

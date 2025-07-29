@@ -15,7 +15,8 @@ struct Constants {
         struct Measurement {
             static let title = "Apple Watch에서 CPR 측정하기"
             static let content = "Apple Watch로 손목의 움직임을 감지해 가슴 압박 깊이와 속도를 측정합니다. 이후 CPR 리포트를 제공합니다."
-            static let button = "시작하기"
+            static let button = "확인하기"
+            static let buttonEmphasized = "시작하기"
             static let cardHeight: CGFloat = 186
         }
 
@@ -112,7 +113,7 @@ struct Constants {
     struct WatchWearingGuideText {
         static let title = "Apple Watch 착용 가이드"
         
-        static let step1 = "Apple Watch를 편한 손목의 손목뼈(요골) \n위쪽에 단단히 착용해주세요."
+        static let step1 = "Apple Watch를 아래쪽 손목의 손목뼈(요골) \n위쪽에 단단히 착용해주세요."
         static let step2 = "손목 센서와 피부가 밀착되어야 올바른 압박 \n속도·깊이·리듬을 정확하게 감지할 수 있습니다."
     }
     

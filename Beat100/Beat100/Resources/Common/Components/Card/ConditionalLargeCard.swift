@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct LargeCard: View {
+struct ConditionalLargeCard: View {
     var imageResource: ImageResource
     var titleText : String
     var contentText: String
     var buttonText: String
+    var buttonEmphasizedText: String
     var action: () -> Void
     var isEmphasized: Bool = false
     
@@ -27,10 +28,10 @@ struct LargeCard: View {
                 }
                 
                 HStack(alignment: .top, spacing: 12) {
-                    SmallButton(buttonText , action: action)
+                    SmallButton(isEmphasized ? buttonEmphasizedText : buttonText, action: action)
                     if isEmphasized {
                         ExclamationIcon()
-                            .padding(.top, 2)
+                            .padding(.top, 4)
                     }
                 }
             }
@@ -73,21 +74,24 @@ private struct Content: View {
         Color.gray200
         
         VStack(spacing: 24) {
-            LargeCard(
+            ConditionalLargeCard(
                 imageResource: .appleWatch,
                 titleText: Constants.GuideCard.Measurement.title,
                 contentText: Constants.GuideCard.Measurement.content,
                 buttonText: Constants.GuideCard.Measurement.button,
+                buttonEmphasizedText: Constants.GuideCard.Measurement.buttonEmphasized,
                 action: {},
                 isEmphasized: true
             )
             
-            LargeCard(
-                imageResource: .cprHeart,
-                titleText: Constants.GuideCard.CPR.title,
-                contentText: Constants.GuideCard.CPR.content,
-                buttonText: Constants.GuideCard.CPR.button,
-                action: {}
+            ConditionalLargeCard(
+                imageResource: .appleWatch,
+                titleText: Constants.GuideCard.Measurement.title,
+                contentText: Constants.GuideCard.Measurement.content,
+                buttonText: Constants.GuideCard.Measurement.button,
+                buttonEmphasizedText: Constants.GuideCard.Measurement.buttonEmphasized,
+                action: {},
+                isEmphasized: false
             )
         }
     }
