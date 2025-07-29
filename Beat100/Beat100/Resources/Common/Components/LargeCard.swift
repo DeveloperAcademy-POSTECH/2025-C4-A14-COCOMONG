@@ -30,7 +30,7 @@ struct LargeCard: View {
                     SmallButton(buttonText , action: action)
                     if isEmphasized {
                         ExclamationIcon()
-                            .padding(.top, 2)
+                            .padding(.top, 4)
                     }
                 }
             }
