@@ -42,7 +42,11 @@ struct ReportAnalyzerService {
         )
         
         let bpmInstant = RhythmAnalyzer.calculateInstantaneousBPMs(from: peaks)
-        let relativeBPMData = bpmInstant.map {
+        let matchedBPM = CycleSegmenter.matchBPMsToCompressions(
+            compressions: compressions,
+            bpmSeries: bpmInstant
+        )
+        let relativeBPMData = matchedBPM.map {
             DisplacementData(timestamp: $0.time - startTime, displacement: $0.bpm)
         }
         
@@ -77,8 +81,19 @@ struct ReportAnalyzerService {
             releases: result.releases
         )
         
-        let limitedCycles = Array(cyclePairs.prefix(cycleCount))
-        let cycles: [CprCycle] = limitedCycles.enumerated().map { offset, pair in
+        let actualCycleCount = cyclePairs.count
+        let useCount = min(cycleCount, actualCycleCount)
+        let limitedCycles = Array(cyclePairs.prefix(useCount))
+        let compressionCycles = limitedCycles.map { $0.compressions }
+
+        let bpmCycles = CycleSegmenter.sliceMatchedBPMPerCycle(
+            matchedBPM: result.bpmPoints.map { ($0.timestamp, $0.displacement) },
+            compressions: compressionCycles
+        )
+
+        let cycles: [CprCycle] = limitedCycles.enumerated().compactMap { offset, pair in
+            guard offset < bpmCycles.count else { return nil }
+            
             let summary = ReportSummary.countValidCPRSets(
                 compressions: pair.compressions, releases: pair.releases
             )
@@ -88,22 +103,9 @@ struct ReportAnalyzerService {
                 totalNumber: Int16(summary.total)
             )
             
-            let bpmPoints = NSSet(array: pair.compressions.enumerated().compactMap { idx, point in
-                guard result.bpmPoints.indices.contains(idx) else { return nil }
-                return BpmPoint(
-                    context: context,
-                    time: point.timestamp,
-                    bpm: result.bpmPoints[idx].displacement
-                )
+            let bpmPoints = NSSet(array: bpmCycles[offset].enumerated().map { idx, point in
+                BpmPoint(context: context, time: point.time, bpm: point.bpm)
             })
-            
-//            let depthPoints = NSSet(array: pair.compressions.enumerated().map { idx, point in
-//                DepthPoint(
-//                    context: context,
-//                    compressionNumber: Double(idx + 1),
-//                    depth: point.displacement
-//                )
-//            })
             
             let depthPoints = NSSet(array:
                 pair.compressions.enumerated().flatMap { idx, compression in

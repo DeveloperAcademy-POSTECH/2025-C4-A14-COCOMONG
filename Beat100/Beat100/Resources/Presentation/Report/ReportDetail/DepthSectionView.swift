@@ -81,7 +81,7 @@ struct DepthSectionView: View {
             }
         }
         .chartXScale(domain: 0...31)
-        .chartYScale(domain: 3...8)
+        .chartYScale(domain: 3...7)
         .chartScrollableAxes(.horizontal)
         .frame(height: 150)
         .padding()

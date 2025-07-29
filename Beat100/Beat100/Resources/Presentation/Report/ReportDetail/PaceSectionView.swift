@@ -11,8 +11,10 @@ import Charts
 struct PaceSectionView: View {
     let cprReport: CprReport
     var cycleMenu: [String] {
-        (1...cprReport.cycleNums).map { "\($0) 사이클" }
+        let n = min(cprReport.cycleNums, cprReport.cprCycleList.count)
+        return (1...n).map { "\($0) 사이클" }
     }
+    
     @State private var selectedIndex: Int = 0
     
     var body: some View {
@@ -40,23 +42,29 @@ struct PaceSectionView: View {
     }
     
     private var PaceChartView: some View {
-        Chart {
-            ForEach(cprReport.cprCycleList[selectedIndex].bpmSeries, id: \.self) { point in
-                PointMark(
-                    x: .value("Time", point.time),
-                    y: .value("BPM", point.bpm)
-                )
-            }
+        return Chart {
             // 기준선 (110)
             RuleMark(y: .value("Threshold", 110))
-                   .lineStyle(StrokeStyle(lineWidth: 1))
-                   .foregroundStyle(Color.beatDarkPink)
+                .lineStyle(StrokeStyle(lineWidth: 1))
+                .foregroundStyle(Color.beatDarkPink)
+            
+            ForEach(Array(cprReport.cprCycleList[selectedIndex].bpmSeries.enumerated()), id: \.offset) { index, point in
+                LineMark(
+                    x: .value("횟수", index + 1),
+                    y: .value("BPM", point.bpm)
+                )
+                PointMark(
+                    x: .value("횟수", index + 1),
+                    y: .value("BPM", point.bpm)
+                )
+                .interpolationMethod(.monotone)
+            }
         }
         // Y축 110만 highlight
         .chartYAxis {
             AxisMarks(position: .leading) { value in
                 AxisGridLine()
-
+                
                 AxisValueLabel() {
                     if let intValue = value.as(Int.self) {
                         Text("\(intValue)")
@@ -65,6 +73,7 @@ struct PaceSectionView: View {
                 }
             }
         }
+        .chartXScale(domain: 0...31)
         .chartYScale(domain: 90...130)
         .chartScrollableAxes(.horizontal)
         .frame(height: 150)
