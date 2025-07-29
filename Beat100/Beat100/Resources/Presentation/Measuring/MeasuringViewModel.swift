@@ -36,6 +36,22 @@ class MeasuringViewModel: ObservableObject {
     private var beatTimer: Timer?
     private var roundTimer: Timer?
     
+    func reset() {
+        stopAnimating()
+        motionManager.stopAccelerometerUpdates()
+    
+        logs = []
+        isCountdownDone = false
+        selectedIndex = 1
+        acceleration = .init(x: 0, y: 0, z: 0)
+        compressionTimestamps = []
+        lastTriggerTime = 0
+        isShaking = false
+        currentRound = 0
+        allLogs = Array(repeating: [], count: 5)
+        print("Measuring ViewModel Reset Complete")
+    }
+    
     func startTimer() {
         print("timer start check")
         isCountdownDone = false
