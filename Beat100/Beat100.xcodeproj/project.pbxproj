@@ -55,11 +55,11 @@
 		CF09CA342E266F7F00E11198 /* Exceptions for "Beat100" folder in "WatchBeat100 Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/Common/Components/CustomGradientCircle.swift,
 				Resources/Common/Components/Measuring/BouncingDotsView.swift,
 				Resources/Common/Components/Measuring/CountdownCircle.swift,
 				Resources/Common/Components/Measuring/HeartBeatBackgroundView.swift,
 				Resources/Common/Components/Measuring/HeartIconView.swift,
+				Resources/Common/Components/ProgressBar/CustomGradientCircle.swift,
 				Resources/Presentation/Countdown/CountdownAnimationView.swift,
 				Resources/Presentation/Countdown/CountdownViewModel.swift,
 				Resources/Presentation/Measuring/MeasuringCompleteView.swift,
