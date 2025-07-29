@@ -59,6 +59,7 @@ private struct Content: View {
                 titleText: Constants.GuideCard.Measurement.title,
                 contentText: Constants.GuideCard.Measurement.content,
                 buttonText: Constants.GuideCard.Measurement.button,
+                buttonEmphasizedText: Constants.GuideCard.Measurement.buttonEmphasized,
                 action: { isMeasurementGuidePresented = true },
                 isEmphasized: !guideViewed
             )

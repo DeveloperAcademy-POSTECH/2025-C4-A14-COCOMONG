@@ -12,6 +12,7 @@ struct ConditionalLargeCard: View {
     var titleText : String
     var contentText: String
     var buttonText: String
+    var buttonEmphasizedText: String
     var action: () -> Void
     var isEmphasized: Bool = false
     
@@ -27,7 +28,7 @@ struct ConditionalLargeCard: View {
                 }
                 
                 HStack(alignment: .top, spacing: 12) {
-                    SmallButton(buttonText , action: action)
+                    SmallButton(isEmphasized ? buttonEmphasizedText : buttonText, action: action)
                     if isEmphasized {
                         ExclamationIcon()
                             .padding(.top, 4)
@@ -78,8 +79,19 @@ private struct Content: View {
                 titleText: Constants.GuideCard.Measurement.title,
                 contentText: Constants.GuideCard.Measurement.content,
                 buttonText: Constants.GuideCard.Measurement.button,
+                buttonEmphasizedText: Constants.GuideCard.Measurement.buttonEmphasized,
                 action: {},
                 isEmphasized: true
+            )
+            
+            ConditionalLargeCard(
+                imageResource: .appleWatch,
+                titleText: Constants.GuideCard.Measurement.title,
+                contentText: Constants.GuideCard.Measurement.content,
+                buttonText: Constants.GuideCard.Measurement.button,
+                buttonEmphasizedText: Constants.GuideCard.Measurement.buttonEmphasized,
+                action: {},
+                isEmphasized: false
             )
         }
     }
