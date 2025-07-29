@@ -12,12 +12,11 @@ struct GuideHomeView: View {
     @State var isCPRGuidePresented: Bool = false
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 6) {
             Title()
             Content(isMeasurementGuidePresented: $isMeasurementGuidePresented, isCPRGuidePresented: $isCPRGuidePresented)
             Spacer()
         }
-        .padding(.top, 44)
         .background(.gray200)
         .sheet(isPresented: $isMeasurementGuidePresented) {
             NavigationStack {
@@ -38,12 +37,15 @@ struct GuideHomeView: View {
 private struct Title: View {
     var body: some View {
         HStack {
-            //TODO: 타이포 적용 후 교체
-            Text("Title Here")
-                .font(.system(size: 36, weight: .bold))
+            Image(.beat100Title)
+                .resizable()
+                .frame(width: 145, height: 30)
+            
             Spacer()
         }
         .padding(.horizontal, 20)
+        .padding(.top, 44)
+        .padding(.bottom, 20)
     }
 }
 
