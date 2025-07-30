@@ -11,6 +11,7 @@ struct MeasuringFlowView: View {
     var selectedNumber: Int
     @Environment(\.dismiss) private var dismiss
     @State private var step: MeasuringStep = .countdown
+    @StateObject private var workoutManager = WorkoutManager()
     
     var body: some View {
         ZStack {
@@ -20,7 +21,8 @@ struct MeasuringFlowView: View {
                     step = .measuring
                 }
             case .measuring:
-                MeasuringView(selectedNumber: .constant(selectedNumber)) {
+                MeasuringView(selectedNumber: .constant(selectedNumber),
+                              workoutManager: workoutManager) {
                     step = .measuringComplete
                 }
             case .measuringComplete:
