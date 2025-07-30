@@ -45,6 +45,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Common/Components/DisabledToolbar.swift,
+				Resources/Common/Components/LargeActionButton.swift,
 				Resources/Common/Components/PickerGradientBackgroundColor.swift,
 				Resources/Common/Components/PickerGradientOverlay.swift,
 				Resources/Common/Enum/MeasuringStep.swift,
@@ -399,7 +400,6 @@
 				CODE_SIGN_ENTITLEMENTS = Beat100/Beat100.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
 				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -438,7 +438,6 @@
 				CODE_SIGN_ENTITLEMENTS = Beat100/Beat100.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
 				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -477,7 +476,6 @@
 				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
 				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -511,7 +509,6 @@
 				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JMAUFK6U82;
 				DEVELOPMENT_TEAM = 8ZUB5C2R66;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

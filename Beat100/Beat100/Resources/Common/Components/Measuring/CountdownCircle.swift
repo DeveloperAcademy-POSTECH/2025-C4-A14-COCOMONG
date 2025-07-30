@@ -26,8 +26,12 @@ struct CountdownCircleView: View {
                        height: isWatchOS ? CountdownConfig.watchCircleSize : CountdownConfig.iosCircleSize)
             
             Text(text)
-                .font(.nanumSquareNeo(type: .heavy,
-                                      size: isWatchOS ? CountdownConfig.watchFontSize : CountdownConfig.iosFontSize))
+                .font(.nanumSquareNeo(
+                    type: .heavy,
+                    size: text == "준비"
+                        ? (isWatchOS ? CountdownConfig.watchTextFontSize : CountdownConfig.iosTextFontSize)
+                        : (isWatchOS ? CountdownConfig.watchFontSize : CountdownConfig.iosFontSize)
+                ))
                 .foregroundStyle(.white)
         }
     }

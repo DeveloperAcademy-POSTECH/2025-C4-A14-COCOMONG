@@ -24,10 +24,12 @@ struct MeasuringCompleteConfig {
 struct CountdownConfig {
     static let iosCircleSize: CGFloat = 220
     static let iosCircleWidth: CGFloat = 20
-    static let iosFontSize: CGFloat = 90
+    static let iosTextFontSize: CGFloat = 50
+    static let iosFontSize: CGFloat = 99
     
     static let watchCircleSize: CGFloat = 126
     static let watchCircleWidth: CGFloat = 12
+    static let watchTextFontSize: CGFloat = 28
     static let watchFontSize: CGFloat = 55
 }
 
