@@ -19,7 +19,6 @@ func DetailSectionView<TopTrailing: View, Content: View>(title: String, @ViewBui
             
             trailingTopView()
         }
-        .padding(.leading, 10)
         
         content()
     }

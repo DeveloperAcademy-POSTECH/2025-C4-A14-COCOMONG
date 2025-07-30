@@ -35,7 +35,7 @@ struct PaceSectionView: View {
             PaceChartView
             
             Text(Constants.ReportDetail.paceContent)
-                .font(.system(size: 14, weight: .regular))
+                .font(.system(size: 15, weight: .regular))
                 .padding(.horizontal, 10)
                 .lineSpacing(3)
         }
