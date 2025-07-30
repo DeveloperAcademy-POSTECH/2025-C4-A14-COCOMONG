@@ -10,8 +10,8 @@ import SwiftUI
 struct ExplainPressureCardView: View {
     var body: some View {
         ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(.gray400, style: .init(lineWidth: 0.4))
+            Rectangle()
+                .stroke(.clear)
                 .background(Color.white)
                 
             ExplainPressureTextView
@@ -20,6 +20,7 @@ struct ExplainPressureCardView: View {
         }
         .frame(height: 95)
         .frame(maxWidth: .infinity)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
     
     private var ExplainPressureTextView: some View {

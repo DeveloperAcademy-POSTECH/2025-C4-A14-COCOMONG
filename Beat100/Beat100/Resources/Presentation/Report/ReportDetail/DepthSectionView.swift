@@ -42,15 +42,15 @@ struct DepthSectionView: View {
         Group {
             (
             Text("권장 압박 깊이는 ")
-            + Text("약 5~6cm").font(.system(size: 14, weight: .bold))
-            + Text("입니다. ")
-            + Text("붉은 점은 압박의 깊이").font(.system(size: 14, weight: .bold)).foregroundColor(.beatDarkPink)
+            + Text("약 5~6cm").font(.system(size: 15, weight: .bold))
+            + Text("입니다.\n")
+            + Text("붉은 점은 압박의 깊이").font(.system(size: 15, weight: .bold)).foregroundColor(.beatDarkPink)
             + Text(", ")
-            + Text("푸른 점은 이완의 깊이").font(.system(size: 14, weight: .bold)).foregroundColor(.beatTeal)
-            + Text("를 나타냅니다. 일정하고 충분한 압박과 이완을 1:1로 유지하는 것이 중요합니다. 5~6cm 범위를 벗어난 압박 및 이완은 개선이 필요합니다.")
+            + Text("푸른 점은 이완의 깊이").font(.system(size: 15, weight: .bold)).foregroundColor(.beatTeal)
+            + Text("입니다. 일정하고 충분한 압박과 이완을 1:1로 유지하는 것이 중요합니다. 5~6cm 범위를 벗어난 압박 및 이완은 개선이 필요합니다.")
             )
         }
-        .font(.system(size: 14, weight: .regular))
+        .font(.system(size: 15, weight: .regular))
         .foregroundStyle(Color.black)
         .lineSpacing(3)
         .padding(.horizontal, 10)

@@ -28,6 +28,9 @@ class WatchConnectivityManager: NSObject, WCSessionDelegate, ObservableObject {
         if activationState == .activated {
             DispatchQueue.main.async { self.isReady = true }
         }
+        else {
+            print("WCSession is not reachable.")
+        }
     }
 
     func sendStartTime(_ startTime: Date) {
