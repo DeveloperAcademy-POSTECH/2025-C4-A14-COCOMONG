@@ -45,6 +45,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/Common/Components/DisabledToolbar.swift,
+				Resources/Common/Components/LargeActionButton.swift,
 				Resources/Common/Components/PickerGradientBackgroundColor.swift,
 				Resources/Common/Components/PickerGradientOverlay.swift,
 				Resources/Common/Enum/MeasuringStep.swift,

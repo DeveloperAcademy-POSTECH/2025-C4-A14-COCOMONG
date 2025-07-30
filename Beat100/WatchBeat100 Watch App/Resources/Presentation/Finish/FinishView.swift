@@ -39,20 +39,11 @@ struct FinishView: View {
                             .font(.system(size: 12))
                             .multilineTextAlignment(.center)
                         
-                        Button(action: {
+                        LargeActionButton(title: "완료") {
                             onComplete()
-                        }) {
-                            Text("완료")
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundStyle(.black)
                         }
-                        .background(.beatBlue)
-                        .clipShape(RoundedRectangle(cornerRadius: 100))
                         .padding(.top, 24)
-                        .padding(.horizontal, 10)
-                        
                     }
-                    .padding(.horizontal, 8.5)
                     .padding(.bottom, 12)
                     .disabledToolbar()
                     

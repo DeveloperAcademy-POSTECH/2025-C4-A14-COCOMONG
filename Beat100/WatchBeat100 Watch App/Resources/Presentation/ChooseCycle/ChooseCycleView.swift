@@ -37,20 +37,13 @@ struct ChooseCycleView: View {
                 .pickerStyle(.wheel)
                 
                 VStack{
-                    Button(action: {
+                    LargeActionButton(title: "시작") {
                         viewModel.showingMeasuringModal.toggle()
                         ConnectivityManager.sendMessage([
                             "MeasureStartFlag": true,
                             "selectedNumber": selectedNumber
                         ])
-                    }) {
-                        Text("시작")
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundStyle(.black)
                     }
-                    
-                    .background(.beatBlue)
-                    .clipShape(RoundedRectangle(cornerRadius: 100))
                 }
                 .padding(.top, 8)
                 .padding(.bottom, 12.5)
