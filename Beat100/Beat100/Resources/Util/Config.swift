@@ -16,7 +16,7 @@ struct MeasuringCompleteConfig {
         #if os(iOS)
         return MeasuringCompleteConfig(dotSize: 16, fontSize: 24, topPadding: 0)
         #elseif os(watchOS)
-        return MeasuringCompleteConfig(dotSize: 10, fontSize: 12, topPadding: 20)
+        return MeasuringCompleteConfig(dotSize: 10, fontSize: 14, topPadding: 20)
         #endif
     }
 }
