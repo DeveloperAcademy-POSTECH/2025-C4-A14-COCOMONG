@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct HeartIconView: View {
+    @State private var fixedWidth: CGFloat?
     let beatAnimation: Bool
 
     var body: some View {
-        Image(systemName: "heart.fill")
-            .resizable()
-            .scaledToFit()
-            .scaleEffect(beatAnimation ? MeasuringConfig.heartScaleLarge : MeasuringConfig.heartScaleSmall)
-            .foregroundColor(beatAnimation ? .pink : .black)
-            .shadow(color: .white.opacity(0.9), radius: 15)
-            .animation(.spring(response: 0.4, dampingFraction: 0.5), value: beatAnimation)
+        GeometryReader { geometry in
+            let width = fixedWidth ?? geometry.size.width * 0.25
+
+            Image("Profile")
+                .resizable()
+                .scaledToFit()
+                .frame(width: width)
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                .onAppear {
+                    if fixedWidth == nil {
+                        fixedWidth = geometry.size.width * 0.25
+                    }
+                }
+        }
     }
 }
