@@ -13,18 +13,17 @@ struct FinishView: View {
     
     var body: some View {
         NavigationStack{
-            
             ZStack{
                 Color.black
                     .edgesIgnoringSafeArea(.all)
                 ScrollView{
                     VStack(spacing: 0){
                         Text("리포트 생성 완료")
-                            .font(.nanumSquareNeo(type: .heavy, size: 14))
+                            .font(.nanumSquareNeo(type: .heavy, size: 16))
                             .padding(.bottom, 5)
                         
                         Text("\(selectedNumber)사이클")
-                            .font(.nanumSquareNeo(type: .heavy, size: 10))
+                            .font(.nanumSquareNeo(type: .heavy, size: 12))
                             .padding(.bottom, 10)
                         
                         Image("Beat100_Check")
@@ -33,10 +32,10 @@ struct FinishView: View {
                             .padding(.bottom, 10)
                         
                         Text("iPhone의 BEAT100 앱에서")
-                            .font(.system(size: 12))
+                            .font(.system(size: 14))
                             .multilineTextAlignment(.center)
                         Text("CPR 피드백을 확인하세요.")
-                            .font(.system(size: 12))
+                            .font(.system(size: 14))
                             .multilineTextAlignment(.center)
                         
                         LargeActionButton(title: "완료") {
