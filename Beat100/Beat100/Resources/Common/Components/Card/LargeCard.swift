@@ -15,18 +15,20 @@ struct LargeCard: View {
     var action: () -> Void
     
     var body: some View {
-        HStack(alignment: .top, spacing: 20) {
+        HStack(alignment: .top, spacing: 17) {
             Image(imageResource)
             
-            VStack(alignment: .leading, spacing: 20) {
-                Title(titleText: titleText)
-                HStack {
-                    Content(contentText: contentText)
-                    Spacer()
+            VStack(alignment: .leading, spacing: 30) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Title(titleText: titleText)
+                    HStack {
+                        Content(contentText: contentText)
+                        Spacer()
+                    }
                 }
                 
-                HStack(alignment: .top, spacing: 12) {
-                    SmallButton(buttonText , action: action)
+                HStack(alignment: .top, spacing: 7) {
+                    SmallButton(buttonText, action: action)
                 }
             }
         }

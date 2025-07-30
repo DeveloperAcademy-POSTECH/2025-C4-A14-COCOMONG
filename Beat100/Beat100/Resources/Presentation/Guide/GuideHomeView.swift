@@ -59,8 +59,7 @@ private struct Content: View {
             ConditionalLargeCard(
                 imageResource: .appleWatch,
                 titleText: Constants.GuideCard.Measurement.title,
-                contentText: Constants.GuideCard.Measurement.content
-                    .split(separator: "").joined(separator: "\u{200B}"),
+                contentText: Constants.GuideCard.Measurement.content,
                 buttonText: Constants.GuideCard.Measurement.button,
                 buttonEmphasizedText: Constants.GuideCard.Measurement.buttonEmphasized,
                 action: { isMeasurementGuidePresented = true },
