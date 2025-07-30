@@ -12,7 +12,7 @@ struct ReportAnalyzerService {
     
     /// 분석 함수: rawData → RhythmAnalysisResult 생성
     static func analyze(from rawData: [AccelerationData]) -> RhythmAnalysisResult {
-        let estimator = DepthEstimator(sampleRate: 25.0)
+        let estimator = DepthEstimator(sampleRate: 23.1)
         let depthData = estimator.estimateDepth(from: rawData)
         guard !depthData.isEmpty else { return .empty }
         
@@ -70,15 +70,24 @@ struct ReportAnalyzerService {
     /// 저장 함수: analyze 결과를 Core Data로 저장
     @MainActor
     static func save(to context: NSManagedObjectContext, result: RhythmAnalysisResult, cycleCount: Int) async throws -> CprReport {
+        
+        let setSize = 30
+        let maxTotalCount = setSize * cycleCount
+
+        // 압박과 이완 데이터 제한
+        let trimmedCompressions = result.compressions.prefix(maxTotalCount)
+        let trimmedReleases = result.releases.prefix(maxTotalCount)
+
+        
         let totalAccuracy = TotalAccuracy(
             context: context,
             correctNumber: Int16(result.valid),
-            totalNumber: Int16(result.total)
+            totalNumber: Int16(maxTotalCount)
         )
         
         let cyclePairs = CycleSegmenter.splitCycles(
-            compressions: result.compressions,
-            releases: result.releases
+            compressions: Array(trimmedCompressions),
+            releases: Array(trimmedReleases)
         )
         
         let actualCycleCount = cyclePairs.count
