@@ -42,7 +42,7 @@ private struct Content: View {
     var body: some View {
         VStack(spacing: 22) {
             Text(titleText)
-                .font(.nanumSquareNeo(type: .heavy, size: 28))
+                .font(.nanumSquareNeo(type: .extrabold, size: 28))
                 .foregroundColor(.black)
             
             GeometryReader { geometry in

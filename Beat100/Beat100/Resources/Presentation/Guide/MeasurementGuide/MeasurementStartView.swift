@@ -53,7 +53,7 @@ private struct Content: View {
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
             Text(titleText)
-                .font(.nanumSquareNeo(type: .heavy, size: 28))
+                .font(.nanumSquareNeo(type: .extrabold, size: 28))
                 .foregroundColor(.black)
             
             VStack(alignment: .leading, spacing: 16) {
