@@ -33,28 +33,28 @@ private struct TopBar: View {
 private struct Content: View {
     var body: some View {
         ScrollView() {
-            VStack(alignment: .leading, spacing: 24) {
-                Step(
+            VStack(alignment: .leading, spacing: 30) {
+                CPRStep(
                     imageResource: .guide1,
                     title: Constants.CPRGuideText.Step1.title,
                     description: Constants.CPRGuideText.Step1.description
                 )
-                Step(
+                CPRStep(
                     imageResource: .guide2,
                     title: Constants.CPRGuideText.Step2.title,
                     description: Constants.CPRGuideText.Step2.description
                 )
-                Step(
+                CPRStep(
                     imageResource: .guide3,
                     title: Constants.CPRGuideText.Step3.title,
                     description: Constants.CPRGuideText.Step3.description
                 )
-                Step(
+                CPRStep(
                     imageResource: .guide4,
                     title: Constants.CPRGuideText.Step4.title,
                     description: Constants.CPRGuideText.Step4.description
                 )
-                Step(
+                CPRStep(
                     imageResource: .guide5,
                     title: Constants.CPRGuideText.Step5.title,
                     description: Constants.CPRGuideText.Step5.description
@@ -62,7 +62,7 @@ private struct Content: View {
             }
             .padding(.leading, 20)
             .padding(.trailing, 18)
-            .padding(.bottom, 69)
+            .padding(.bottom, 30)
         }
         .padding(.trailing, 2)
     }

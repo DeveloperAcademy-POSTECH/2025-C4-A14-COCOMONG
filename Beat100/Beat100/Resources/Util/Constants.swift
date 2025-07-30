@@ -14,7 +14,7 @@ struct Constants {
     struct GuideCard {
         struct Measurement {
             static let title = "Apple Watch에서 CPR 측정하기"
-            static let content = "Apple Watch로 손목의 움직임을 감지해 가슴 압박 깊이와 속도를 측정합니다. 이후 CPR 리포트를 제공합니다."
+            static let content = "Apple Watch로 손목 움직임을 감지해 가슴 압박 깊이와 속도를 측정합니다. 이후 CPR 리포트를 제공합니다."
             static let button = "확인하기"
             static let buttonEmphasized = "시작하기"
             static let cardHeight: CGFloat = 186
@@ -34,7 +34,7 @@ struct Constants {
         static let body = """
         BEAT100은 Apple Watch의 모션 센서를 
         활용하여 CPR 중 손목의 움직임을 감지합니다. 
-        압박 리듬, 속도, 깊이를 실시간으로 측정하여 
+        압박 속도와 깊이를 실시간으로 측정하여 
         올바른 압박을 유지할 수 있도록 돕습니다.
         """
         static let disclaimer = """
@@ -45,12 +45,7 @@ struct Constants {
     
     struct CompressionPositionGuideText {
         static let title = "가슴 압박 위치"
-        static let body = """
-            가슴 압박은 가슴뼈(흉골)의 아래쪽 1/2 지점,
-            즉 양쪽 유두를 이은 선 중앙에 손바닥을 놓고
-            실시합니다. 손바닥 뒤꿈치를 이용해 팔꿈치를
-            곧게 편 상태로 수직으로 눌러주세요.
-            """
+        static let body = "가슴 압박은 가슴뼈(흉골)의 아래쪽 1/2 지점,\n즉 양쪽 유두의 중간 아래에 손바닥을 놓고 \n실시합니다. 팔꿈치를 곧게 편 상태에서 \n손바닥 뒤꿈치를 이용해 수직으로 눌러주세요."
     }
     
     struct MeasurementStartText {
@@ -58,27 +53,34 @@ struct Constants {
         static let startButtonText = "CPR 측정 시작하기"
         
         static let step1: AttributedString = {
-            var text = AttributedString("\"CPR 측정 시작하기\"를 누르면 Apple Watch앱과 연동을 시작합니다.")
-            if let range = text.range(of: "\"CPR 측정 시작하기\"") {
+            var text = AttributedString("Apple Watch에서 Beat100을 실행해주세요.")
+            if let range = text.range(of: "Apple Watch에서 Beat100을 실행") {
                 text[range].font = .system(size: 16, weight: .bold)
             }
             return text
         }()
         static let step2: AttributedString = {
-            var text = AttributedString("Apple Watch 앱에서 \"확인\" 버튼을 누르면, iPhone과 Watch가 자동으로 연동돼 압박 리듬 가이드를 함께 제공합니다.")
-            if let range = text.range(of: "\"확인\" 버튼") {
+            var text = AttributedString("“CPR 측정 시작하기”를 누르면 Apple Watch앱과 연동을 시작합니다.")
+            if let range = text.range(of: "“CPR 측정 시작하기”") {
                 text[range].font = .system(size: 16, weight: .bold)
             }
             return text
         }()
-        static let step3 = "iPhone은 애니 근처 잘 보이는 곳에 두십시오."
+        static let step3: AttributedString = {
+            var text = AttributedString("Apple Watch 앱에서 “확인” 버튼을 누르면, iPhone과 Watch가 동시에 압박 가이드를 제공합니다.")
+            if let range = text.range(of: "Apple Watch 앱에서 “확인”") {
+                text[range].font = .system(size: 16, weight: .bold)
+            }
+            return text
+        }()
+        static let step4 = "iPhone은 애니 근처 잘 보이는 곳에 두십시오."
     }
     
     struct RateAndDepthGuideText {
         static let title = "압박 속도와 깊이"
         
         static let step1: AttributedString = {
-            var text = AttributedString("가슴 압박 속도는 분당 100-120회(bpm)을\n권장합니다.")
+            var text = AttributedString("가슴 압박 속도는 분당 100-120회(bpm)를\n권장합니다.")
             
             if let range = text.range(of: "분당 100-120회(bpm)") {
                 text[range].font = .system(size: 16, weight: .bold)
@@ -87,7 +89,7 @@ struct Constants {
         }()
         
         static let step2: AttributedString = {
-            var text = AttributedString("BEAT100은 110bpm에 맞춰 Apple Watch 진동으로 압박 리듬을 제공합니다.")
+            var text = AttributedString("BEAT100은 110bpm에 맞춰 시각 가이드라인\n을 제공합니다.")
             
             if let range110 = text.range(of: "110bpm") {
                 text[range110].font = .system(size: 16, weight: .bold)
@@ -99,7 +101,7 @@ struct Constants {
         }()
         
         static let step3: AttributedString = {
-            var text = AttributedString("깊이는 약 5~6cm를 유지하며 진동에 맞는 \n일정한 속도로 압박해주세요.")
+            var text = AttributedString("깊이는 약 5~6cm를 유지하며 압박해주세요.")
             
             if let range = text.range(of: "5~6cm") {
                 text[range].font = .system(size: 16, weight: .bold)
@@ -107,14 +109,14 @@ struct Constants {
             return text
         }()
         
-        static let step4 = "매 압박과 이완은 1:1이 되도록 해주세요. \n이완 시 가슴이 완전히 올라오도록 이완합니다."
+        static let step4 = "압박과 이완의 각 깊이가 1:1이 되도록 해주세요. \n이완 시 가슴이 완전히 올라오도록 합니다."
     }
     
     struct WatchWearingGuideText {
         static let title = "Apple Watch 착용 가이드"
         
-        static let step1 = "Apple Watch를 아래쪽 손목의 손목뼈(요골) \n위쪽에 단단히 착용해주세요."
-        static let step2 = "손목 센서와 피부가 밀착되어야 올바른 압박 \n속도·깊이·리듬을 정확하게 감지할 수 있습니다."
+        static let step1 = "Apple Watch는 CPR 수행 시 아래쪽 팔의 \n손목뼈(요골) 위에 착용해주세요. "
+        static let step2 = "Apple Watch 센서가 피부와 밀착되어야 압박 속도와 깊이를 정확하게 감지할 수 있습니다."
     }
     
     //MARK: - CPRGuide
@@ -122,7 +124,7 @@ struct Constants {
         static let topBarTitle = "CPR 전체 가이드라인"
         
         struct Step1 {
-            static let title = "1단계 : 환자의 반응과 호흡 확인"
+            static let title = "1단계: 환자의 반응과 호흡 확인"
             static let description = """
             의식이 없는 환자를 발견하면, 먼저 어깨를 두드리고 “괜찮으세요?”라고 큰 소리로 반응을 확인합니다.
             10초 이내로 관찰하며 정상 호흡 여부를 확인합니다.
@@ -130,32 +132,29 @@ struct Constants {
         }
         
         struct Step2 {
-            static let title = "2단계 : 신속한 도움 요청 및 119 신고"
+            static let title = "2단계: 신속한 도움 요청 및 119 신고"
             static let description = """
             주위 특정인을 지목해 119 신고와 자동심장충격기(AED) 요청을 부탁합니다. 혼자라면 즉시 119에 신고 후 CPR을 시작합니다.
             """
         }
         
         struct Step3 {
-            static let title = "3단계 : 가슴압박 시작"
-            static let description = """
-            환자의 가슴 중앙(흉골 하단 1/2)에 두 손을 포개 얹고,
-            팔을 곧게 펴 체중을 실어, 분당 100~120회 속도와 5~6cm 깊이로 압박합니다.
-            """
+            static let title = "3단계: 가슴 압박 시작"
+            static let description = "가슴뼈(흉골)의 아래쪽 1/2 지점, 즉 양쪽 유두의 중간 아래에 두 손을 포개 얹고, 팔을 곧게 펴 체중을 실어 분당 100~120회 속도와 5~6cm 깊이로 압박합니다."
         }
         
         struct Step4 {
-            static let title = "4단계 : 기도 개방 및 인공호흡"
+            static let title = "4단계: 기도 개방 및 인공호흡"
             static let description = """
-            가슴압박 30회 시행 후 인공호흡을 위해 머리를 젖히고 턱을 들어 올려 기도 개방을 시도합니다. 인공호흡이
-            어려운 경우, 가슴압박만 지속해도 무방합니다.
+            가슴 압박 30회 시행 후 인공호흡을 위해 머리를 젖히고 턱을 들어 올려 기도 개방을 시도합니다. 인공호흡이
+            어려운 경우, 가슴 압박만 지속해도 무방합니다.
             """
         }
         
         struct Step5 {
-            static let title = "5단계 : 가슴압박과 인공호흡 반복"
+            static let title = "5단계: 가슴 압박과 인공호흡 반복"
             static let description = """
-            30회의 가슴압박과 2회 인공호흡을 반복합니다.
+            30회의 가슴 압박과 2회 인공호흡을 반복합니다.
             구급대원이 현장에 도착하거나 환자가 스스로
             움직이기 시작할 때까지 이 과정을 반복합니다.
             """
@@ -180,11 +179,7 @@ struct Constants {
             return text
         }()
         
-        static let noReportText = """
-            저장된 리포트가 없습니다.
-            가이드를 따라 CPR을 측정하면 
-            리포트가 자동으로 생성됩니다.\n
-        """
+        static let noReportText = "저장된 리포트가 없습니다.\n가이드를 따라 CPR을 측정하면\n리포트가 자동으로 생성됩니다.\n"
     }
     
     struct ReportDetail {

@@ -17,26 +17,31 @@ struct ConditionalLargeCard: View {
     var isEmphasized: Bool = false
     
     var body: some View {
-        HStack(alignment: .top, spacing: 20) {
+        HStack(alignment: .top, spacing: 17) {
             Image(imageResource)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 64)
             
-            VStack(alignment: .leading, spacing: 20) {
-                Title(titleText: titleText)
-                HStack {
-                    Content(contentText: contentText)
-                    Spacer()
+            VStack(alignment: .leading, spacing: 30) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Title(titleText: titleText)
+                    HStack {
+                        Content(contentText: contentText)
+                        Spacer()
+                    }
                 }
                 
-                HStack(alignment: .top, spacing: 12) {
+                HStack(alignment: .center, spacing: 7) {
                     SmallButton(isEmphasized ? buttonEmphasizedText : buttonText, action: action)
                     if isEmphasized {
                         ExclamationIcon()
-                            .padding(.top, 4)
                     }
                 }
             }
         }
-        .padding(20)
+        .padding(.horizontal, 17)
+        .padding(.vertical, 20)
         .background(.white)
         .cornerRadius(20)
         .overlay(

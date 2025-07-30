@@ -37,7 +37,7 @@ private struct Content: View {
     var body: some View {
         VStack(spacing: 22) {
             Text(titleText)
-                .font(.nanumSquareNeo(type: .heavy, size: 28))
+                .font(.nanumSquareNeo(type: .extrabold, size: 28))
                 .foregroundColor(.black)
             
             GeometryReader { geometry in
@@ -60,6 +60,7 @@ private struct Content: View {
                     Text(Constants.WatchWearingGuideText.step2)
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 6.5)
             .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
             .foregroundColor(.black)

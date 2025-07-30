@@ -53,7 +53,7 @@ private struct Content: View {
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
             Text(titleText)
-                .font(.nanumSquareNeo(type: .heavy, size: 28))
+                .font(.nanumSquareNeo(type: .extrabold, size: 28))
                 .foregroundColor(.black)
             
             VStack(alignment: .leading, spacing: 16) {
@@ -74,10 +74,17 @@ private struct Content: View {
                         .frame(width: 24)
                     Text(Constants.MeasurementStartText.step3)
                 }
+                
+                HStack(alignment: .top, spacing: 3) {
+                    Text("4.")
+                        .frame(width: 24)
+                    Text(Constants.MeasurementStartText.step4)
+                }
             }
             .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
             .foregroundColor(.black)
-            .padding(.horizontal, 9.5)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 6.5)
         }
     }
 }

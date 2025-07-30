@@ -42,7 +42,7 @@ private struct Content: View {
     var body: some View {
         VStack(spacing: 22) {
             Text(titleText)
-                .font(.nanumSquareNeo(type: .heavy, size: 28))
+                .font(.nanumSquareNeo(type: .extrabold, size: 28))
                 .foregroundColor(.black)
             
             GeometryReader { geometry in
@@ -63,7 +63,7 @@ private struct Content: View {
 private struct Disclaimer: View {
     var body: some View {
         Text(Constants.AppMechanismGuideText.disclaimer)
-            .font(.system(size: 12))
+            .fontWithLineHeight(font: .systemFont(ofSize: 12), lineHeight: 18)
             .multilineTextAlignment(.center)
             .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
     }

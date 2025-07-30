@@ -1,12 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "guide5@3x.pdf",
+      "filename" : "guide5.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }
