@@ -19,6 +19,9 @@ struct ConditionalLargeCard: View {
     var body: some View {
         HStack(alignment: .top, spacing: 17) {
             Image(imageResource)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 64)
             
             VStack(alignment: .leading, spacing: 30) {
                 VStack(alignment: .leading, spacing: 8) {
