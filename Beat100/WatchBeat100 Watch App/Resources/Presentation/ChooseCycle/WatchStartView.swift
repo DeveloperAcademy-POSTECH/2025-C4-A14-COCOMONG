@@ -20,6 +20,7 @@ struct WatchStartView: View {
                     .font(.system(size: 12, weight: .regular))
                     .multilineTextAlignment(.center)
                     .lineLimit(5)
+                    .lineSpacing(2)
                     .minimumScaleFactor(0.8)
                 
                 Button(action: {
