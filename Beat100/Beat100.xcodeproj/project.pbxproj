@@ -398,7 +398,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UKY6HK6U6Y;
+				DEVELOPMENT_TEAM = JMAUFK6U82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beat100/Info.plist;
@@ -414,7 +414,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cocomongLab.Beat100;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocomongd.Beat100;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -433,7 +433,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UKY6HK6U6Y;
+				DEVELOPMENT_TEAM = JMAUFK6U82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Beat100/Info.plist;
@@ -449,7 +449,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cocomongLab.Beat100;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocomongd.Beat100;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -469,7 +469,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UKY6HK6U6Y;
+				DEVELOPMENT_TEAM = JMAUFK6U82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";
@@ -477,13 +477,13 @@
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "CPR 측정 중 운동 세션의 지속 여부를 확인하고, 중단 없이 기록을 유지하기 위해 건강 데이터를 읽습니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "운동 세션을 정확하게 관리하고, 측정 중 세션이 끊기지 않도록 유지하기 위해 사용합니다. 건강 데이터는 저장되지 않습니다.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cocomongLab.Beat100;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cocomongd.Beat100;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cocomongLab.Beat100.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocomongd.Beat100.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -502,7 +502,7 @@
 				CODE_SIGN_ENTITLEMENTS = "WatchBeat100 Watch App/WatchBeat100 Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UKY6HK6U6Y;
+				DEVELOPMENT_TEAM = JMAUFK6U82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchBeat100-Watch-App-Info.plist";
@@ -510,13 +510,13 @@
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "CPR 측정 중 운동 세션의 지속 여부를 확인하고, 중단 없이 기록을 유지하기 위해 건강 데이터를 읽습니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "운동 세션을 정확하게 관리하고, 측정 중 세션이 끊기지 않도록 유지하기 위해 사용합니다. 건강 데이터는 저장되지 않습니다.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cocomongLab.Beat100;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.cocomongd.Beat100;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cocomongLab.Beat100.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cocomongd.Beat100.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

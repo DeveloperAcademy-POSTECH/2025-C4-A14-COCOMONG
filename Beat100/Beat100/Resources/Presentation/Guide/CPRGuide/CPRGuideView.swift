@@ -33,7 +33,7 @@ private struct TopBar: View {
 private struct Content: View {
     var body: some View {
         ScrollView() {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: 30) {
                 Step(
                     imageResource: .guide1,
                     title: Constants.CPRGuideText.Step1.title,
