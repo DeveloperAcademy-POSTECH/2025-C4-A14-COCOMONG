@@ -13,10 +13,11 @@ struct FinishView: View {
     
     var body: some View {
         NavigationStack{
-                ZStack{
-                    Color.black
-                        .edgesIgnoringSafeArea(.all)
-                    ScrollView{
+            
+            ZStack{
+                Color.black
+                    .edgesIgnoringSafeArea(.all)
+                ScrollView{
                     VStack(spacing: 0){
                         Text("리포트 생성 완료")
                             .font(.nanumSquareNeo(type: .heavy, size: 14))
@@ -53,9 +54,9 @@ struct FinishView: View {
                     }
                     .padding(.horizontal, 8.5)
                     .padding(.bottom, 12)
+                    .disabledToolbar()
                     
                     Spacer()
-                    .disabledToolbar()
                 }
             }
         }
