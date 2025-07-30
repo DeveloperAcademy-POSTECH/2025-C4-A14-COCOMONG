@@ -28,9 +28,6 @@ class MeasuringViewModel: ObservableObject {
     @Published var isCountdownDone: Bool = false
     @Published var selectedIndex: Int = 1
     @Published private var acceleration: CMAcceleration = .init(x: 0, y: 0, z: 0)
-    @Published private var compressionTimestamps: [TimeInterval] = []
-    @Published private var lastTriggerTime: TimeInterval = 0
-    @Published private var isShaking: Bool = false
     @Published var currentRound: Int = 0
     @Published var allLogs: [[LogEntry]] = Array(repeating: [], count: 5)
     
@@ -45,9 +42,6 @@ class MeasuringViewModel: ObservableObject {
         isCountdownDone = false
         selectedIndex = 1
         acceleration = .init(x: 0, y: 0, z: 0)
-        compressionTimestamps = []
-        lastTriggerTime = 0
-        isShaking = false
         currentRound = 0
         allLogs = Array(repeating: [], count: 5)
         isFinalRoundHandled = false
@@ -89,9 +83,6 @@ class MeasuringViewModel: ObservableObject {
             
             let entry = LogEntry(timestamp: now, zValue: acceleration.z)
             self.logs.append(entry)
-            
-            self.compressionTimestamps.append(now)
-            self.lastTriggerTime = now
         }
     }
     
