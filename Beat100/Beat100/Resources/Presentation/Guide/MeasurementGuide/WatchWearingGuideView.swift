@@ -60,6 +60,7 @@ private struct Content: View {
                     Text(Constants.WatchWearingGuideText.step2)
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 6.5)
             .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
             .foregroundColor(.black)

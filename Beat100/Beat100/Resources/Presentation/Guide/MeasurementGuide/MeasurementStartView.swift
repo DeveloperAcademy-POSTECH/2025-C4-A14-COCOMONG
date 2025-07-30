@@ -83,7 +83,8 @@ private struct Content: View {
             }
             .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
             .foregroundColor(.black)
-            .padding(.horizontal, 9.5)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 6.5)
         }
     }
 }
