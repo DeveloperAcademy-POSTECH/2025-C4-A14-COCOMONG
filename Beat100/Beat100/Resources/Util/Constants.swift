@@ -113,8 +113,8 @@ struct Constants {
     struct WatchWearingGuideText {
         static let title = "Apple Watch 착용 가이드"
         
-        static let step1 = "Apple Watch를 아래쪽 손목의 손목뼈(요골) \n위쪽에 단단히 착용해주세요."
-        static let step2 = "손목 센서와 피부가 밀착되어야 올바른 압박 \n속도·깊이·리듬을 정확하게 감지할 수 있습니다."
+        static let step1 = "Apple Watch는 CPR 수행 시 아래쪽 팔의 \n손목뼈(요골) 위에 착용해주세요. "
+        static let step2 = "Apple Watch 센서가 피부와 밀착되어야 압박 속도와 깊이를 정확하게 감지할 수 있습니다."
     }
     
     //MARK: - CPRGuide
