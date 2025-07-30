@@ -72,12 +72,15 @@ struct MeasuringView: View {
         }
         .toolbar{
             ToolbarItem(placement: .cancellationAction) {
-                Button("취소"){
+                Button {
                     ConnectivityManager.sendMessage([
                         "MeasuringCancelFlag": true,
                     ])
                     viewModel.reset()
                     dismiss()
+                } label: {
+                    Text("취소")
+                        .padding(.horizontal, 3)
                 }
                     .tint(.gray900)
             }
@@ -89,4 +92,3 @@ struct MeasuringView: View {
 #Preview {
     MeasuringView(selectedNumber: .constant(1), onComplete: {})
 }
-
