@@ -45,12 +45,7 @@ struct Constants {
     
     struct CompressionPositionGuideText {
         static let title = "가슴 압박 위치"
-        static let body = """
-            가슴 압박은 가슴뼈(흉골)의 아래쪽 1/2 지점,
-            즉 양쪽 유두를 이은 선 중앙에 손바닥을 놓고
-            실시합니다. 손바닥 뒤꿈치를 이용해 팔꿈치를
-            곧게 편 상태로 수직으로 눌러주세요.
-            """
+        static let body = "가슴 압박은 가슴뼈(흉골)의 아래쪽 1/2 지점,\n즉 양쪽 유두의 중간 아래에 손바닥을 놓고 \n실시합니다. 팔꿈치를 곧게 편 상태에서 \n손바닥 뒤꿈치를 이용해 수직으로 눌러주세요."
     }
     
     struct MeasurementStartText {
