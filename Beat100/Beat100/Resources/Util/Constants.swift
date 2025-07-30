@@ -34,7 +34,7 @@ struct Constants {
         static let body = """
         BEAT100은 Apple Watch의 모션 센서를 
         활용하여 CPR 중 손목의 움직임을 감지합니다. 
-        압박 리듬, 속도, 깊이를 실시간으로 측정하여 
+        압박 속도와 깊이를 실시간으로 측정하여 
         올바른 압박을 유지할 수 있도록 돕습니다.
         """
         static let disclaimer = """
