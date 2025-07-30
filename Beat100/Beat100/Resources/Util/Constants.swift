@@ -179,11 +179,7 @@ struct Constants {
             return text
         }()
         
-        static let noReportText = """
-            저장된 리포트가 없습니다.
-            가이드를 따라 CPR을 측정하면 
-            리포트가 자동으로 생성됩니다.\n
-        """
+        static let noReportText = "저장된 리포트가 없습니다.\n가이드를 따라 CPR을 측정하면\n리포트가 자동으로 생성됩니다.\n"
     }
     
     struct ReportDetail {
