@@ -28,7 +28,7 @@ struct GuideHomeView: View {
         .sheet(isPresented: $isCPRGuidePresented) {
             CPRGuideView()
                 .presentationDragIndicator(.visible)
-                .padding(.top, 10)
+                .padding(.top, 15)
                 .background(.gray200)
         }
     }
