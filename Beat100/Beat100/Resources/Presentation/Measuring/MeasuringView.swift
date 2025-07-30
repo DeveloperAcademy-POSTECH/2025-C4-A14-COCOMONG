@@ -36,6 +36,7 @@ struct MeasuringView: View {
 #elseif os(watchOS)
     @Binding var selectedNumber: Int
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject var workoutManager: WorkoutManager
     var onComplete: () -> Void
     
     let ConnectivityManager = WatchConnectivityManager.shared
@@ -54,6 +55,7 @@ struct MeasuringView: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
         .onAppear {
+            workoutManager.startWorkout()
             viewModel.startAnimating(bpm: MeasuringConfig.bpm)
             viewModel.selectedIndex = selectedNumber
             viewModel.startDetectingShakes()
@@ -68,6 +70,7 @@ struct MeasuringView: View {
             }
         }
         .onDisappear {
+            workoutManager.stopWorkout()
             viewModel.stopAnimating()
         }
         .toolbar{
@@ -87,8 +90,4 @@ struct MeasuringView: View {
         }
     }
 #endif
-}
-
-#Preview {
-    MeasuringView(selectedNumber: .constant(1), onComplete: {})
 }
