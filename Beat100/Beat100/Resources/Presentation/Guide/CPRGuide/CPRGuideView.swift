@@ -34,27 +34,27 @@ private struct Content: View {
     var body: some View {
         ScrollView() {
             VStack(alignment: .leading, spacing: 30) {
-                Step(
+                CPRStep(
                     imageResource: .guide1,
                     title: Constants.CPRGuideText.Step1.title,
                     description: Constants.CPRGuideText.Step1.description
                 )
-                Step(
+                CPRStep(
                     imageResource: .guide2,
                     title: Constants.CPRGuideText.Step2.title,
                     description: Constants.CPRGuideText.Step2.description
                 )
-                Step(
+                CPRStep(
                     imageResource: .guide3,
                     title: Constants.CPRGuideText.Step3.title,
                     description: Constants.CPRGuideText.Step3.description
                 )
-                Step(
+                CPRStep(
                     imageResource: .guide4,
                     title: Constants.CPRGuideText.Step4.title,
                     description: Constants.CPRGuideText.Step4.description
                 )
-                Step(
+                CPRStep(
                     imageResource: .guide5,
                     title: Constants.CPRGuideText.Step5.title,
                     description: Constants.CPRGuideText.Step5.description

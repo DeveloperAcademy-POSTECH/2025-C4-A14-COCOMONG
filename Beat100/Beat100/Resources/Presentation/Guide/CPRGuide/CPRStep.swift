@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-struct Step: View {
+struct CPRStep: View {
     var imageResource: ImageResource
     var title: String
     var description: String
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 6) {
             Image(imageResource)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -37,7 +37,7 @@ struct Step: View {
 }
 
 #Preview {
-    Step(
+    CPRStep(
         imageResource: .guide1,
         title: Constants.CPRGuideText.Step1.title,
         description: Constants.CPRGuideText.Step1.description
