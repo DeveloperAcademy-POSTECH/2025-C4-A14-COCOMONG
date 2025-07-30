@@ -22,6 +22,9 @@ struct Beat100App: App {
                 .environmentObject(notificationFunction)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .onAppear {
+                    HealthKitManager.shared.requestAuthorization { success in
+                        print("권한 요청 결과: \(success)")
+                    }
                     notificationFunction.observeSelectedNumber()
                     notificationFunction.observeMeasureStart()
                     notificationFunction.observeDidReceiveAllLogs()
