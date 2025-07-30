@@ -16,9 +16,10 @@ struct WatchStartView: View {
             Color.black
                 .ignoresSafeArea(edges: .all)
             VStack(spacing: 12){
-                Text("정확한 CPR 측정을 위해 iPhone과 안정적으로 연동되었는지, Apple Watch를 CPR 수행 시 편안한 쪽의 손목에 꼭 맞게 차고 있는지 확인하십시오. 현재 왼쪽 손목으로 설정되어 있습니다.")
+                Text("iPhoe과 Watch가 연동되었습니다. 정확한 CPR 측정을 위해 Apple Watch를 CPR 수행하는 아래쪽 손목에 착용했는지 확인하세요.")
                     .font(.system(size: 12, weight: .regular))
                     .multilineTextAlignment(.center)
+                    .lineSpacing(2)
                     .lineLimit(7)
                     .minimumScaleFactor(0.8)
                 

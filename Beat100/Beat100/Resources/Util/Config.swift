@@ -28,7 +28,7 @@ struct CountdownConfig {
     
     static let watchCircleSize: CGFloat = 126
     static let watchCircleWidth: CGFloat = 12
-    static let watchFontSize: CGFloat = 32
+    static let watchFontSize: CGFloat = 55
 }
 
 struct MeasuringConfig {
