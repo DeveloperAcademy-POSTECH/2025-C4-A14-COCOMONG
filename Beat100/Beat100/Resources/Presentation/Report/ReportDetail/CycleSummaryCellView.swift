@@ -16,19 +16,19 @@ struct CycleSummaryCellView: View {
     var body: some View {
         HStack(spacing: 16) {
             Text(cycleTitle)
-                .font(.system(size: 14, weight: .regular))
+                .font(.system(size: 15, weight: .regular))
                 .foregroundStyle(Color.black)
             
             Spacer()
             
             HStack {
                 Text("\(correctCount)/\(totalCount)회")
-                    .font(.nanumSquareNeo(type: .bold, size: 14))
+                    .font(.nanumSquareNeo(type: .bold, size: 15))
                 
                 Spacer()
                 
                 Text("\(percent)%")
-                    .font(.nanumSquareNeo(type: .heavy, size: 14))
+                    .font(.nanumSquareNeo(type: .heavy, size: 15))
             }
             .frame(width: 116)
             .foregroundStyle(percent < 80 ? Color.beatDarkPink : .black)

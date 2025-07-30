@@ -19,7 +19,7 @@ struct BeforeWatchView: View {
             }
             .padding(.bottom, 16)
             Text("CPR 측정을 설정하려면\niPhone에서 Beat100앱을\n사용해주세요.")
-                .font(.system(size: 11, weight: .regular))
+                .font(.system(size: 12, weight: .regular))
                 .multilineTextAlignment(.center)
         }
         .toolbar{}

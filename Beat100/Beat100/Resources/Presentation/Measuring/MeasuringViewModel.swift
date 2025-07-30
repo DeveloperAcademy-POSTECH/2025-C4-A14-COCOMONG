@@ -9,6 +9,7 @@ import Foundation
 import CoreMotion
 
 class MeasuringViewModel: ObservableObject {
+    private var isFinalRoundHandled = false
     let motionManager = CMMotionManager()
     private let manager = WatchConnectivityManager.shared
     
@@ -49,6 +50,7 @@ class MeasuringViewModel: ObservableObject {
         isShaking = false
         currentRound = 0
         allLogs = Array(repeating: [], count: 5)
+        isFinalRoundHandled = false
         print("Measuring ViewModel Reset Complete")
     }
     
@@ -57,7 +59,7 @@ class MeasuringViewModel: ObservableObject {
         isCountdownDone = false
 
         roundTimer?.invalidate()
-        roundTimer = Timer.scheduledTimer(withTimeInterval: 17, repeats: false) { [weak self] _ in
+        roundTimer = Timer.scheduledTimer(withTimeInterval: 19, repeats: false) { [weak self] _ in
             print("timer end check")
             self?.isCountdownDone = true
         }
@@ -93,10 +95,10 @@ class MeasuringViewModel: ObservableObject {
         }
     }
     
-    func startIOSAnimationCycles(onComplete: @escaping () -> Void) {
+    func startIOSAnimationCycles(onComplete: @escaping () -> Void) { 
         currentRound = 0
         func runCycle() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 17) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 19) {
                 self.currentRound += 1
                 if self.currentRound < self.selectedIndex {
                     runCycle()
@@ -111,6 +113,9 @@ class MeasuringViewModel: ObservableObject {
     #if os (watchOS)
     
     func handleCountdownComplete(onComplete: @escaping () -> Void) {
+        print("✅ handleCountdownComplete 실행됨")
+        print("currentRound: \(currentRound), selectedIndex: \(selectedIndex)")
+
         allLogs[currentRound] = logs
         motionManager.stopAccelerometerUpdates()
         
@@ -121,6 +126,11 @@ class MeasuringViewModel: ObservableObject {
             startDetectingShakes()
             startTimer()
         } else {
+            guard !isFinalRoundHandled else {
+                print("마지막 라운드 중복 방지")
+                return
+            }
+            isFinalRoundHandled = true
             sending(round: 0)
             onComplete()
         }

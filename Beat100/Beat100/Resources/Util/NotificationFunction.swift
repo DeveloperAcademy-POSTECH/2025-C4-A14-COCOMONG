@@ -32,18 +32,15 @@ class NotificationFunction: ObservableObject {
     }
     
     func observeMeasuringComplete(onComplete: @escaping () -> Void) {
-        guard !hasSetMeasuringCompleteObserver else { return }
-        hasSetMeasuringCompleteObserver = true
-
-        NotificationCenter.default.addObserver(forName: .measuringComplete, object: nil, queue: .main) { _ in
-            
-                if self.isMeasuringComplete { return }
-
-                self.isMeasuringComplete = true
-                print("onComplete 작동 확인")
-                DispatchQueue.main.async {
-                    onComplete()
-                }
+        NotificationCenter.default.removeObserver(self, name: .measuringComplete, object: nil)
+        NotificationCenter.default.addObserver(forName: .measuringComplete, object: nil, queue: .main) { [weak self] _ in
+            guard let self = self else { return }
+            if self.isMeasuringComplete { return }
+            self.isMeasuringComplete = true
+            print("onComplete 작동 확인")
+            DispatchQueue.main.async {
+                onComplete()
+            }
         }
     }
 
@@ -51,6 +48,8 @@ class NotificationFunction: ObservableObject {
         NotificationCenter.default.addObserver(forName: Notification.Name("MeasureStartNotification"), object: nil, queue: .main) { [weak self] _ in
             print("MeasureStart Notification received!")
             self?.showingMeasuringModal = true
+            self?.hasSavedReport = false
+            self?.isMeasuringComplete = false
         }
     }
     
@@ -89,10 +88,10 @@ class NotificationFunction: ObservableObject {
                     self.ConnectivityManager.sendMessage(["MeasuringCompleteFlag": true])
                     self.receivedLogs = parsed
                     print("지금 noti")
-                    self.selectedTab = 1 // Switch to Report tab
+                    self.selectedTab = 1
                     print("실행 횟수수수퍼노바 체크")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        print("실행 횟수 체크")
+                        print("1초에 실행 횟수 체크")
                         NotificationCenter.default.post(name: .measuringComplete, object: nil)
                     }
                 } catch {

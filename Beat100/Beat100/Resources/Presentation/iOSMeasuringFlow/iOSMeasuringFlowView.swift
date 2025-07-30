@@ -20,6 +20,9 @@ struct iOSMeasuringFlowView: View {
                 CountdownAnimationView(viewModel: CountdownViewModel()) {
                     step = .measuring
                 }
+                .task {
+                    notificationFunction.isMeasuringCancel = false
+                }
             case .measuring:
                 MeasuringView(selectedNumber: .constant(selectedNumber)) {
                     step = .measuringComplete
