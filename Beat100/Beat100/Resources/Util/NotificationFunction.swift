@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import HealthKit
 
 class NotificationFunction: ObservableObject {
     
@@ -19,7 +18,6 @@ class NotificationFunction: ObservableObject {
     @Published var isMeasuringCancel: Bool = false
     @Published var hasSavedReport: Bool = false
     
-    let healthStore = HKHealthStore()
     let ConnectivityManager = WatchConnectivityManager.shared
     
     private var hasSetMeasuringCompleteObserver = false
