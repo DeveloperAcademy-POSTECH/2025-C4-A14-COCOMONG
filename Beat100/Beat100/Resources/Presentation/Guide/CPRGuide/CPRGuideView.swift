@@ -62,7 +62,7 @@ private struct Content: View {
             }
             .padding(.leading, 20)
             .padding(.trailing, 18)
-            .padding(.bottom, 69)
+            .padding(.bottom, 30)
         }
         .padding(.trailing, 2)
     }
