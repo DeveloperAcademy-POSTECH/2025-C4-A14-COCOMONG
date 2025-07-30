@@ -16,11 +16,11 @@ struct WatchStartView: View {
             Color.black
                 .ignoresSafeArea(edges: .all)
             VStack(spacing: 12){
-                Text("iPhoe과 Watch가 연동되었습니다. 정확한 CPR 측정을 위해 Apple Watch를 CPR 수행하는 아래쪽 손목에 착용했는지 확인하세요.")
+                Text("iPhone과 Watch가 연동되었습니다. 정확한 CPR 측정을 위해 Apple Watch를 CPR 수행하는 아래쪽 손목에 착용했는지 확인하세요.")
                     .font(.system(size: 12, weight: .regular))
                     .multilineTextAlignment(.center)
+                    .lineLimit(5)
                     .lineSpacing(2)
-                    .lineLimit(7)
                     .minimumScaleFactor(0.8)
                 
                 Button(action: {

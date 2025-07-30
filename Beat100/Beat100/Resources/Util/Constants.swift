@@ -183,7 +183,7 @@ struct Constants {
         static let noReportText = """
             저장된 리포트가 없습니다.
             가이드를 따라 CPR을 측정하면 
-            리포트가 자동으로 생성됩니다.
+            리포트가 자동으로 생성됩니다.\n
         """
     }
     
@@ -191,9 +191,7 @@ struct Constants {
         static let paceContent: AttributedString = {
             
             var text = AttributedString("""
-            압박 속도는 분당 100~120회가 이상적인 권장 속도입니다.
-            그래프를 통해 CPR 속도의 일관성을 확인할 수 있습니다.
-            권장 속도에서 벗어난 경우 CPR 속도 개선이 필요합니다.
+            압박 속도는 분당 100~120회가 이상적인 권장 속도입니다. 그래프를 통해 CPR 속도의 일관성을 확인할 수 있습니다. 권장 속도에서 벗어난 경우 CPR 속도 개선이 필요합니다.
             """)
             
             if let range = text.range(of: "분당 100~120회") {

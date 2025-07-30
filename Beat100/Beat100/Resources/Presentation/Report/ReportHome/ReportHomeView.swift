@@ -20,29 +20,40 @@ struct ReportHomeView: View {
     
     var body: some View {
         NavigationView {
-            Group {
-                if groupedReports.isEmpty {
-                    NoReportTextView
-                } else {
-                    ScrollView {
-                        VStack(spacing: 20) {
-                            ExplainPressureCardView()
-                            YearMonthReportCardListView
+            ZStack {
+                Color.gray200
+                
+                Group {
+                    if groupedReports.isEmpty {
+                        VStack {
+                            NoReportTextView
                         }
-                        .padding(.all, 16)
-                        .padding(.bottom, 20)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.gray200)
+                    } else {
+                        ScrollView {
+                            VStack(spacing: 20) {
+                                ExplainPressureCardView()
+                                YearMonthReportCardListView
+                            }
+                            .padding(.all, 16)
+                            .padding(.bottom, 20)
+                        }
+                        .background(Color.gray200)
                     }
                 }
-            }
-            .navigationTitle(Constants.ReportHome.navTitle)
-            .navigationBarTitleDisplayMode(.large)
-            .task {
-                do {
-                    let allReports = try CprReport.fetchAll(in: context)
-                    groupedReports = try CprReport.groupedByYearMonth(cprReports: allReports)
-                    print("CPR Reports loaded: \(allReports.count)")
-                } catch {
-                    print("Failed to load reports: \(error)")
+//                .toolbarBackground(Color.gray200, for: .navigationBar)
+//                .toolbarBackground(.visible, for: .navigationBar)
+                .navigationTitle(Constants.ReportHome.navTitle)
+                .navigationBarTitleDisplayMode(.large)
+                .task {
+                    do {
+                        let allReports = try CprReport.fetchAll(in: context)
+                        groupedReports = try CprReport.groupedByYearMonth(cprReports: allReports)
+                        print("CPR Reports loaded: \(allReports.count)")
+                    } catch {
+                        print("Failed to load reports: \(error)")
+                    }
                 }
             }
         }
@@ -93,8 +104,8 @@ struct ReportHomeView: View {
     private var NoReportTextView: some View {
         Text(Constants.ReportHome.noReportText)
             .multilineTextAlignment(.center)
-            .font(.nanumSquareNeo(type: .heavy, size: 16))
-            .foregroundStyle(Color.gray800)
-            .lineSpacing(8)
+            .font(.nanumSquareNeo(type: .extrabold, size: 14))
+            .foregroundStyle(Color.gray600)
+            .lineSpacing(6)
     }
 }

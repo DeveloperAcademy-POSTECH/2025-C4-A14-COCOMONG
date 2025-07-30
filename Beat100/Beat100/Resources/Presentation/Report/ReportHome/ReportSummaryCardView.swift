@@ -24,6 +24,7 @@ struct ReportSummaryCardView: View {
         }
         .frame(height: 150)
         .frame(maxWidth: .infinity)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
     }
     
     private var CardContentView: some View {
