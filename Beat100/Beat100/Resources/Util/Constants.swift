@@ -53,20 +53,27 @@ struct Constants {
         static let startButtonText = "CPR 측정 시작하기"
         
         static let step1: AttributedString = {
-            var text = AttributedString("\"CPR 측정 시작하기\"를 누르면 Apple Watch앱과 연동을 시작합니다.")
-            if let range = text.range(of: "\"CPR 측정 시작하기\"") {
+            var text = AttributedString("Apple Watch에서 Beat100을 실행해주세요.")
+            if let range = text.range(of: "Apple Watch에서 Beat100을 실행") {
                 text[range].font = .system(size: 16, weight: .bold)
             }
             return text
         }()
         static let step2: AttributedString = {
-            var text = AttributedString("Apple Watch 앱에서 \"확인\" 버튼을 누르면, iPhone과 Watch가 자동으로 연동돼 압박 리듬 가이드를 함께 제공합니다.")
-            if let range = text.range(of: "\"확인\" 버튼") {
+            var text = AttributedString("“CPR 측정 시작하기”를 누르면 Apple Watch앱과 연동을 시작합니다.")
+            if let range = text.range(of: "“CPR 측정 시작하기”") {
                 text[range].font = .system(size: 16, weight: .bold)
             }
             return text
         }()
-        static let step3 = "iPhone은 애니 근처 잘 보이는 곳에 두십시오."
+        static let step3: AttributedString = {
+            var text = AttributedString("Apple Watch 앱에서 “확인” 버튼을 누르면, iPhone과 Watch가 동시에 압박 가이드를 제공합니다.")
+            if let range = text.range(of: "Apple Watch 앱에서 “확인”") {
+                text[range].font = .system(size: 16, weight: .bold)
+            }
+            return text
+        }()
+        static let step4 = "iPhone은 애니 근처 잘 보이는 곳에 두십시오."
     }
     
     struct RateAndDepthGuideText {

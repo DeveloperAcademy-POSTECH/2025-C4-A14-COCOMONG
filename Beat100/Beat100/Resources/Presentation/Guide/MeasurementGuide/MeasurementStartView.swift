@@ -74,6 +74,12 @@ private struct Content: View {
                         .frame(width: 24)
                     Text(Constants.MeasurementStartText.step3)
                 }
+                
+                HStack(alignment: .top, spacing: 3) {
+                    Text("4.")
+                        .frame(width: 24)
+                    Text(Constants.MeasurementStartText.step4)
+                }
             }
             .fontWithLineHeight(font: .systemFont(ofSize: 16), lineHeight: 22)
             .foregroundColor(.black)
