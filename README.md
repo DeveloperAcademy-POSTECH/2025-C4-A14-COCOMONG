@@ -1,8 +1,6 @@
 # 🚀 Beat100
 
-![배너 이미지 또는 로고](링크)
-
-> 간단한 한 줄 소개 – 프로젝트의 핵심 가치 또는 기능!
+<img width="200" height="200" alt="Beat100_Logo" src="https://github.com/user-attachments/assets/7f700f0e-8ba7-4930-bf7e-e73b61820d62" />
 
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)]()
 [![Xcode](https://img.shields.io/badge/Xcode-15.0-blue.svg)]()
@@ -27,31 +25,34 @@
 
 ## 📱 소개
 
-> 프로젝트의 주요 목적과 사용자가 얻게 될 경험을 설명해주세요.
+<img width="3291" height="1040" alt="image" src="https://github.com/user-attachments/assets/c19fe824-7ee6-493b-b43b-c8998634310f" />
 
-[🔗 앱스토어/웹 링크](https://example.com)
+> ### **Problem and Solution**
+
+**Problem:** **단체 CPR 교육**을 받고 있는 사람이 강사의 1대1 코칭을 받지 못해 정확한 자세를 취하고 있는지 확신하지 못하는 상황에서
+
+**Solution:** 우리의 앱에 진입해서 **CPR을 실시(연습)하면서, Core Motion이 제공하는 가슴 압박 깊이와 횟수에 대한 피드백과 CPR 실시 후에 리포트를 제공해** 교육 현장에서 CPR이 정확히 이루어지고 있는지 확인할 수 있게 한다.
 
 
 ## 📆 프로젝트 기간
-- 전체 기간: `YYYY.MM.DD - YYYY.MM.DD`
-- 개발 기간: `YYYY.MM.DD - YYYY.MM.DD`
+- 전체 기간: `2025.06.23 - 2025.08.01`
+- 개발 기간: `2025.07.17 - 2025.07.31`
 
 
 ## 🛠 기술 스택
 
-- Swift / SwiftUI / UIKit / Firebase 등
-- 아키텍처: MVVM / MVC / Clean Architecture 등
-- 기타 도구: Figma, Notion, GitHub Projects 등
+- Swift / SwiftUI / Combine
+- Core Motion / Core Data / Watch Connectivity / HealthKit
+- 아키텍처: MVVM
+- 기타 도구: Figma, Confluence, JIRA, Xcode Cloud, GitHub
 
 
 ## 🌟 주요 기능
 
-- ✅ 기능 1
-- ✅ 기능 2
-- ✅ 기능 3
-
-> 필요시 이미지, GIF, 혹은 링크 삽입
-
+- ✅ 기능 1: CPR 측정중 실시간 iOS 시각 리듬
+  <img width="1044" height="602" alt="Screenshot 2025-08-01 at 9 41 07 AM" src="https://github.com/user-attachments/assets/d23f0b9b-63fc-4b84-b928-39622735c183" />
+- ✅ 기능 2: CPR 측정 결과 리포트 제공
+  <img width="960" height="865" alt="Screenshot 2025-08-01 at 9 41 26 AM" src="https://github.com/user-attachments/assets/40f6a4b8-acaf-4c13-8c8b-10a6cd38b357" />
 
 ## 🖼 화면 구성 및 시연
 
@@ -63,15 +64,69 @@
 
 ## 🧱 폴더 구조
 
+Beat100 iOS App
 ```
-📦ProjectName
-┣ 📂Feature
-┃ ┣ 📂SceneA
-┃ ┗ 📂SceneB
-┣ 📂Core
-┣ 📂UI
-┣ 📂Test
-┗ 📂Resources
+📦Beat100
+┣ 📂App
+┣ 📂Resources
+┃ ┣ 📂Common
+┃ ┃ ┣ 📂Components
+┃ ┃ ┃ ┣ 📂Buttons
+┃ ┃ ┃ ┣ 📂Card
+┃ ┃ ┃ ┣ 📂Measuring
+┃ ┃ ┃ ┣ 📂ProgressBar
+┃ ┃ ┃ ┗ 📂Toolbars
+┃ ┃ ┣ 📂DesignSystem
+┃ ┃ ┣ 📂Enum
+┃ ┃ ┣ 📂Protocol
+┃ ┗ 📂Extension
+┣ 📂Models
+┃ ┣ 📂CoreDataModel
+┃ ┗ 📂Dto
+┣ 📂Presentation
+┃ ┣ 📂Countdown
+┃ ┣ 📂Guide
+┃ ┃ ┣ 📂CPRGuide
+┃ ┃ ┗ 📂MeasurementGuide
+┃ ┣ 📂iOSMeasuringFlow
+┃ ┣ 📂MainTab
+┃ ┣ 📂Measuring
+┃ ┗ 📂Report
+┣ 📂Service
+┃ ┗ 📂Manager
+┃   ┣ 📂CPRAnalysis
+┃   ┗ 📂WatchConnect
+┣ 📂Util
+┣ 📂Sources
+┃ ┣ 📂Fonts
+┃ ┗ 📂Rive
+┣ 📂Assets
+┣ 📂Beat100
+┗ 📂Info
+```
+Beat100 WatchOS App
+```
+📦WatchBeat100 Watch App
+┣ 📂App
+┣ 📂Resources
+┃ ┣ 📂Common
+┃ ┃ ┣ 📂Components
+┃ ┃ ┣ 📂DesignSystem
+┃ ┃ ┣ 📂Enum
+┃ ┃ ┗ 📂Protocol
+┃ ┗ 📂Extension
+┣ 📂Presentation
+┃ ┣ 📂BeforeWatch
+┃ ┣ 📂ChooseCycle
+┃ ┣ 📂Finish
+┃ ┗ 📂MeasuringFlow
+┣ 📂Service
+┃ ┗ 📂Manager
+┣ 📂Utils
+┣ 📂Sources
+┃ ┗ 📂Fonts
+┣ 📂Assets
+┗ 📂WatchBeat100 Watch App
 ```
 
 
@@ -79,34 +134,37 @@
 
 | 이름 | 역할 | GitHub |
 |------|------|--------|
-| 홍길동 | iOS Developer | [@hong](https://github.com/hong) |
-| 김개발 | PM | [@devkim](https://github.com/devkim) |
-
-[🔗 팀 블로그 / 미디엄 링크](https://medium.com/example)
+| **Zani (이창희)** | Product Manager |  |
+| **Green (고승아)** | Product Designer |  |
+| **Singsing (이시은)** | Product Designer |  |
+| **Ivy (이현주)** | iOS Developer | [@dlguszoo](https://github.com/dlguszoo) |
+| **Joid (나현흠)** | iOS Developer | [@nakisara01](https://github.com/nakisara01) |
+| **Oliver (홍석호)** | iOS Developer | [@cherry-go-round](https://github.com/cherry-go-round) |
 
 ## 🔖 브랜치 전략
-`(예시)`
 - `main`: 배포 가능한 안정 버전
-- `develop`: 통합 개발 브랜치
-- `feature/*`: 기능 개발 브랜치
-- `bugfix/*`: 버그 수정 브랜치
+- `dev`: 통합 개발 브랜치
+- `feat/*`: 기능 개발 브랜치
+- `design/*`: 디자인 구현 브랜치
+- `chore/*`: 패키지, 파일 수정 브랜치
+- `bug/*`: 버그 수정 브랜치
 - `hotfix/*`: 긴급 수정 브랜치
 
 ## 🌀 커밋 메시지 컨벤션
 `(예시)`  
-[Gitmoji](https://gitmoji.dev) + [Conventional Commits](https://www.conventionalcommits.org)
+[#(issue Number)] + [Conventional Commits](https://www.conventionalcommits.org)
 
 ### 예시
-- ✨ feat: 로그인 화면 추가
-- 🐛 fix: 홈 진입 시 크래시 수정
-- ♻️ refactor: 데이터 모델 구조 정리
+- [#72] feat: 로그인 화면 추가
+- [#21] fix: 홈 진입 시 크래시 수정
+- [#11] refactor: 데이터 모델 구조 정리
 
 
 ## ✅ 테스트 방법
 
 1. 이 저장소를 클론합니다.
 ```bash
-git clone https://github.com/yourteam/project.git
+git clone https://github.com/DeveloperAcademy-POSTECH/2025-C4-A14-COCOMONG/project.git
 ```
 2. `Xcode`로 `.xcodeproj` 또는 `.xcworkspace` 열기
 3. 시뮬레이터 환경 설정: iPhone 15 / iOS 17
